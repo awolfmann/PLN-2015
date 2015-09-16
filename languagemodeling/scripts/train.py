@@ -7,6 +7,9 @@ Usage:
 Options:
   -n <n>        Order of the model.
   -o <file>     Output model file.
+  -m <model>    Model to use [default: ngram]:
+                  ngram: Unsmoothed n-grams.
+                  addone: N-grams with add-one smoothing.
   -h --help     Show this screen.
 """
 from docopt import docopt
@@ -19,13 +22,20 @@ from languagemodeling.ngram import NGram
 
 if __name__ == '__main__':
     opts = docopt(__doc__)
-
+    print opts
     # load the data
-    sents = gutenberg.sents('austen-emma.txt')
-
+    sents = gutenberg.sents()
+    train_sents = sents[:int(0.9*len(sents))]
+    eval_sents = sents[int(0.9*len(sents)):]
+    # train_sents = [["hola", "ariel", "mauricio", "wolfmann"],
+    #     ["chau", "ariel", "mauricio"] ]
     # train the model
     n = int(opts['-n'])
-    model = NGram(n, sents)
+    if '-m' in opts and opts['-m'] == "addone":
+        len_v = len(gutenberg.words())
+        model = AddOneNGram(n, train_sents, len_v)
+    else: 
+        model = NGram(n, train_sents)
 
     # save it
     filename = opts['-o']
