@@ -2,6 +2,7 @@
 from collections import defaultdict
 import math
 import random
+from sets import Set
 
 
 class NGram(object):
@@ -14,7 +15,8 @@ class NGram(object):
         assert n > 0
         self.n = n
         self.counts = counts = defaultdict(int)
-
+        self.len_v = 0
+        words = []
         for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
@@ -23,6 +25,10 @@ class NGram(object):
                 ngram = tuple(sent_marked[i: i + n])
                 counts[ngram] += 1
                 counts[ngram[:-1]] += 1
+            words += sent 
+        vocab = Set(words)
+        vocab.add('</s>')
+        self.len_v = len(vocab)
 
     def cond_prob(self, token, prev_tokens=None):
         """Conditional probability of a token.
@@ -56,8 +62,8 @@ class NGram(object):
         sent_marked =  init_markers + sent + final_marker
         sent_prob = 1.0
         
-        for i in range(len(sent_marked)):
-            sent_prob *= self.cond_prob(sent_marked[i], sent_marked[i-n:i])
+        for i in range(n, len(sent_marked)):
+            sent_prob *= self.cond_prob(sent_marked[i], sent_marked[i-n+1:i])
         return sent_prob
     
     def sent_log_prob(self, sent):
@@ -65,14 +71,15 @@ class NGram(object):
  
         sent -- the sentence as a list of tokens.
         """
+        log2 = lambda x: math.log(x, 2)
         n = self.n
         init_markers = ['<s>' for _ in range(n - 1)]
         final_marker = ['</s>']
         sent_marked =  init_markers + sent + final_marker
         sent_log_prob = 1.0
         
-        for i in range(len(sent_marked)):
-            sent_log_prob *= math.log(self.cond_prob(sent_marked[i], sent_marked[i-n:i]))
+        for i in range(n, len(sent_marked)):
+            sent_log_prob *= log2(self.cond_prob(sent_marked[i], sent_marked[i-n+1:i]))
 
         return sent_log_prob
 
@@ -87,7 +94,7 @@ class NGramGenerator(object):
         self.sorted_probs = {}
         self.probs = {}
 
-        for ngram in self.model.counts:
+        # for ngram in self.model.counts:
             
         # cargar aca el probs y el sorted probs
 
@@ -115,33 +122,35 @@ class NGramGenerator(object):
             prev_tokens = []
         assert len(prev_tokens) == n - 1
         val = random.random()
-        sorted_probs[prev_tokens]
+        sorted_probs[tuple(prev_tokens)]
         # p(x|el) = 0.5 si x = perro
         #           0.3 si x = gato 
         # generar random, si  cae entre 0 y 0.5 es perro, 0.5 y 0.8 es gato
         # usar sorted probs ordenado de mayor a menor para q termine antes  
 
 class AddOneNGram(NGram):
- 
-    def __init__(self, n, sents, len_v):
-        """
-        n -- order of the model.
-        sents -- list of sentences, each one being a list of tokens.
-        len_v -- size of the vocabulary.
-        """
-        assert n > 0
-        self.n = n
-        self.counts = counts = defaultdict(int)
-        self.len_v = len_v
+    # def __init__(self, n, sents, len_v):
+    #     super(AddOneNGram, self).__init__(n, sents)
+    #     self.len_v = len_v 
+    # def __init__(self, n, sents):
+    #     """
+    #     n -- order of the model.
+    #     sents -- list of sentences, each one being a list of tokens.
+    #     len_v -- size of the vocabulary.
+    #     """
+    #     assert n > 0
+    #     self.n = n
+    #     self.counts = counts = defaultdict(int)
+    #     self.len_v = len_v
 
-        for sent in sents:
-            init_markers = ['<s>' for _ in range(n - 1)]
-            final_marker = ['</s>']
-            sent_marked =  init_markers + sent + final_marker
-            for i in range(len(sent_marked) - n + 1):
-                ngram = tuple(sent_marked[i: i + n])
-                counts[ngram] += 1
-                counts[ngram[:-1]] += 1 
+    #     for sent in sents:
+    #         init_markers = ['<s>' for _ in range(n - 1)]
+    #         final_marker = ['</s>']
+    #         sent_marked =  init_markers + sent + final_marker
+    #         for i in range(len(sent_marked) - n + 1):
+    #             ngram = tuple(sent_marked[i: i + n])
+    #             counts[ngram] += 1
+    #             counts[ngram[:-1]] += 1 
 
     def cond_prob(self, token, prev_tokens=None):
         """Conditional probability of a token.
@@ -161,13 +170,7 @@ class AddOneNGram(NGram):
         """Size of the vocabulary.
         """
         return self.len_v
-# Metricas:
-# Sea x1, .., xn un corpus de evaluacion
-# lp = sum de i=1 hasta m de log2 (p(xi))
-# avg_lp = 1/M lp a donde M es la cant de tokens:
-#     M = suma de i=1 hasta m (ni + 1) (se cuenta </s>)
-# cross_entropy = -avg_lp
-# perplexity = 2 a la cross_entropy
+
 
 # Interpolado, cuando sea con unigrama, usar addone, 
 # cuando viene el parametro addone en true, sino, en false no se usa
