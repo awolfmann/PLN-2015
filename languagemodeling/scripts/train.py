@@ -33,7 +33,7 @@ if __name__ == '__main__':
     n = int(opts['-n'])
     if '-m' in opts and opts['-m'] == "addone":
         len_v = len(gutenberg.words())
-        model = AddOneNGram(n, train_sents, len_v)
+        model = AddOneNGram(n, train_sents)
     else: 
         model = NGram(n, train_sents)
 
