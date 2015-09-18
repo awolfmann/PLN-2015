@@ -23,8 +23,11 @@ class NGram(object):
             sent_marked =  init_markers + sent + final_marker
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
+<<<<<<< HEAD
                 # word = sent_marked[i]
                 # counts[word] +=1
+=======
+>>>>>>> 291881450e6175cd6b59ab8524605c2a1dec1e71
                 counts[ngram] += 1
                 counts[ngram[:-1]] += 1
             words += sent 
@@ -130,7 +133,33 @@ class NGramGenerator(object):
         # generar random, si  cae entre 0 y 0.5 es perro, 0.5 y 0.8 es gato
         # usar sorted probs ordenado de mayor a menor para q termine antes  
 
+<<<<<<< HEAD
 class AddOneNGram(NGram): 
+=======
+class AddOneNGram(NGram):
+    # def __init__(self, n, sents, len_v):
+    #     super(AddOneNGram, self).__init__(n, sents)
+    #     self.len_v = len_v 
+    # def __init__(self, n, sents):
+    #     """
+    #     n -- order of the model.
+    #     sents -- list of sentences, each one being a list of tokens.
+    #     len_v -- size of the vocabulary.
+    #     """
+    #     assert n > 0
+    #     self.n = n
+    #     self.counts = counts = defaultdict(int)
+    #     self.len_v = len_v
+
+    #     for sent in sents:
+    #         init_markers = ['<s>' for _ in range(n - 1)]
+    #         final_marker = ['</s>']
+    #         sent_marked =  init_markers + sent + final_marker
+    #         for i in range(len(sent_marked) - n + 1):
+    #             ngram = tuple(sent_marked[i: i + n])
+    #             counts[ngram] += 1
+    #             counts[ngram[:-1]] += 1 
+>>>>>>> 291881450e6175cd6b59ab8524605c2a1dec1e71
 
     def cond_prob(self, token, prev_tokens=None):
         """Conditional probability of a token.
@@ -205,8 +234,9 @@ class InterpolatedNGram(NGram):
         for i in  range(1, n+1):
             lamda = self.lamda(i, lamdas, tokens)
             lamdas.append(lamda)
-            c = float(self.counts[tuple(tokens)]) / self.counts[tuple(prev_tokens)]
-            cond_prob += lamda * c
+            if lamda > 0.0:
+                c = float(self.counts[tuple(tokens)]) / self.counts[tuple(prev_tokens)]
+                cond_prob += lamda * c
 
     def lamda(self, i, lamdas, tokens):
         lamda = 0.0
@@ -227,4 +257,5 @@ class InterpolatedNGram(NGram):
 # para los ultimos ejercicios usar un unico diccionario, usar un 
 # unico dict de counts para todos los k gramas nltk tiene 
 # un modelo de back off, cada uno  de los metodos debe ir a un dict precalculado en el init, 3 A, alpha y denom
+
 # para interpolado si el lambda te da 0 no calcular la prob y no dividir por 0
