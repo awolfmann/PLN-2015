@@ -133,33 +133,8 @@ class NGramGenerator(object):
         # generar random, si  cae entre 0 y 0.5 es perro, 0.5 y 0.8 es gato
         # usar sorted probs ordenado de mayor a menor para q termine antes  
 
-<<<<<<< HEAD
-class AddOneNGram(NGram): 
-=======
-class AddOneNGram(NGram):
-    # def __init__(self, n, sents, len_v):
-    #     super(AddOneNGram, self).__init__(n, sents)
-    #     self.len_v = len_v 
-    # def __init__(self, n, sents):
-    #     """
-    #     n -- order of the model.
-    #     sents -- list of sentences, each one being a list of tokens.
-    #     len_v -- size of the vocabulary.
-    #     """
-    #     assert n > 0
-    #     self.n = n
-    #     self.counts = counts = defaultdict(int)
-    #     self.len_v = len_v
 
-    #     for sent in sents:
-    #         init_markers = ['<s>' for _ in range(n - 1)]
-    #         final_marker = ['</s>']
-    #         sent_marked =  init_markers + sent + final_marker
-    #         for i in range(len(sent_marked) - n + 1):
-    #             ngram = tuple(sent_marked[i: i + n])
-    #             counts[ngram] += 1
-    #             counts[ngram[:-1]] += 1 
->>>>>>> 291881450e6175cd6b59ab8524605c2a1dec1e71
+class AddOneNGram(NGram):
 
     def cond_prob(self, token, prev_tokens=None):
         """Conditional probability of a token.
@@ -248,6 +223,59 @@ class InterpolatedNGram(NGram):
 
         return lamda
 
+
+class BackOffNGram(NGram):
+ 
+    def __init__(self, n, sents, beta=None, addone=True):
+        """
+        Back-off NGram model with discounting as described by Michael Collins.
+ 
+        n -- order of the model.
+        sents -- list of sentences, each one being a list of tokens.
+        beta -- discounting hyper-parameter (if not given, estimate using
+            held-out data).
+        addone -- whether to use addone smoothing (default: True).
+        """
+        assert n > 0
+        self.n = n
+        self.counts = counts = defaultdict(int)
+        self.len_v = 0
+        self.beta = beta
+        self.addone = addone
+
+        words = []
+        for sent in sents:
+            init_markers = ['<s>' for _ in range(n - 1)]
+            final_marker = ['</s>']
+            sent_marked =  init_markers + sent + final_marker
+            for i in range(len(sent_marked) - n + 1):
+                ngram = tuple(sent_marked[i: i + n])
+                counts[ngram] += 1
+                for j in range(1, n):
+                    counts[ngram[:-j]] += 1
+            words += sent 
+        vocab = Set(words)
+        vocab.add('</s>')
+        self.len_v = len(vocab)
+
+
+    def A(self, tokens):
+        """Set of words with counts > 0 for a k-gram with 0 < k < n.
+ 
+        tokens -- the k-gram tuple.
+        """
+ 
+    def alpha(self, tokens):
+        """Missing probability mass for a k-gram with 0 < k < n.
+ 
+        tokens -- the k-gram tuple.
+        """
+ 
+    def denom(self, tokens):
+        """Normalization factor for a k-gram with 0 < k < n.
+ 
+        tokens -- the k-gram tuple.
+        """
 # Interpolado, cuando sea con unigrama, usar addone, 
 # cuando viene el parametro addone en true, sino, en false no se usa
 # Gamma depende del corpus, mientras mas grande el gamma, 
