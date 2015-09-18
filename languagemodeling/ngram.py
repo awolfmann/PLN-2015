@@ -23,11 +23,8 @@ class NGram(object):
             sent_marked =  init_markers + sent + final_marker
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
-<<<<<<< HEAD
                 # word = sent_marked[i]
                 # counts[word] +=1
-=======
->>>>>>> 291881450e6175cd6b59ab8524605c2a1dec1e71
                 counts[ngram] += 1
                 counts[ngram[:-1]] += 1
             words += sent 
@@ -47,7 +44,12 @@ class NGram(object):
         assert len(prev_tokens) == n - 1
 
         tokens = prev_tokens + [token]
-        return float(self.counts[tuple(tokens)]) / self.counts[tuple(prev_tokens)]
+        prev_count  = self.counts[tuple(prev_tokens)]
+        cond_prob = 0.0
+        if  prev_count > 0:
+            cond_prob = float(self.counts[tuple(tokens)]) / prev_count
+        
+        return cond_prob  
  
     def count(self, tokens):
         """Count for an n-gram or (n-1)-gram.
@@ -67,7 +69,7 @@ class NGram(object):
         sent_marked =  init_markers + sent + final_marker
         sent_prob = 1.0
         
-        for i in range(n, len(sent_marked)):
+        for i in range(n - 1, len(sent_marked)):
             sent_prob *= self.cond_prob(sent_marked[i], sent_marked[i-n+1:i])
         return sent_prob
     
@@ -81,11 +83,15 @@ class NGram(object):
         init_markers = ['<s>' for _ in range(n - 1)]
         final_marker = ['</s>']
         sent_marked =  init_markers + sent + final_marker
-        sent_log_prob = 1.0
+        sent_log_prob = 0.0
         
-        for i in range(n, len(sent_marked)):
-            sent_log_prob *= log2(self.cond_prob(sent_marked[i], sent_marked[i-n+1:i]))
-
+        for i in range(n - 1, len(sent_marked)):
+            cond_prob = self.cond_prob(sent_marked[i], sent_marked[i-n+1:i])
+            if cond_prob > 0:
+                sent_log_prob += log2(cond_prob)
+            else:
+                sent_log_prob = float('-inf')
+                break
         return sent_log_prob
 
 
@@ -98,6 +104,12 @@ class NGramGenerator(object):
         self.model = model
         self.sorted_probs = {}
         self.probs = {}
+
+        for key in model.counts:
+            if len(key) < model.n:
+                self.prob[tuple(key)] = {}
+                [token] = model.cond_prob(key, )
+            
 
         # for ngram in self.model.counts:
             
