@@ -3,6 +3,7 @@ from collections import defaultdict
 import math
 import random
 from sets import Set
+import operator
 
 
 class NGram(object):
@@ -23,8 +24,6 @@ class NGram(object):
             sent_marked =  init_markers + sent + final_marker
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
-                # word = sent_marked[i]
-                # counts[word] +=1
                 counts[ngram] += 1
                 counts[ngram[:-1]] += 1
             words += sent 
@@ -87,11 +86,12 @@ class NGram(object):
         
         for i in range(n - 1, len(sent_marked)):
             cond_prob = self.cond_prob(sent_marked[i], sent_marked[i-n+1:i])
-            if cond_prob > 0:
+            if cond_prob > 0.0:
                 sent_log_prob += log2(cond_prob)
             else:
                 sent_log_prob = float('-inf')
                 break
+
         return sent_log_prob
 
 
@@ -102,28 +102,35 @@ class NGramGenerator(object):
         model -- n-gram model.
         """
         self.model = model
-        self.sorted_probs = {}
-        self.probs = {}
-
-        for key in model.counts:
-            if len(key) < model.n:
-                self.prob[tuple(key)] = {}
-                [token] = model.cond_prob(key, )
+        def_dict = lambda: defaultdict(int)
+        self.probs = defaultdict(def_dict)
+        self.sorted_probs = defaultdict(def_dict)
+        
+        for ngram in model.counts.iterkeys():
+            if len(ngram) == model.n:
+                prev_tokens = ngram[:-1]
+                token = ngram[-1]
+                self.probs[prev_tokens][token] = model.cond_prob(token, list(prev_tokens))
             
+        for key, value in self.probs.iteritems():
+            self.sorted_probs[key] = sorted(value.iteritems(), key=operator.itemgetter(1), reverse=True)
 
         # for ngram in self.model.counts:
-            
+        # defaultdict(lambda: ) y desp convertirlo a dict
         # cargar aca el probs y el sorted probs
 
     def generate_sent(self):
         """Randomly generate a sentence."""
         sent = []
-        prev_tokens = []
-        i = 0
-        while token != "STOP":
-            prev_tokens = sent[i - self.model.n : i]
+        prev_tokens = ['<s>' for _ in range(self.model.n - 1)]
+        token = self.generate_token(prev_tokens)
+        sent = prev_tokens + [token]
+        i = self.model.n
+        while token != "</s>":
+            prev_tokens = sent[i - self.model.n + 1: i] 
             token = self.generate_token(prev_tokens)
             sent.append(token)
+            print sent
             i += 1
 
         return sent
@@ -134,12 +141,22 @@ class NGramGenerator(object):
  
         prev_tokens -- the previous n-1 tokens (optional only if n = 1).
         """
-        n = self.n
+        n = self.model.n
         if not prev_tokens:
             prev_tokens = []
         assert len(prev_tokens) == n - 1
         val = random.random()
-        sorted_probs[tuple(prev_tokens)]
+        generated_token = None
+        token_prob_list = self.sorted_probs[tuple(prev_tokens)]
+        acum_prob = 0.0
+        # print val, prev_tokens, token_prob_list
+        for (token, prob) in token_prob_list:
+            acum_prob += prob
+            # print acum_prob, token
+            if val <= acum_prob:
+                generated_token = token
+        assert generated_token is not None
+        return generated_token
         # p(x|el) = 0.5 si x = perro
         #           0.3 si x = gato 
         # generar random, si  cae entre 0 y 0.5 es perro, 0.5 y 0.8 es gato
@@ -182,9 +199,31 @@ class InterpolatedNGram(NGram):
         self.n = n
         self.counts = counts = defaultdict(int)
         self.len_v = 0
-        self.gamma = gamma
         self.addone = addone
 
+        if gamma is not None:
+            self.gamma = gamma
+        else:
+            held_out = sents[int(0.9*len(sents)):]
+            sents = sents[:int(0.9*len(sents))]
+            self.gamma = self.estimate_gamma(held_out)
+
+        words = []
+        for sent in sents:
+            init_markers = ['<s>' for _ in range(n - 1)]
+            final_marker = ['</s>']
+            sent_marked =  init_markers + sent + final_marker
+            for i in range(len(sent_marked) - n + 1):
+                ngram = tuple(sent_marked[i: i + n])
+                #counts[ngram] += 1
+                for j in range(n):
+                    counts[ngram[:-j]] += 1
+            words += sent 
+        vocab = Set(words)
+        vocab.add('</s>')
+        self.len_v = len(vocab)
+
+    def fill_count(self, counts, sents):
         words = []
         for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
@@ -198,7 +237,9 @@ class InterpolatedNGram(NGram):
             words += sent 
         vocab = Set(words)
         vocab.add('</s>')
-        self.len_v = len(vocab)
+
+        return (count, len(vocab))
+
 
     def cond_prob(self, token, prev_tokens=None):
         """Conditional probability of a token.
@@ -213,28 +254,58 @@ class InterpolatedNGram(NGram):
 
         tokens = prev_tokens + [token]
            
-        lamdas = [] # Sirve tener una lista de los lamdas o con la suma alcanza?
+        sum_lamdas = 0.0 
         # Ver como iterar con los tokens
         # Falta considerar addone
-        # Held out data?
         cond_prob = 0.0
-        for i in  range(1, n+1):
-            lamda = self.lamda(i, lamdas, tokens)
-            lamdas.append(lamda)
-            if lamda > 0.0:
-                c = float(self.counts[tuple(tokens)]) / self.counts[tuple(prev_tokens)]
+        for i in range(n):
+            lamda = self.lamda(i+1, sum_lamdas, prev_tokens[i:])
+            sum_lamdas += lamda
+            prev_count  = self.counts[tuple(prev_tokens[i:])]
+            tokens_count = float(self.counts[tuple(tokens)]) 
+            if len(prev_tokens[i:]) == 0:
+                prev_count = self.len_v
+                if self.addone:
+                    tokens_count += 1.0 
+            if lamda > 0.0 and prev_count > 0:
+                c = tokens_count / prev_count
                 cond_prob += lamda * c
 
-    def lamda(self, i, lamdas, tokens):
+        return cond_prob
+
+    def lamda(self, i, sum_lamdas, tokens):
+        """calculate the ith lambda"""
         lamda = 0.0
         if i < self.n:
             c = self.counts[tuple(tokens)] / float(self.counts[tuple(tokens)] + self.gamma) 
-            lamda = (1.0 - sum(lamdas)) * c 
+            lamda = (1.0 - sum_lamdas) * c 
         else:
-            lamda = 1.0 - sum(lamdas)
+            lamda = 1.0 - sum_lamdas
 
         return lamda
 
+    def estimate_gamma(self, held_out):
+        import operator
+
+        gammas = [math.pow(10, x) for x in range(5)]
+        train_sents = held_out[:int(0.9*len(held_out))]
+        eval_sents = held_out[int(0.9*len(held_out)):]
+
+        perplexities = {}
+        for gamma in gammas:
+            model = InterpolatedNGram(self.n, train_sents, gamma)
+            evalulator = Eval(model)
+            perp = evalulator.perplexity(eval_sents)
+            perplexities[gamma] = perp
+
+        best_gamma = max(perplexities.iteritems(), key=operator.itemgetter(1))[0]
+        
+        return best_gamma
+        # dividir el train en 0.9 y 0.1, si viene dado no lo dividis
+        # con el 0.9 calculas los counts, probas 
+        # beta= 0.5, 0.1, 0.9
+        # gamma = 0, 50, 100, si sigue subiendo la perplexity, seguis aumentando
+        # con eso tenes modelo definido y calculas perplexity sobre el 0.1
 
 class BackOffNGram(NGram):
  
@@ -252,9 +323,26 @@ class BackOffNGram(NGram):
         self.n = n
         self.counts = counts = defaultdict(int)
         self.len_v = 0
-        self.beta = beta
         self.addone = addone
+        if beta is not None:
+            self.beta = beta
+        else:
+            held_out = sents[int(0.9*len(sents)):]
+            sents = sents[:int(0.9*len(sents))]
+            self.beta = self.estimate_beta(held_out)
 
+        self._alpha = {}
+        self._denom = {}
+        self._A = {}
+        # tener en cuenta lo de partir sents
+        # recomputa el dict de alpha y denom por cada beta
+        # calcula perplexity
+        # metodo alpha consulta un dict con todos los alphas (self._alpha) mete un compute_denom
+        # metodo denom consulta un dict con todos los denom (self._denom)
+        # metodo A consulta un dict con todos los alphas (self._alpha)
+        # en los compute del mas chico al mas grande
+        # primero llamar a alpha y desp a denom, con los denom mas chicos
+        # Usar el metodo con el A para calcular denom
         words = []
         for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
@@ -276,18 +364,52 @@ class BackOffNGram(NGram):
  
         tokens -- the k-gram tuple.
         """
- 
+        return self._A[tokens]
+
     def alpha(self, tokens):
         """Missing probability mass for a k-gram with 0 < k < n.
  
         tokens -- the k-gram tuple.
         """
+        return self._alpha[tokens]
+    
+    def compute_alpha(self, tokens):
+        """Missing probability mass for a k-gram with 0 < k < n.
+ 
+        tokens -- the k-gram tuple.
+        """
+        alpha = beta * self.A(tokens) / self.counts[tuple(tokens)]
+        return alpha
  
     def denom(self, tokens):
         """Normalization factor for a k-gram with 0 < k < n.
  
         tokens -- the k-gram tuple.
-        """
+        """ 
+        return self._denom[tokens]
+
+    def compute_denom(self, tokens):
+        """Normalization factor for a k-gram with 0 < k < n.
+ 
+        tokens -- the k-gram tuple.
+        """ 
+    def estimate_beta(self, held_out):
+        import operator
+
+        betas = [0.1 for x in range(5)]
+        train_sents = held_out[:int(0.9*len(held_out))]
+        eval_sents = held_out[int(0.9*len(held_out)):]
+
+        perplexities = {}
+        for beta in betas:
+            model = BackOffNGram(self.n, train_sents, beta)
+            evalulator = Eval(model)
+            perp = evalulator.perplexity(eval_sents)
+            perplexities[beta] = perp
+
+        best_beta = max(perplexities.iteritems(), key=operator.itemgetter(1))[0]
+        
+        return best_beta
 # Interpolado, cuando sea con unigrama, usar addone, 
 # cuando viene el parametro addone en true, sino, en false no se usa
 # Gamma depende del corpus, mientras mas grande el gamma, 
@@ -297,5 +419,3 @@ class BackOffNGram(NGram):
 # para los ultimos ejercicios usar un unico diccionario, usar un 
 # unico dict de counts para todos los k gramas nltk tiene 
 # un modelo de back off, cada uno  de los metodos debe ir a un dict precalculado en el init, 3 A, alpha y denom
-
-# para interpolado si el lambda te da 0 no calcular la prob y no dividir por 0
