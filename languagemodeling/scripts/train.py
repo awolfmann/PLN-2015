@@ -22,7 +22,7 @@ from languagemodeling.ngram import NGram
 
 if __name__ == '__main__':
     opts = docopt(__doc__)
-    print opts
+
     # load the data
     sents = gutenberg.sents()
     train_sents = sents[:int(0.9*len(sents))]
@@ -32,7 +32,6 @@ if __name__ == '__main__':
     # train the model
     n = int(opts['-n'])
     if '-m' in opts and opts['-m'] == "addone":
-        len_v = len(gutenberg.words())
         model = AddOneNGram(n, train_sents)
     else: 
         model = NGram(n, train_sents)
