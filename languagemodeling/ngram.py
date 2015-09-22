@@ -209,11 +209,13 @@ class InterpolatedNGram(NGram):
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
             sent_marked =  init_markers + sent + final_marker
+            counts[('<s>',)] += 1
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
                 counts[ngram] += 1
                 for j in range(1, n + 1):
                     counts[ngram[j:]] += 1
+            counts[('<s>',)] += 1 # The first unigram is ignored in the recursion
             words += sent_marked 
         vocab = Set(words)
         vocab.add('</s>')
@@ -247,7 +249,7 @@ class InterpolatedNGram(NGram):
         n = self.n
         if not prev_tokens:
             prev_tokens = []
-        print len(prev_tokens), prev_tokens ,n-1
+        # print len(prev_tokens), prev_tokens ,n-1
         assert len(prev_tokens) == n - 1
 
         tokens = prev_tokens + [token]
@@ -303,7 +305,7 @@ class InterpolatedNGram(NGram):
 
 class BackOffNGram(NGram):
  
-    def __init__(self, n, sents, beta=None, addone=True):
+    def __init__(self, n, sents, beta=0.8, addone=True):
         """
         Back-off NGram model with discounting as described by Michael Collins.
  
@@ -342,16 +344,20 @@ class BackOffNGram(NGram):
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
             sent_marked =  init_markers + sent + final_marker
+            
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
-                # counts[ngram] += 1
-                # print count[ngram]
-                for j in range(n):
-                    counts[ngram[:-j]] += 1
+                # print ngram problema con el <s>
+                counts[ngram] += 1
+                for j in range(1, n + 1):
+                    counts[ngram[j:]] += 1
+                    # print ngram[j:]
+            counts[('<s>',)] += 1 # The first unigram is ignored in the recursion
             words += sent 
         vocab = Set(words)
         vocab.add('</s>')
         self.vocab = vocab
+        # print counts
 
 
     def A(self, tokens):
@@ -359,18 +365,17 @@ class BackOffNGram(NGram):
  
         tokens -- the k-gram tuple.
         """
-        assert len(tokens) > 0
+        # assert len(tokens) > 0
         assert len(tokens) < self.n
         try:
-            A = self._A[tokens]
+            A = self._A[tuple(tokens)]
         except KeyError:
             A = self.compute_A(tokens)
-            self._A[tokens] = A
-
+            self._A[tuple(tokens)] = A
         return A
 
     def compute_A(self, tokens):
-        A = { word for word in self.vocab if self.count[tuple(tokens+[word])] > 0 }
+        A = { word for word in self.vocab if self.counts[tuple(tokens) + (word,)] > 0 }
         return A
 
     def alpha(self, tokens):
@@ -379,10 +384,10 @@ class BackOffNGram(NGram):
         tokens -- the k-gram tuple.
         """
         try:
-            alpha = self._alpha[tokens]
+            alpha = self._alpha[tuple(tokens)]
         except KeyError:
             alpha = self.compute_alpha(tokens)
-            self._alpha[tokens] = alpha
+            self._alpha[tuple(tokens)] = alpha
 
         return alpha
     
@@ -391,7 +396,10 @@ class BackOffNGram(NGram):
  
         tokens -- the k-gram tuple.
         """
-        alpha = beta * len(self.A(tokens)) / self.counts[tuple(tokens)]
+        token_count = self.counts[tuple(tokens)]
+        alpha = 0.0
+        if token_count > 0:
+            alpha = self.beta * len(self.A(tokens)) / token_count
         return alpha
  
     def denom(self, tokens):
@@ -400,10 +408,10 @@ class BackOffNGram(NGram):
         tokens -- the k-gram tuple.
         """ 
         try:
-            denom = self._denom[tokens]
+            denom = self._denom[tuple(tokens)]
         except KeyError:
             denom = self.compute_denom(tokens)
-            self._denom[tokens] = denom
+            self._denom[tuple(tokens)] = denom
 
         return denom
 
@@ -433,15 +441,25 @@ class BackOffNGram(NGram):
         n = self.n
         if not prev_tokens:
             prev_tokens = []
-        assert len(prev_tokens) == n - 1
+        # print prev_tokens, len(prev_tokens), n-1
+        # assert len(prev_tokens) == n - 1
 
         A_prev = self.A(prev_tokens)
+        cond_prob = 0.0
         if token in A_prev:
             tokens = prev_tokens + [token]
             prev_count  = float(self.counts[tuple(prev_tokens)])
-            cond_prob = self.discount_count(tokens) /  prev_count 
+            tokens_count = self.discount_count(tokens)
+            # if len(prev_tokens) == 0 and self.addone: # Unigram
+            #     tokens_count += 1.0 
+            if prev_count > 0:
+                cond_prob = tokens_count /  prev_count 
         else:
-            self.alpha(prev_tokens) * self.cond_prob(token, prev_tokens[1:]) /self.denom(prev_tokens)
+            denom = self.denom(prev_tokens)
+            if denom > 0.0:
+                cond_prob = self.alpha(prev_tokens) * self.cond_prob(token, prev_tokens[1:]) / denom
+
+        return cond_prob
 
     def estimate_beta(self, held_out):
         betas = [0.1 for x in range(5)]
