@@ -94,6 +94,30 @@ class NGram(object):
 
         return sent_log_prob
 
+    def avg_lp(self, eval_sents):
+        log_prob = 0.0
+        M = 0.0
+        for sent in eval_sents:
+            M += len(sent) + 1 # counting </s>
+            sent_lp = self.sent_log_prob(sent)
+            if sent_lp > float('-inf'):
+                log_prob += sent_lp
+            else:
+                log_prob = float('-inf')
+                break
+
+        avg_lp = 1.0/M * log_prob
+        return avg_lp
+
+    def cross_entropy(self, eval_sents):
+        cross_entropy = - self.avg_lp(eval_sents)
+        return cross_entropy
+
+    def perplexity(self, eval_sents):
+        cross_entropy = self.cross_entropy(eval_sents)
+        perplexity = math.pow(2, cross_entropy)
+        return perplexity
+
 
 class NGramGenerator(object):
  
@@ -113,27 +137,26 @@ class NGramGenerator(object):
                 self.probs[prev_tokens][token] = model.cond_prob(token, list(prev_tokens))
             
         for key, value in self.probs.iteritems():
-            self.sorted_probs[key] = sorted(value.iteritems(), key=operator.itemgetter(1), reverse=True)
 
-        # for ngram in self.model.counts:
-        # defaultdict(lambda: ) y desp convertirlo a dict
-        # cargar aca el probs y el sorted probs
+            self.sorted_probs[key] = sorted(value.iteritems(), key=lambda x: (-x[1], x[0]))
+
+        self.sorted_probs = dict(self.sorted_probs)
 
     def generate_sent(self):
         """Randomly generate a sentence."""
         sent = []
         prev_tokens = ['<s>' for _ in range(self.model.n - 1)]
         token = self.generate_token(prev_tokens)
-        sent = prev_tokens + [token]
-        i = self.model.n
+        # sent = prev_tokens + [token]
+        sent = [token]
         while token != "</s>":
-            prev_tokens = sent[i - self.model.n + 1: i] 
+            prev_tokens = (prev_tokens + [token]) [1:] 
             token = self.generate_token(prev_tokens)
             sent.append(token)
-            print sent
-            i += 1
 
-        return sent
+        # ignore the "</s>"
+        return sent[:-1]
+
 
     def generate_token(self, prev_tokens=None):
         """
@@ -149,12 +172,13 @@ class NGramGenerator(object):
         generated_token = None
         token_prob_list = self.sorted_probs[tuple(prev_tokens)]
         acum_prob = 0.0
-        # print val, prev_tokens, token_prob_list
+        # while val > acum_prob: agregar indice
         for (token, prob) in token_prob_list:
             acum_prob += prob
-            # print acum_prob, token
             if val <= acum_prob:
                 generated_token = token
+                break
+
         assert generated_token is not None
         return generated_token
 
@@ -183,7 +207,7 @@ class AddOneNGram(NGram):
 
 class InterpolatedNGram(NGram):
  
-    def __init__(self, n, sents, gamma=100.0, addone=True):
+    def __init__(self, n, sents, gamma=None, addone=True):
         """
         n -- order of the model.
         sents -- list of sentences, each one being a list of tokens.
@@ -249,7 +273,6 @@ class InterpolatedNGram(NGram):
         n = self.n
         if not prev_tokens:
             prev_tokens = []
-        # print len(prev_tokens), prev_tokens ,n-1
         assert len(prev_tokens) == n - 1
 
         tokens = prev_tokens + [token]
@@ -263,7 +286,8 @@ class InterpolatedNGram(NGram):
             tokens_count = float(self.counts[tuple(tokens)]) 
             
             if len(prev_tokens[i:]) == 0 and self.addone: # Unigram
-                tokens_count += 1.0 
+                tokens_count += 1.0
+                prev_count += self.len_v 
             if lamda > 0.0 and prev_count > 0:
                 c = tokens_count / prev_count
                 cond_prob += lamda * c
@@ -282,7 +306,8 @@ class InterpolatedNGram(NGram):
         return lamda
 
     def estimate_gamma(self, held_out):
-        from languagemodeling.scripts.eval import Eval
+        # perplexity como metodo
+        # from languagemodeling.scripts.eval import Eval
         gammas = [math.pow(10, x) for x in range(5)]
         train_sents = held_out[:int(0.9*len(held_out))]
         eval_sents = held_out[int(0.9*len(held_out)):]
@@ -305,7 +330,7 @@ class InterpolatedNGram(NGram):
 
 class BackOffNGram(NGram):
  
-    def __init__(self, n, sents, beta=0.8, addone=True):
+    def __init__(self, n, sents, beta=None, addone=True):
         """
         Back-off NGram model with discounting as described by Michael Collins.
  
@@ -330,15 +355,6 @@ class BackOffNGram(NGram):
         self._alpha = {}
         self._denom = {}
         self._A = {}
-        # tener en cuenta lo de partir sents
-        # recomputa el dict de alpha y denom por cada beta
-        # calcula perplexity
-        # metodo alpha consulta un dict con todos los alphas (self._alpha) mete un compute_denom
-        # metodo denom consulta un dict con todos los denom (self._denom)
-        # metodo A consulta un dict con todos los alphas (self._alpha)
-        # en los compute del mas chico al mas grande
-        # primero llamar a alpha y desp a denom, con los denom mas chicos
-        # Usar el metodo con el A para calcular denom
         words = []
         for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
@@ -347,25 +363,20 @@ class BackOffNGram(NGram):
             
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
-                # print ngram problema con el <s>
                 counts[ngram] += 1
                 for j in range(1, n + 1):
                     counts[ngram[j:]] += 1
-                    # print ngram[j:]
             counts[('<s>',)] += 1 # The first unigram is ignored in the recursion
             words += sent 
         vocab = Set(words)
         vocab.add('</s>')
         self.vocab = vocab
-        # print counts
-
 
     def A(self, tokens):
         """Set of words with counts > 0 for a k-gram with 0 < k < n.
  
         tokens -- the k-gram tuple.
         """
-        # assert len(tokens) > 0
         assert len(tokens) < self.n
         try:
             A = self._A[tuple(tokens)]
@@ -383,6 +394,7 @@ class BackOffNGram(NGram):
  
         tokens -- the k-gram tuple.
         """
+        # _alpha.get(tokens, 1.0)
         try:
             alpha = self._alpha[tuple(tokens)]
         except KeyError:
@@ -397,7 +409,7 @@ class BackOffNGram(NGram):
         tokens -- the k-gram tuple.
         """
         token_count = self.counts[tuple(tokens)]
-        alpha = 0.0
+        alpha = 1.0
         if token_count > 0:
             alpha = self.beta * len(self.A(tokens)) / token_count
         return alpha
@@ -441,8 +453,6 @@ class BackOffNGram(NGram):
         n = self.n
         if not prev_tokens:
             prev_tokens = []
-        # print prev_tokens, len(prev_tokens), n-1
-        # assert len(prev_tokens) == n - 1
 
         A_prev = self.A(prev_tokens)
         cond_prob = 0.0
@@ -450,8 +460,12 @@ class BackOffNGram(NGram):
             tokens = prev_tokens + [token]
             prev_count  = float(self.counts[tuple(prev_tokens)])
             tokens_count = self.discount_count(tokens)
-            # if len(prev_tokens) == 0 and self.addone: # Unigram
-            #     tokens_count += 1.0 
+            
+            if len(prev_tokens) == 0:
+                tokens_count = self.counts[tuple(tokens)]
+                if self.addone: # Unigram
+                    tokens_count += 1.0 
+                    prev_count += len(self.vocab)
             if prev_count > 0:
                 cond_prob = tokens_count /  prev_count 
         else:
@@ -462,7 +476,8 @@ class BackOffNGram(NGram):
         return cond_prob
 
     def estimate_beta(self, held_out):
-        betas = [0.1 for x in range(5)]
+        from languagemodeling.scripts.eval import Eval
+        betas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
         train_sents = held_out[:int(0.9*len(held_out))]
         eval_sents = held_out[int(0.9*len(held_out)):]
 
@@ -481,7 +496,3 @@ class BackOffNGram(NGram):
 # Gamma depende del corpus, mientras mas grande el gamma, 
 # mas chico el lambda mientras mas agrando el gamma, menos confio 
 # en los modelos mas grandes del train
-
-# para los ultimos ejercicios usar un unico diccionario, usar un 
-# unico dict de counts para todos los k gramas nltk tiene 
-# un modelo de back off, cada uno  de los metodos debe ir a un dict precalculado en el init, 3 A, alpha y denom
