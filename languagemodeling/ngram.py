@@ -377,6 +377,7 @@ class BackOffNGram(NGram):
         tokens -- the k-gram tuple.
         """
         assert len(tokens) < self.n
+
         try:
             A = self._A[tuple(tokens)]
         except KeyError:
@@ -469,7 +470,8 @@ class BackOffNGram(NGram):
                 cond_prob = tokens_count /  prev_count 
         else:
             denom = self.denom(prev_tokens)
-            if denom > 0.0:
+            print(denom)
+            if denom > 0.0 and len(prev_tokens) > 0:
                 cond_prob = self.alpha(prev_tokens) * self.cond_prob(token, prev_tokens[1:]) / denom
 
         return cond_prob
@@ -485,7 +487,7 @@ class BackOffNGram(NGram):
             perp = model.perplexity(eval_sents)
             perplexities[beta] = perp
 
-        best_beta = max(perplexities.iteritems(), key=operator.itemgetter(1))[0]
+        best_beta = max(perplexities.items(), key=operator.itemgetter(1))[0]
         
         return best_beta
 # Interpolado, cuando sea con unigrama, usar addone, 
