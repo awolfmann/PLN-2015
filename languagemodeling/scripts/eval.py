@@ -24,29 +24,6 @@ from nltk.corpus import gutenberg
 
 from languagemodeling.ngram import NGram
 
-class Eval(object):
-    """docstring for Eval"""
-    def __init__(self, model):
-        self.model = model
-
-    def avg_lp(self, eval_sents):
-        log_prob = 0.0
-        M = 0.0
-        for sent in eval_sents:
-            M += len(sent) + 1 # counting </s>
-            log_prob += self.model.sent_log_prob(sent)
-
-        avg_lp = 1.0/M * log_prob
-        return avg_lp
-
-    def cross_entropy(self, eval_sents):
-        cross_entropy = - self.avg_lp(eval_sents)
-        return cross_entropy
-
-    def perplexity(self, eval_sents):
-        cross_entropy = self.cross_entropy(eval_sents)
-        perplexity = math.pow(2, cross_entropy)
-        return perplexity
 
 if __name__ == '__main__':
     opts = docopt(__doc__)
@@ -62,12 +39,8 @@ if __name__ == '__main__':
     eval_sents = sents[int(0.9*len(sents)):]
     
     # evaluate the model
-    evaluator = Eval(model)
-    avg_lp = evaluator.avg_lp(eval_sents)
-    cross_entropy = evaluator.cross_entropy(eval_sents)
-    perplexity = evaluator.perplexity(eval_sents)
+    perplexity = model.perplexity(eval_sents)
+
 
     # show results
-    print "avg_lp", avg_lp
-    print "cross_entropy", cross_entropy
     print "perplexity", perplexity

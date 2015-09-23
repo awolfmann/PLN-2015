@@ -2,7 +2,6 @@
 from collections import defaultdict
 import math
 import random
-from sets import Set
 import operator
 
 
@@ -27,7 +26,7 @@ class NGram(object):
                 counts[ngram] += 1
                 counts[ngram[:-1]] += 1
             words += sent 
-        vocab = Set(words)
+        vocab = set(words)
         vocab.add('</s>')
         self.len_v = len(vocab)
 
@@ -130,15 +129,15 @@ class NGramGenerator(object):
         self.probs = defaultdict(def_dict)
         self.sorted_probs = defaultdict(def_dict)
         
-        for ngram in model.counts.iterkeys():
+        for ngram in model.counts.keys():
             if len(ngram) == model.n:
                 prev_tokens = ngram[:-1]
                 token = ngram[-1]
                 self.probs[prev_tokens][token] = model.cond_prob(token, list(prev_tokens))
             
-        for key, value in self.probs.iteritems():
+        for key, value in self.probs.items():
 
-            self.sorted_probs[key] = sorted(value.iteritems(), key=lambda x: (-x[1], x[0]))
+            self.sorted_probs[key] = sorted(value.items(), key=lambda x: (-x[1], x[0]))
 
         self.sorted_probs = dict(self.sorted_probs)
 
@@ -241,7 +240,7 @@ class InterpolatedNGram(NGram):
                     counts[ngram[j:]] += 1
             counts[('<s>',)] += 1 # The first unigram is ignored in the recursion
             words += sent_marked 
-        vocab = Set(words)
+        vocab = set(words)
         vocab.add('</s>')
         self.len_v = len(vocab)
         self.len_w = len(words)
@@ -315,11 +314,11 @@ class InterpolatedNGram(NGram):
         perplexities = {}
         for gamma in gammas:
             model = InterpolatedNGram(self.n, train_sents, gamma)
-            evalulator = Eval(model)
-            perp = evalulator.perplexity(eval_sents)
+            perp = model.perplexity(eval_sents)
+            # print perp
             perplexities[gamma] = perp
 
-        best_gamma = max(perplexities.iteritems(), key=operator.itemgetter(1))[0]
+        best_gamma = max(perplexities.items(), key=operator.itemgetter(1))[0]
         
         return best_gamma
         # dividir el train en 0.9 y 0.1, si viene dado no lo dividis
@@ -368,7 +367,7 @@ class BackOffNGram(NGram):
                     counts[ngram[j:]] += 1
             counts[('<s>',)] += 1 # The first unigram is ignored in the recursion
             words += sent 
-        vocab = Set(words)
+        vocab = set(words)
         vocab.add('</s>')
         self.vocab = vocab
 
@@ -476,7 +475,6 @@ class BackOffNGram(NGram):
         return cond_prob
 
     def estimate_beta(self, held_out):
-        from languagemodeling.scripts.eval import Eval
         betas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
         train_sents = held_out[:int(0.9*len(held_out))]
         eval_sents = held_out[int(0.9*len(held_out)):]
@@ -484,8 +482,7 @@ class BackOffNGram(NGram):
         perplexities = {}
         for beta in betas:
             model = BackOffNGram(self.n, train_sents, beta)
-            evalulator = Eval(model)
-            perp = evalulator.perplexity(eval_sents)
+            perp = model.perplexity(eval_sents)
             perplexities[beta] = perp
 
         best_beta = max(perplexities.iteritems(), key=operator.itemgetter(1))[0]
