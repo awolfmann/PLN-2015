@@ -470,7 +470,6 @@ class BackOffNGram(NGram):
                 cond_prob = tokens_count /  prev_count 
         else:
             denom = self.denom(prev_tokens)
-            print(denom)
             if denom > 0.0 and len(prev_tokens) > 0:
                 cond_prob = self.alpha(prev_tokens) * self.cond_prob(token, prev_tokens[1:]) / denom
 
