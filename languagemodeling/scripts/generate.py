@@ -11,9 +11,6 @@ Options:
 """
 from docopt import docopt
 import pickle
-
-from nltk.corpus import gutenberg
-
 from languagemodeling.ngram import NGramGenerator
 
 
@@ -30,6 +27,6 @@ if __name__ == '__main__':
     generator = NGramGenerator(model)
     n = int(opts['-n'])
     for i in range(n):
-      sent = generator.generate_sent()
-      print sent 
-      # armar figura
+        sent = generator.generate_sent()
+        print(sent)
+        # armar figura

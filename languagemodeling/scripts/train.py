@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 """Train an n-gram model.
 
 Usage:
@@ -42,7 +41,7 @@ if __name__ == '__main__':
         model = InterpolatedNGram(n, train_sents)
     elif '-m' in opts and opts['-m'] == "backoff":
         model = BackOffNGram(n, train_sents)
-    else: 
+    else:
         model = NGram(n, train_sents)
 
     # save it
