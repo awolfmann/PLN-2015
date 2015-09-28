@@ -22,6 +22,8 @@ if __name__ == '__main__':
     tokens = []
     tagg_list = []
     bow = []
+    # quizas con esto alcanza, en vez del for
+    # tagged_text = [item for sent in tagged_sents for item in sent]
     for sent in sents:
         words, taggs = zip(*sent)
         tokens += list(words)
@@ -38,12 +40,13 @@ if __name__ == '__main__':
         tagg_words = [word[0] for word in bow if tagg[0] == word [1]]
         top_words = Counter(tagg_words).most_common(5)
         print("top words", tagg, top_words) 
+    # Falta ambiguedad
     # compute the statistics
     print('sents: {}'.format(len(sents)))
     print('tokens: {}'.format(len(tokens)))
     print('words: {}'.format(len(set(tokens))))
     print('taggs: {}'.format(len(tagg_set)))
-    print('taggs most common: {}'.format(tagg_count))
+    print('taggs most common: {}'.format(top_taggs))
 
 # print('{0}\t{1}\t{2}\t{3}'.format())
 # sents: 17379
