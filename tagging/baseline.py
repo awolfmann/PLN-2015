@@ -1,4 +1,5 @@
 from collections import Counter
+from itertools import groupby
 
 class BaselineTagger:
 
@@ -8,15 +9,14 @@ class BaselineTagger:
         """
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
-
+        tags = [item[1] for item in tagged_text]
+        self.most_common_tag = Counter(tags).most_common(1)[0][0]
         self.bow_tagged = {}
-        for word in self.bow:
-            tagg_list = [item[1] for item in tagged_text if item[0] == word]
-            tagg_count = Counter(tagg_list)
-            top_tagg = tagg_count.most_common(1)[0][0]
-            self.bow_tagged[word] = top_tagg
-        print self.bow_tagged
-   
+
+        for word, tag_group in groupby(tagged_text, lambda x: x[0]):
+            tag_list = [item[1] for item in tag_group]
+            top_tag = max(set(tag_list), key=tag_list.count)
+            self.bow_tagged[word] = top_tag
 
     def tag(self, sent):
         """Tag a sentence.
@@ -34,7 +34,7 @@ class BaselineTagger:
         if not self.unknown(w):
             tag =  self.bow_tagged[w]
         else:
-            tag = "UNK"
+            tag = self.most_common_tag
         return tag
 
     def unknown(self, w):
