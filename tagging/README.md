@@ -21,6 +21,8 @@ taggs: 48
 taggs most common: [('nc', 92002), ('sp', 79904), ('da', 54552), ('vm', 50609), ('aq', 33904), ('fc', 30148), ('np', 29113), ('fp', 21157), ('rg', 15333), ('cc', 15023)]
 
 ### Ejercicio 2: Baseline Tagger ###
+Accuracy: 88.07%
+
 
 ### Ejercicio 3: Entrenamiento y Evaluación de Taggers ###
 
