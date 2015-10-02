@@ -24,13 +24,13 @@ class HMM(object):
         tag -- the tag.
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
-        assert len(prev_tags) == n-1
+        print(self.n-1, prev_tags)
+        assert len(prev_tags) == self.n-1
         assert tag in self.tagset
         prev_tags_trans = self.trans[tuple(prev_tags)]
-        try:
+        trans_prob = 0.0
+        if tag in prev_tags_trans:
             trans_prob = prev_tags_trans[tag]
-        except KeyError:
-            trans_prob = 0.0
 
         return trans_prob
 
@@ -41,10 +41,9 @@ class HMM(object):
         """
         assert tag in self.tagset
         tag_out = self.out[tag]
-        try:
+        out_prob = 0.0
+        if word in tag_out:
             out_prob = tag_out[word]
-        except KeyError:
-            out_prob = 0.0
 
         return out_prob
  
@@ -55,10 +54,10 @@ class HMM(object):
         y -- tagging.
         """
         tag_prob = 1.0
-        prev_tags = ['<s>' * self.n - 1]
+        prev_tags = ['<s>'] * (self.n - 1)
         for tag in y:
-            tag_prob_i = trans_prob(tag, prev_tags)
-            prev_tags = prev_tags[1:] + tag
+            tag_prob_i = self.trans_prob(tag, prev_tags)
+            prev_tags = prev_tags[1:] + [tag]
             tag_prob *= tag_prob_i
         return tag_prob
 
@@ -69,10 +68,10 @@ class HMM(object):
         x -- sentence.
         y -- tagging.
         """
-        assert len(x) = len(y)
+        assert len(x) == len(y)
         prob = 1.0
         for i, word in enumerate(x):
-            out_prob = out_prob(word, y[i])
+            out_prob = self.out_prob(word, y[i])
             if out_prob > 0.0:
                 prob *= out_prob
             else:
@@ -88,10 +87,10 @@ class HMM(object):
         """
         log2 = lambda x: math.log(x, 2)
         tag_log_prob = 0.0
-        prev_tags = ['<s>' * self.n - 1]
+        prev_tags = ['<s>'] * (self.n - 1)
         for tag in y:
-            tag_prob_i = trans_prob(tag, prev_tags)
-            prev_tags = prev_tags[1:] + tag
+            tag_prob_i = self.trans_prob(tag, prev_tags)
+            prev_tags = prev_tags[1:] + [tag]
             if tag_prob_i > 0.0:
                 tag_log_prob += log2(tag_prob_i)
             else:
@@ -105,11 +104,11 @@ class HMM(object):
         x -- sentence.
         y -- tagging.
         """
-        assert len(x) = len(y)
+        assert len(x) == len(y)
         log2 = lambda x: math.log(x, 2)
         log_prob = 0.0
         for i, word in enumerate(x):
-            out_prob = out_prob(word, y[i])
+            out_prob = self.out_prob(word, y[i])
             if out_prob > 0.0: #CHEQUEAR
                 log_prob += log2(out_prob)
             else:
@@ -122,6 +121,8 @@ class HMM(object):
         """Returns the most probable tagging for a sentence.
         sent -- the sentence.
         """
+        tagger = ViterbiTagger(self)
+        return tagger.tag(sent)          
  
  
 class ViterbiTagger(object):
@@ -132,7 +133,36 @@ class ViterbiTagger(object):
         """
         self.hmm = hmm
 
+
     def tag(self, sent):
         """Returns the most probable tagging for a sentence. 
         sent -- the sentence.
         """
+        log2 = lambda x: math.log(x, 2)
+        self._pi = {
+                    0: {
+                        tuple(['<s>'] * (self.hmm.n - 1)): 
+                            (log2(1.0), []),
+            }
+        }
+        for k, word in enumerate(sent, start=1):
+            self._pi[k] = {}
+            for n_uple, w in self._pi[k-1].items():
+                for tag in self.hmm.tagset:
+                    e = self.hmm.out_prob(word, tag)
+                    q = self.hmm.trans_prob(tag, n_uple)
+                    if e > 0.0 and q > 0.0:
+                        log_e = log2(e)
+                        log_q = log2(q)
+                        site = tuple([n_uple + tuple(tag)][1:])
+                        value = w[0] + log_e + log_q
+                        prev_tags = w[1]
+                        tag_list = prev_tags + [tag]
+                        if site in self._pi[k]:
+                            prev_value = self._pi[k][site]
+                            self._pi[k][site] = (max(value, prev_value), tag_list)
+                        else:
+                            self._pi[k][site] = (value, tag_list)
+                    # else:
+                    #     break                    
+        return tag_list
