@@ -1,5 +1,6 @@
 import math
 
+
 class HMM(object):
  
     def __init__(self, n, tagset, trans, out):
@@ -154,7 +155,8 @@ class ViterbiTagger(object):
                     if e > 0.0 and q > 0.0:
                         log_e = log2(e)
                         log_q = log2(q)
-                        site = tuple([n_uple + tuple(tag)][1:])
+                        site = list(n_uple) + [tag]
+                        site = tuple(site[1:])
                         value = w[0] + log_e + log_q
                         prev_tags = w[1]
                         tag_list = prev_tags + [tag]
@@ -162,7 +164,5 @@ class ViterbiTagger(object):
                             prev_value = self._pi[k][site]
                             self._pi[k][site] = (max(value, prev_value), tag_list)
                         else:
-                            self._pi[k][site] = (value, tag_list)
-                    # else:
-                    #     break                    
+                            self._pi[k][site] = (value, tag_list)                   
         return tag_list
