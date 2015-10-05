@@ -227,7 +227,6 @@ class InterpolatedNGram(NGram):
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
             sent_marked = init_markers + sent + final_marker
-            counts[('<s>',)] += 1
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
                 counts[ngram] += 1
