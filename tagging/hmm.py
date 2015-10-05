@@ -1,5 +1,5 @@
 import math
-
+from collections import Counter
 
 class HMM(object):
  
@@ -166,3 +166,57 @@ class ViterbiTagger(object):
                         else:
                             self._pi[k][site] = (value, tag_list)                   
         return tag_list
+
+
+class MLHMM(HMM):
+ 
+    def __init__(self, n, tagged_sents, addone=True):
+        """
+        n -- order of the model.
+        tagged_sents -- training sentences, each one being a list of pairs.
+        addone -- whether to use addone smoothing (default: True).
+        """
+        self.n = n
+        self.counts = counts = defaultdict(int)
+        all_tags = []
+        bow_tagged = []
+        self.bow = set([item[0] for item in tagged_text])
+        for sent in tagged_sents:
+            words, tags = zip(*sent)
+            # tag_list = list(tags)
+            all_tags += list(tags) 
+            bow_tagged += sent
+            for i in range(len(tags) - n + 1):
+                n_tags = tuple(tags[i: i + n])
+                n1_tags = tuple(tags[i: i + n - 1])
+                counts[n_tags] += 1
+                counts[n1_tags] += 1
+        self.tag_counts = Counter(all_tags)
+        # if addone:
+        #     self.tag_counts.update(tag_counts.keys())
+        self.words_tagged_count = Counter(bow_tagged)
+
+    def tcount(self, tokens):
+        """Count for an k-gram for k <= n.
+ 
+        tokens -- the k-gram tuple.
+        """
+ 
+    def unknown(self, w):
+        """Check if a word is unknown for the model.
+ 
+        w -- the word.
+        """
+        return w not in self.bow
+
+    def ml_q(self, tag, prev_tags):
+        tags = prev_tags + tuple(tag)
+        q = float(self.counts[tags]) / self.counts[prev_tags]
+        return q
+
+    def ml_e(self, word, tag):
+        trans_count  = self.words_tagged_count[(word, tag)]
+        tag_count = self.tag_counts[tag]
+
+        # CHECK ADDONE
+        return trans_count / float(tag_count)
