@@ -1,7 +1,8 @@
 # https://docs.python.org/3/library/unittest.html
 from unittest import TestCase
 from collections import defaultdict
-from math import log2
+from math import log
+log2 = lambda x: log(x, 2)
 
 from tagging.hmm import HMM
 

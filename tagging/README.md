@@ -27,7 +27,7 @@ Accuracy: 88.07%
 ### Ejercicio 3: Entrenamiento y Evaluación de Taggers ###
 
 ### Ejercicio 4: Hidden Markov Models ###
-
+tests modificados para python 3.2
 ### Ejercicio 5: HMM POS Tagger ###
 
 ### Ejercicio 6: Ejercicio 6: Maximum Entropy Markov Models ###
