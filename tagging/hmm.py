@@ -1,5 +1,5 @@
 import math
-from collections import Counter
+from collections import Counter, defaultdict
 
 class HMM(object):
  
@@ -25,7 +25,6 @@ class HMM(object):
         tag -- the tag.
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
-        print(self.n-1, prev_tags)
         assert len(prev_tags) == self.n-1
         assert tag in self.tagset
         prev_tags_trans = self.trans[tuple(prev_tags)]
@@ -41,6 +40,7 @@ class HMM(object):
         tag -- the tag.
         """
         assert tag in self.tagset
+        assert tag in self.out
         tag_out = self.out[tag]
         out_prob = 0.0
         if word in tag_out:
@@ -146,6 +146,7 @@ class ViterbiTagger(object):
                             (log2(1.0), []),
             }
         }
+        tag_list = []
         for k, word in enumerate(sent, start=1):
             self._pi[k] = {}
             for n_uple, w in self._pi[k-1].items():
@@ -178,45 +179,97 @@ class MLHMM(HMM):
         """
         self.n = n
         self.counts = counts = defaultdict(int)
+        self.trans = {}
+        self.out = {}
         all_tags = []
         bow_tagged = []
+        tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
+        all_tags = [item[1] for item in tagged_text]
         for sent in tagged_sents:
             words, tags = zip(*sent)
-            # tag_list = list(tags)
-            all_tags += list(tags) 
-            bow_tagged += sent
             for i in range(len(tags) - n + 1):
                 n_tags = tuple(tags[i: i + n])
                 n1_tags = tuple(tags[i: i + n - 1])
                 counts[n_tags] += 1
                 counts[n1_tags] += 1
         self.tag_counts = Counter(all_tags)
-        # if addone:
-        #     self.tag_counts.update(tag_counts.keys())
-        self.words_tagged_count = Counter(bow_tagged)
+        self.tagset = set(all_tags)
+        if addone:
+            self.tag_counts.update(self.tag_counts.keys())
+        self.words_tagged_count = Counter(tagged_text)
+
+        for tag in self.tagset:
+            self.out[tag] = {}
 
     def tcount(self, tokens):
         """Count for an k-gram for k <= n.
- 
         tokens -- the k-gram tuple.
         """
- 
+        # PARA QUE SE USA?
+
     def unknown(self, w):
         """Check if a word is unknown for the model.
- 
         w -- the word.
         """
         return w not in self.bow
 
     def ml_q(self, tag, prev_tags):
-        tags = prev_tags + tuple(tag)
-        q = float(self.counts[tags]) / self.counts[prev_tags]
-        return q
+        """Estimate the ML trans_prob, given tag and prev_tags
+        """
+        tags = tuple(prev_tags) + tuple(tag)
+        ml_q = 0.0
+        if self.counts[tuple(prev_tags)] > 0.0:
+            ml_q = float(self.counts[tags]) / self.counts[tuple(prev_tags)]
+        return ml_q
 
     def ml_e(self, word, tag):
+        """Estimate the ML out_prob, given tag and prev_tags
+        """
         trans_count  = self.words_tagged_count[(word, tag)]
         tag_count = self.tag_counts[tag]
-
+        ml_e = 0.0
+        if tag_count > 0.0:
+            ml_e = trans_count / float(tag_count)
         # CHECK ADDONE
-        return trans_count / float(tag_count)
+        return ml_e
+
+    def trans_prob(self, tag, prev_tags):
+        """Probability of a tag.
+        tag -- the tag.
+        prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
+        """
+        assert len(prev_tags) == self.n-1
+        assert tag in self.tagset
+        trans_prob = 0.0
+        prev_tags_trans = {}
+        if tuple(prev_tags) in self.trans:
+            prev_tags_trans = self.trans[tuple(prev_tags)]
+        else:
+            self.trans[tuple(prev_tags)] = prev_tags_trans
+        
+        if tag in prev_tags_trans:
+            trans_prob = prev_tags_trans[tag]
+        else:
+            trans_prob = self.ml_q(tag, prev_tags)
+            if trans_prob > 0.0:
+                self.trans[tuple(prev_tags)][tag] = trans_prob
+            
+        return trans_prob
+
+    def out_prob(self, word, tag):
+        """Probability of a word given a tag.
+        word -- the word.
+        tag -- the tag.
+        """
+        assert tag in self.tagset
+        tag_out = self.out[tag]
+        out_prob = 0.0
+        if word in tag_out:
+            out_prob = tag_out[word]
+        else:
+            out_prob = self.ml_e(word, tag)
+            if out_prob > 0.0:
+                self.out[tag][word] = out_prob
+
+        return out_prob
