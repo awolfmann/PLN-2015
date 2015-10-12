@@ -2,7 +2,6 @@ from collections import namedtuple
 
 from featureforge.feature import Feature
 
-
 # sent -- the whole sentence.
 # prev_tags -- a tuple with the n previous tags.
 # i -- the position to be tagged.
@@ -18,26 +17,69 @@ def word_lower(h):
     sent, i = h.sent, h.i
     return sent[i].lower()
 
+
 def word_istitle(h):
-    """Feature: current lowercased word.
+    """Feature:  is a titlecased word.
     h -- a history.
     """
     sent, i = h.sent, h.i
     return sent[i].istitle()
 
+
 def word_isupper(h):
-    """Feature: current lowercased word.
+    """Feature: is a uppercased word.
     h -- a history.
     """
     sent, i = h.sent, h.i
     return sent[i].isupper()
 
+
 def word_isdigit(h):
-    """Feature: current lowercased word.
+    """Feature: is a digit word.
     h -- a history.
     """
     sent, i = h.sent, h.i
     return sent[i].isdigit()
+
+
+def word_isalnum(h):
+    """Feature: is an alphanumeric word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return sent[i].isalnum()
+
+
+def word_isalpha(h):
+    """Feature: is an alphabetic word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return sent[i].isalpha()
+
+
+def word_islower(h):
+    """Feature: is a lowercased word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return sent[i].islower()
+
+
+def word_isdecimal(h):
+    """Feature: is a decimal word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return sent[i].isdecimal()
+
+
+def word_isnumeric(h):
+    """Feature: is a numeric word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return sent[i].isnumeric()
 
 
 class NPrevTags(Feature):
@@ -55,8 +97,7 @@ class NPrevTags(Feature):
         h -- a history.
         """
         sent, i, h.prev_tags = h.sent, h.i, h.prev_tags
-        if len()
-        return h.prev_tags[:]
+        return h.prev_tags[-self.n:]
          
  
 class PrevWord(Feature):
