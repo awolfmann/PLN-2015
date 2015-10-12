@@ -58,7 +58,7 @@ class HMM(object):
         prev_tags = ['<s>'] * (self.n - 1)
         for tag in y:
             tag_prob_i = self.trans_prob(tag, prev_tags)
-            prev_tags = prev_tags[1:] + [tag]
+            prev_tags = (prev_tags + [tag])[1:]
             tag_prob *= tag_prob_i
         return tag_prob
 
@@ -178,35 +178,39 @@ class MLHMM(HMM):
         addone -- whether to use addone smoothing (default: True).
         """
         self.n = n
-        self.counts = counts = defaultdict(int)
+        self.addone = addone
+        self._tcount = tcount = defaultdict(int)
         self.trans = {}
         self.out = {}
-        all_tags = []
-        bow_tagged = []
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
-        all_tags = [item[1] for item in tagged_text]
+        all_tags = []
         for sent in tagged_sents:
             words, tags = zip(*sent)
+            tags += ('</s>',)
+            prev_tags = ['<s>'] * (self.n - 1)
+            prev_tags = tuple(prev_tags)
+            tags = prev_tags + tags
+            all_tags += tags
             for i in range(len(tags) - n + 1):
                 n_tags = tuple(tags[i: i + n])
-                n1_tags = tuple(tags[i: i + n - 1])
-                counts[n_tags] += 1
-                counts[n1_tags] += 1
+                tcount[n_tags] += 1
+                tcount[n_tags[:-1]] += 1
+
+        # all_tags = [item[1] for item in tagged_text]
         self.tag_counts = Counter(all_tags)
         self.tagset = set(all_tags)
-        if addone:
-            self.tag_counts.update(self.tag_counts.keys())
         self.words_tagged_count = Counter(tagged_text)
 
         for tag in self.tagset:
             self.out[tag] = {}
 
-    def tcount(self, tokens):
+    def tcount(self, tags):
         """Count for an k-gram for k <= n.
-        tokens -- the k-gram tuple.
+        tags -- the k-gram tuple.
         """
-        # PARA QUE SE USA?
+        assert len(tags) <= self.n
+        return self._tcount[tags]
 
     def unknown(self, w):
         """Check if a word is unknown for the model.
@@ -217,10 +221,16 @@ class MLHMM(HMM):
     def ml_q(self, tag, prev_tags):
         """Estimate the ML trans_prob, given tag and prev_tags
         """
-        tags = tuple(prev_tags) + tuple(tag)
+        assert len(prev_tags) == self.n - 1
+        tags = tuple(prev_tags) + tuple([tag])
         ml_q = 0.0
-        if self.counts[tuple(prev_tags)] > 0.0:
-            ml_q = float(self.counts[tags]) / self.counts[tuple(prev_tags)]
+        if self.addone:
+            tcount_tags = float(self.tcount(tags)) + 1.0
+            tcount_prev_tags = self.tcount(tuple(prev_tags)) + len(self.bow) 
+            ml_q =  tcount_tags / tcount_prev_tags
+        elif self.tcount(tuple(prev_tags)) > 0.0:
+            ml_q = float(self.tcount(tags)) / self.tcount(tuple(prev_tags))
+        
         return ml_q
 
     def ml_e(self, word, tag):
@@ -231,7 +241,6 @@ class MLHMM(HMM):
         ml_e = 0.0
         if tag_count > 0.0:
             ml_e = trans_count / float(tag_count)
-        # CHECK ADDONE
         return ml_e
 
     def trans_prob(self, tag, prev_tags):
@@ -239,7 +248,7 @@ class MLHMM(HMM):
         tag -- the tag.
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
-        assert len(prev_tags) == self.n-1
+        # assert len(prev_tags) == self.n-1
         assert tag in self.tagset
         trans_prob = 0.0
         prev_tags_trans = {}
@@ -263,13 +272,36 @@ class MLHMM(HMM):
         tag -- the tag.
         """
         assert tag in self.tagset
-        tag_out = self.out[tag]
         out_prob = 0.0
-        if word in tag_out:
-            out_prob = tag_out[word]
+        if self.unknown(word):
+            out_prob = 1.0 / len(self.bow)
         else:
-            out_prob = self.ml_e(word, tag)
-            if out_prob > 0.0:
-                self.out[tag][word] = out_prob
+            tag_out = self.out[tag]
+            if word in tag_out:
+                out_prob = tag_out[word]
+            else:
+                out_prob = self.ml_e(word, tag)
+                if out_prob > 0.0:
+                    self.out[tag][word] = out_prob
 
         return out_prob
+
+    def prob(self, x, y):
+        """
+        Joint probability of a sentence and its tagging.
+        Warning: subject to underflow problems.
+        x -- sentence.
+        y -- tagging.
+        """
+        assert len(x) == len(y)
+        prob = 1.0
+        tag_prob = self.tag_prob(y)
+        for i, word in enumerate(x):
+            out_prob = self.out_prob(word, y[i])
+            if out_prob > 0.0:
+                prob *= out_prob * tag_prob
+            else:
+                prob = float('-inf')
+                break
+
+        return prob
