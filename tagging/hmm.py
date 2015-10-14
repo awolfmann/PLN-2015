@@ -10,7 +10,7 @@ class HMM(object):
         trans -- transition probabilities dictionary.
         out -- output probabilities dictionary.
         """
-        self.tagset = tagset
+        self.tagset = tagset | set(['</s>'])
         self.n = n
         self.trans = trans
         self.out = out
