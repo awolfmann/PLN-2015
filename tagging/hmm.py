@@ -56,6 +56,8 @@ class HMM(object):
         """
         tag_prob = 1.0
         prev_tags = ['<s>'] * (self.n - 1)
+        y += ['</s>']  # add stop tag to the tagging
+
         for tag in y:
             tag_prob_i = self.trans_prob(tag, prev_tags)
             prev_tags = (prev_tags + [tag])[1:]
@@ -69,8 +71,8 @@ class HMM(object):
         x -- sentence.
         y -- tagging.
         """
-        assert len(x) == len(y)
         prob = 1.0
+        tag_prob = self.tag_prob(y)
         for i, word in enumerate(x):
             out_prob = self.out_prob(word, y[i])
             if out_prob > 0.0:
@@ -78,7 +80,9 @@ class HMM(object):
             else:
                 prob = float('-inf')
                 break
-
+        print("prob", tag_prob, prob)
+        prob *= tag_prob
+        
         return prob
 
     def tag_log_prob(self, y):
@@ -91,7 +95,7 @@ class HMM(object):
         prev_tags = ['<s>'] * (self.n - 1)
         for tag in y:
             tag_prob_i = self.trans_prob(tag, prev_tags)
-            prev_tags = prev_tags[1:] + [tag]
+            prev_tags = (prev_tags + [tag])[1:]
             if tag_prob_i > 0.0:
                 tag_log_prob += log2(tag_prob_i)
             else:
@@ -105,17 +109,17 @@ class HMM(object):
         x -- sentence.
         y -- tagging.
         """
-        assert len(x) == len(y)
         log2 = lambda x: math.log(x, 2)
         log_prob = 0.0
+        tag_log_prob = self.tag_log_prob(y)
         for i, word in enumerate(x):
             out_prob = self.out_prob(word, y[i])
-            if out_prob > 0.0: #CHEQUEAR
+            if out_prob > 0.0:
                 log_prob += log2(out_prob)
             else:
                 log_prob = float('-inf')
                 break
-
+        log_prob += tag_log_prob
         return log_prob 
 
     def tag(self, sent):
@@ -285,23 +289,3 @@ class MLHMM(HMM):
                     self.out[tag][word] = out_prob
 
         return out_prob
-
-    def prob(self, x, y):
-        """
-        Joint probability of a sentence and its tagging.
-        Warning: subject to underflow problems.
-        x -- sentence.
-        y -- tagging.
-        """
-        assert len(x) == len(y)
-        prob = 1.0
-        tag_prob = self.tag_prob(y)
-        for i, word in enumerate(x):
-            out_prob = self.out_prob(word, y[i])
-            if out_prob > 0.0:
-                prob *= out_prob * tag_prob
-            else:
-                prob = float('-inf')
-                break
-
-        return prob
