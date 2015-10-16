@@ -30,8 +30,9 @@ class MEMM(object):
         """
         histories = []
         for tagged_sent in tagged_sents:
-            histories += [self.sent_histories(tagged_sent)]
+            histories += self.sent_histories(tagged_sent)
 	    # yield self.sent_histories(tagged_sent)
+        return histories
  		
     def sent_histories(self, tagged_sent):
         """
@@ -48,7 +49,7 @@ class MEMM(object):
             prev_tags = (prev_tags + (t,))[1:]
             #yield h
             histories += [h]
-            
+        return histories
 
     def sents_tags(self, tagged_sents):
         """
@@ -56,8 +57,11 @@ class MEMM(object):
  
         tagged_sents -- the corpus (a list of sentences)
         """
+        tags = []
         for tagged_sent in tagged_sents:
-            yield self.sent_tags(tagged_sent)
+            #yield self.sent_tags(tagged_sent)
+            tags += self.sent_tags(tagged_sent)
+        return tags
 
     def sent_tags(self, tagged_sent):
         """
@@ -65,9 +69,12 @@ class MEMM(object):
  
         tagged_sent -- the tagged sentence (a list of pairs (word, tag)).
         """
-        for _, t in tagged_sent:
-            yield t
- 
+        tags = []
+        for _, tag in tagged_sent:
+            #yield t
+            tags += [tag]
+        return tags
+
     def tag(self, sent):
         """Tag a sentence.
         sent -- the sentence.
