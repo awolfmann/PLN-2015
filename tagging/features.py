@@ -96,7 +96,7 @@ class NPrevTags(Feature):
  
         h -- a history.
         """
-        sent, i, h.prev_tags = h.sent, h.i, h.prev_tags
+        sent, i, = h.sent, h.i
         return h.prev_tags[-self.n:]
          
  

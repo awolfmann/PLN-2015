@@ -3,7 +3,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 
 from tagging.features import (History, word_lower, word_istitle, word_isupper,
-                              word_isdigit, prev_tags, NPrevTags, PrevWord)
+                              word_isdigit, NPrevTags, PrevWord)
 
 class MEMM(object):
 
@@ -28,9 +28,11 @@ class MEMM(object):
  
         tagged_sents -- the corpus (a list of sentences)
         """
+        histories = []
         for tagged_sent in tagged_sents:
-            yield self.sent_histories(tagged_sent)
- 
+            histories += [self.sent_histories(tagged_sent)]
+	    # yield self.sent_histories(tagged_sent)
+ 		
     def sent_histories(self, tagged_sent):
         """
         Iterator over the histories of a tagged sentence.
@@ -38,14 +40,14 @@ class MEMM(object):
         tagged_sent -- the tagged sentence (a list of pairs (word, tag)).
         """
         sent, tags = zip(*tagged_sent)
-        # histories = []
+        histories = []
         prev_tags = ['<s>'] * (self.n - 1)
         prev_tags = tuple(prev_tags)
         for i, (w,t) in enumerate(tagged_sent):
             h = History(sent, prev_tags, i)
             prev_tags = (prev_tags + (t,))[1:]
-            yield h
-            # histories += h
+            #yield h
+            histories += [h]
             
 
     def sents_tags(self, tagged_sents):
