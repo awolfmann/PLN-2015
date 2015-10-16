@@ -45,7 +45,7 @@ class MEMM(object):
         prev_tags = ['<s>'] * (self.n - 1)
         prev_tags = tuple(prev_tags)
         for i, (w,t) in enumerate(tagged_sent):
-            h = History(sent, prev_tags, i)
+            h = History(list(sent), prev_tags, i)
             prev_tags = (prev_tags + (t,))[1:]
             #yield h
             histories += [h]
@@ -94,6 +94,7 @@ class MEMM(object):
         """Tag a history.
         h -- the history.
         """
+        print("tag_history", h)
         tag = self.pipeline.predict(h)
         return tag
     

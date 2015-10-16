@@ -8,12 +8,15 @@ from featureforge.feature import Feature
 History = namedtuple('History', 'sent prev_tags i')
 
 # una vez que el tagger calculo el tag para la primer palabra
+def prev_tags(h):
+    return h.prev_tags
 
 def word_lower(h):
     """Feature: current lowercased word.
 
     h -- a history.
     """
+    print(h)
     sent, i = h.sent, h.i
     return sent[i].lower()
 
@@ -114,5 +117,10 @@ class PrevWord(Feature):
  
         h -- the history.
         """
-        history = History(h.sent, h.prev_tags, h.i-1)
-        return self.f(history)
+        result = None
+        if h.i > 0:
+            history = History(h.sent, h.prev_tags, h.i-1)
+            result = self.f(history)
+        else:
+            result = 'BOS'
+        return result
