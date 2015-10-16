@@ -15,7 +15,7 @@ class MEMM(object):
         self.n = n
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
-        self.features= [word_lower, word_istitle]
+        self.features= [word_lower, word_istitle, word_isupper, word_isdigit]
         self.pipeline = Pipeline([('vect', Vectorizer(self.features)),
                                 ('clf', LogisticRegression()),
                                 ])
@@ -31,7 +31,7 @@ class MEMM(object):
         histories = []
         for tagged_sent in tagged_sents:
             histories += self.sent_histories(tagged_sent)
-	    # yield self.sent_histories(tagged_sent)
+            # yield self.sent_histories(tagged_sent)
         return histories
  		
     def sent_histories(self, tagged_sent):
@@ -47,8 +47,8 @@ class MEMM(object):
         for i, (w,t) in enumerate(tagged_sent):
             h = History(list(sent), prev_tags, i)
             prev_tags = (prev_tags + (t,))[1:]
-            #yield h
             histories += [h]
+
         return histories
 
     def sents_tags(self, tagged_sents):
@@ -59,8 +59,8 @@ class MEMM(object):
         """
         tags = []
         for tagged_sent in tagged_sents:
-            #yield self.sent_tags(tagged_sent)
             tags += self.sent_tags(tagged_sent)
+
         return tags
 
     def sent_tags(self, tagged_sent):
@@ -71,8 +71,8 @@ class MEMM(object):
         """
         tags = []
         for _, tag in tagged_sent:
-            #yield t
             tags += [tag]
+
         return tags
 
     def tag(self, sent):
@@ -85,7 +85,7 @@ class MEMM(object):
         for i, _ in enumerate(sent):
             h = History(sent, prev_tags, i)
             tag = self.tag_history(h)
-            tags += tag
+            tags += [tag]
             prev_tags = (prev_tags + (tag,))[1:]
         
         return tags
@@ -94,8 +94,7 @@ class MEMM(object):
         """Tag a history.
         h -- the history.
         """
-        print("tag_history", h)
-        tag = self.pipeline.predict(h)
+        tag = self.pipeline.predict([h])
         return tag
     
     def unknown(self, w):

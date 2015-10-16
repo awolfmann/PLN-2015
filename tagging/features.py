@@ -7,7 +7,7 @@ from featureforge.feature import Feature
 # i -- the position to be tagged.
 History = namedtuple('History', 'sent prev_tags i')
 
-# una vez que el tagger calculo el tag para la primer palabra
+
 def prev_tags(h):
     return h.prev_tags
 
@@ -16,7 +16,6 @@ def word_lower(h):
 
     h -- a history.
     """
-    print(h)
     sent, i = h.sent, h.i
     return sent[i].lower()
 
