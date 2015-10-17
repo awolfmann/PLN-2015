@@ -1,4 +1,5 @@
 import math
+from math import log2
 from collections import Counter, defaultdict
 
 class HMM(object):
@@ -10,7 +11,7 @@ class HMM(object):
         trans -- transition probabilities dictionary.
         out -- output probabilities dictionary.
         """
-        self.tagset = tagset | set(['</s>'])
+        self.tagset = tagset
         self.n = n
         self.trans = trans
         self.out = out
@@ -26,7 +27,7 @@ class HMM(object):
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
         assert len(prev_tags) == self.n-1
-        assert tag in self.tagset
+        # assert tag in self.tagset
         prev_tags_trans = self.trans[tuple(prev_tags)]
         trans_prob = 0.0
         if tag in prev_tags_trans:
@@ -40,7 +41,8 @@ class HMM(object):
         tag -- the tag.
         """
         assert tag in self.tagset
-        assert tag in self.out
+        # print("tag", tag, self.out)
+        assert tag in self.out, tag
         tag_out = self.out[tag]
         out_prob = 0.0
         if word in tag_out:
@@ -143,7 +145,6 @@ class ViterbiTagger(object):
         """Returns the most probable tagging for a sentence. 
         sent -- the sentence.
         """
-        log2 = lambda x: math.log(x, 2)
         self._pi = {
                     0: {
                         tuple(['<s>'] * (self.hmm.n - 1)): 
@@ -167,10 +168,30 @@ class ViterbiTagger(object):
                         tag_list = prev_tags + [tag]
                         if site in self._pi[k]:
                             prev_value = self._pi[k][site]
-                            self._pi[k][site] = (max(value, prev_value), tag_list)
+                            if value > prev_value[0]:
+                                self._pi[k][site] = (value, tag_list)
                         else:
                             self._pi[k][site] = (value, tag_list)                   
-        return tag_list
+
+        # results = {}
+        # for prev_tags, (value, tag_list) in self._pi[len(sent)].items():
+        #     q = self.hmm.trans_prob('</s>', prev_tags)
+        #     if q > 0.0:
+        #         log_q = log2(q)
+        #         result = log_q + value
+        #         results[result] = tag_list
+        # max_value = max([value for value in results.keys()])
+        # best_tag = results[max_value]
+        max_lp = float('-inf')
+        for prev_tags, (value, tag_list) in self._pi[len(sent)].items():
+            p = self.hmm.trans_prob('</s>', prev_tags)
+            if p > 0.0:
+                lp = log2(p) + value
+                if lp > max_lp:
+                    max_lp = lp
+                    best_tag = tag_list
+
+        return best_tag
 
 
 class MLHMM(HMM):
@@ -189,13 +210,13 @@ class MLHMM(HMM):
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
         all_tags = []
-        for sent in tagged_sents:
+        for sent in filter(lambda x: x, tagged_sents):
             words, tags = zip(*sent)
             tags += ('</s>',)
             prev_tags = ['<s>'] * (self.n - 1)
             prev_tags = tuple(prev_tags)
             tags = prev_tags + tags
-            all_tags += tags
+            all_tags += list(tags)
             for i in range(len(tags) - n + 1):
                 n_tags = tuple(tags[i: i + n])
                 tcount[n_tags] += 1
@@ -230,7 +251,7 @@ class MLHMM(HMM):
         ml_q = 0.0
         if self.addone:
             tcount_tags = float(self.tcount(tags)) + 1.0
-            tcount_prev_tags = self.tcount(tuple(prev_tags)) + len(self.bow) 
+            tcount_prev_tags = self.tcount(tuple(prev_tags)) + len(self.tagset) 
             ml_q =  tcount_tags / tcount_prev_tags
         elif self.tcount(tuple(prev_tags)) > 0.0:
             ml_q = float(self.tcount(tags)) / self.tcount(tuple(prev_tags))
