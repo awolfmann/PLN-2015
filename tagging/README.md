@@ -25,6 +25,11 @@ Accuracy: 88.07%
 
 
 ### Ejercicio 3: Entrenamiento y Evaluación de Taggers ###
+Entrenar
+hmm 
+real    0m15.722s
+user    0m15.477s
+sys 0m0.216s
 
 ### Ejercicio 4: Hidden Markov Models ###
 tests modificados para python 3.2
