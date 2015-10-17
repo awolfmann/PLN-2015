@@ -1,7 +1,6 @@
 # https://docs.python.org/3/library/unittest.html
 from unittest import TestCase
-from math import log
-log2 = lambda x: log(x, 2)
+from math import log2
 
 from tagging.hmm import HMM, ViterbiTagger
 
@@ -81,7 +80,6 @@ class TestViterbiTagger(TestCase):
             }
         }
         self.assertEqualPi(tagger._pi, pi)
-
         self.assertEqual(y, 'D N V'.split())
 
     def assertEqualPi(self, pi1, pi2):
