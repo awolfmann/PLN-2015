@@ -16,6 +16,12 @@ class MEMM(object):
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
         self.features= [word_lower, word_istitle, word_isupper, word_isdigit]
+        prev_tags_features = []
+        for i in range (1,n):
+            prev_tags.append(NPrevTags(i))
+        self.features += prev_tags_features
+        # prev_word_features = PrevWord(self.features)
+        # self.features += prev_word_features
         self.pipeline = Pipeline([('vect', Vectorizer(self.features)),
                                 ('clf', LogisticRegression()),
                                 ])
@@ -29,7 +35,7 @@ class MEMM(object):
         tagged_sents -- the corpus (a list of sentences)
         """
         histories = []
-        for tagged_sent in tagged_sents:
+        for tagged_sent in filter(lambda x: x, tagged_sents):
             histories += self.sent_histories(tagged_sent)
             # yield self.sent_histories(tagged_sent)
         return histories
