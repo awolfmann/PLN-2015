@@ -18,7 +18,8 @@ class MEMM(object):
         self.features= [word_lower, word_istitle, word_isupper, word_isdigit]
         prev_tags_features = []
         for i in range (1,n):
-            prev_tags.append(NPrevTags(i))
+            prev_tags_features.append(NPrevTags(i))
+            print(i, prev_tags_features, n)
         self.features += prev_tags_features
         # prev_word_features = PrevWord(self.features)
         # self.features += prev_word_features
