@@ -83,6 +83,12 @@ def word_isnumeric(h):
     sent, i = h.sent, h.i
     return sent[i].isnumeric()
 
+def word_len(h):
+    """Feature: length of the word.
+    h -- a history.
+    """
+    sent, i = h.sent, h.i
+    return len(sent[i])
 
 class NPrevTags(Feature):
  
@@ -119,7 +125,7 @@ class PrevWord(Feature):
         result = None
         if h.i > 0:
             history = History(h.sent, h.prev_tags, h.i-1)
-            result = self.f(history)
+            result = str(self.f(history))
         else:
             result = 'BOS'
         return result
