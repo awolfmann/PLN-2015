@@ -68,14 +68,6 @@ def word_islower(h):
     return sent[i].islower()
 
 
-def word_isdecimal(h):
-    """Feature: is a decimal word.
-    h -- a history.
-    """
-    sent, i = h.sent, h.i
-    return sent[i].isdecimal()
-
-
 def word_isnumeric(h):
     """Feature: is a numeric word.
     h -- a history.
@@ -83,12 +75,31 @@ def word_isnumeric(h):
     sent, i = h.sent, h.i
     return sent[i].isnumeric()
 
+
 def word_len(h):
     """Feature: length of the word.
     h -- a history.
     """
     sent, i = h.sent, h.i
     return len(sent[i])
+
+
+def word_prefix(h, prefix=3):
+    """Feature: prefix of the word.
+    h -- a history.
+    prefix -- length of the prefix
+    """
+    sent, i = h.sent, h.i
+    return sent[i][:prefix]
+
+
+def word_sufix(h, sufix=3):
+    """Feature: sufix of the word.
+    h -- a history.
+    sufix -- length of the sufix
+    """
+    sent, i = h.sent, h.i
+    return sent[i][-sufix:]
 
 class NPrevTags(Feature):
  
