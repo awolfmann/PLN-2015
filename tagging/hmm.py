@@ -56,12 +56,16 @@ class HMM(object):
         y -- tagging.
         """
         tag_prob = 1.0
-        prev_tags = ['<s>'] * (self.n - 1)
-        y += ['</s>']  # add stop tag to the tagging
-        for tag in y:
+        prev_tags = ('<s>',) * (self.n - 1)
+        for tag in y + ['</s>']:
             tag_prob_i = self.trans_prob(tag, prev_tags)
-            prev_tags = (prev_tags + [tag])[1:]
-            tag_prob *= tag_prob_i
+            prev_tags = (prev_tags + (tag,))[1:]
+            if tag_prob_i > 0.0:
+                tag_prob *= tag_prob_i
+            else:
+                tag_prob = float('-inf')
+                break
+
         return tag_prob
 
     def prob(self, x, y):
@@ -91,11 +95,10 @@ class HMM(object):
         """
         log2 = lambda x: math.log(x, 2)
         tag_log_prob = 0.0
-        prev_tags = ['<s>'] * (self.n - 1)
-        # y += ['</s>']
-        for tag in y:
+        prev_tags = ('<s>',) * (self.n - 1)
+        for tag in y + ['</s>']:
             tag_prob_i = self.trans_prob(tag, prev_tags)
-            prev_tags = (prev_tags + [tag])[1:]
+            prev_tags = (prev_tags + (tag,))[1:]
             if tag_prob_i > 0.0:
                 tag_log_prob += log2(tag_prob_i)
             else:
@@ -130,7 +133,7 @@ class HMM(object):
         return tagger.tag(sent)          
  
  
-class ViterbiTagger(object):
+class ViterbiTagger1(object):
  
     def __init__(self, hmm):
         """
@@ -182,6 +185,58 @@ class ViterbiTagger(object):
 
         return best_tag
 
+class ViterbiTagger:
+
+    def __init__(self, hmm):
+        """
+        hmm -- the HMM.
+        """
+        self.hmm = hmm
+
+    def tag(self, sent):
+        """Returns the most probable tagging for a sentence.
+
+        sent -- the sentence.
+        """
+        m = len(sent)
+        hmm = self.hmm
+        n = hmm.n
+        tagset = hmm.tagset()
+
+        self._pi = pi = {}
+        pi[0] = {
+            ('<s>',) * (n - 1): (0.0, [])
+        }
+
+        for i, w in zip(range(1, m + 1), sent):
+            pi[i] = {}
+
+            # iterate over tags that can follow with out_prob > 0.0
+            tag_out_probs = [(t, hmm.out_prob(w, t)) for t in tagset]
+            for t, out_p in [(t, p) for t, p in tag_out_probs if p > 0.0]:
+                # iterate over non-zeros in the previous column
+                for prev, (lp, tag_sent) in pi[i - 1].items():
+                    trans_p = hmm.trans_prob(t, prev)
+                    if trans_p > 0.0:
+                        new_prev = (prev + (t,))[1:]
+                        new_lp = lp + log2(out_p) + log2(trans_p)
+                        # is it the max?
+                        if new_prev not in pi[i] or new_lp > pi[i][new_prev][0]:
+                            # XXX: what if equal?
+                            pi[i][new_prev] = (new_lp, tag_sent + [t])
+
+        # last step: generate STOP
+        max_lp = float('-inf')
+        result = None
+        for prev, (lp, tag_sent) in pi[m].items():
+            p = hmm.trans_prob('</s>', prev)
+            if p > 0.0:
+                new_lp = lp + log2(p)
+                if new_lp > max_lp:
+                    max_lp = new_lp
+                    result = tag_sent
+
+        return result
 
 class MLHMM(HMM):
  
@@ -196,31 +251,30 @@ class MLHMM(HMM):
         self._tcount = tcount = defaultdict(int)
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
-        all_tags = []
+        self._bow_size =  len(self.bow)
+        # all_tags = []
         for sent in filter(lambda x: x, tagged_sents):
             words, tags = zip(*sent)
-            prev_tags = ['<s>'] * (self.n - 1)
-            prev_tags = tuple(prev_tags)
+            prev_tags = ('<s>',) * (self.n - 1)
             tags = prev_tags + tags + ('</s>',)
-            all_tags += list(tags)
+            # all_tags += list(tags)
             for i in range(len(tags) - n + 1):
                 n_tags = tags[i: i + n]
                 tcount[n_tags] += 1
                 tcount[n_tags[:-1]] += 1
 
-        self.tag_counts = Counter(all_tags)
+        self._tcount = dict(tcount)
+        all_tags = [item[1] for item in  tagged_text]
+        self.tag_counts = dict(Counter(all_tags))
         self._tagset = set(all_tags)
-        self.words_tagged_count = Counter(tagged_text)
+        self._tagset_size = len(self._tagset) 
+        self.words_tagged_count = dict(Counter(tagged_text))
 
     def tcount(self, tags):
         """Count for an k-gram for k <= n.
         tags -- the k-gram tuple.
-        """
-        assert len(tags) <= self.n
-        tcount = 0
-        if tags in self._tcount:
-            tcount = self._tcount[tags] 
-        return tcount
+        """ 
+        return self._tcount.get(tags, 0)
 
     def unknown(self, w):
         """Check if a word is unknown for the model.
@@ -233,16 +287,17 @@ class MLHMM(HMM):
         tag -- the tag.
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
-        assert tag in self.tagset()
         trans_prob = 0.0
-        tags = tuple(prev_tags) + (tag,)
+        tags = prev_tags + (tag,)
+        tcount_prev_tags = self._tcount.get(prev_tags, 0)
+        tcount_tags = self._tcount.get(tags, 0)
         if self.addone:
-            tcount_tags = float(self.tcount(tags)) + 1.0
-            tcount_prev_tags = self.tcount(tuple(prev_tags)) + len(self.tagset()) 
-            trans_prob =  tcount_tags / tcount_prev_tags
+            tcount_tags +=  1
+            tcount_prev_tags +=  self._tagset_size
+            trans_prob =  tcount_tags / float(tcount_prev_tags)
             
-        elif self.tcount(tuple(prev_tags)) > 0.0:
-            trans_prob = float(self.tcount(tags)) / self.tcount(tuple(prev_tags))
+        elif tcount_prev_tags > 0:
+            trans_prob = tcount_tags / float(tcount_prev_tags)
         
         return trans_prob
 
@@ -252,13 +307,13 @@ class MLHMM(HMM):
         word -- the word.
         tag -- the tag.
         """
-        assert tag in self.tagset()
+        # assert tag in self.tagset()
         out_prob = 0.0
         if self.unknown(word):
-            out_prob = 1.0 / len(self.bow)
+            out_prob = 1.0 / self._bow_size
         else:
-            trans_count  = self.words_tagged_count[(word, tag)]
-            tag_count = self.tag_counts[tag]
+            trans_count  = self.words_tagged_count.get((word, tag), 0)
+            tag_count = self.tag_counts.get(tag, 0)
             if tag_count > 0.0:
                 out_prob = trans_count / float(tag_count)
 
