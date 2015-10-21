@@ -42,39 +42,33 @@ if __name__ == '__main__':
     hits, total, hits_unk, total_unk = 0, 0, 0, 0
     n = len(sents)
     confusion = defaultdict(lambda: defaultdict(int))
-    gold_tags = []
+    #gold_tags = tuple()
     for i, sent in enumerate(filter(lambda x: x, sents)):
         word_sent, gold_tag_sent = zip(*sent)
         model_tag_sent = model.tag(word_sent)
         assert len(model_tag_sent) == len(gold_tag_sent), i
-        gold_tags += list(gold_tag_sent)
+        #gold_tags += gold_tag_sent
         # global score
-        hits_sent = [m == g for m, g in zip(model_tag_sent, gold_tag_sent)]
+        hits_sent = [g == m for g, m in zip(gold_tag_sent, model_tag_sent)]
         hits += sum(hits_sent)
         total += len(sent) 
         acc = float(hits) / total
 
         # score for unknown words
-        unk_words_tags = [item for item in sent if model.unknown(item[0])]
-        unk_words = [item[0] for item in unk_words_tags]
-        model_tag_unk = model.tag(unk_words)
-        gold_tag_unk = [item[1] for item in unk_words_tags]
-        hits_sent_unk = [m == g for m, g in zip(model_tag_unk, gold_tag_unk)]
-        hits_unk += sum(hits_sent_unk)
-        total_unk += len(unk_words) 
+        unk_hits_sent = [g == m for w, g, m in zip(word_sent, gold_tag_sent, model_tag_sent) if model.unknown(w)]
+        hits_unk += sum(unk_hits_sent)
+        total_unk += len(unk_hits_sent) 
         progress('{:3.1f}% ({:2.2f}%)'.format(float(i) * 100 / n, acc * 100))
 
         errors_sent = [(g, m) for g, m in zip(gold_tag_sent, model_tag_sent) if g != m]
-        # print("errors_sent", errors_sent)
         for g, m in errors_sent:
-            # print('m', str(m), m)
             confusion[g][m] += 1
 
     acc = float(hits) / total
     acc_unk = float(hits_unk) / total_unk
     acc_kno = float(hits - hits_unk) / (total - total_unk)
 
-
+    gold_tags = [g_t for sent in sents for w, g_t in sent]
     top10_tags = [item[0] for item in Counter(gold_tags).most_common(10)]
 
 
@@ -82,10 +76,6 @@ if __name__ == '__main__':
     print('Accuracy: {:2.2f}%'.format(acc * 100))
     print('Accuracy Unknown: {:2.2f}%'.format(acc_unk * 100))
     print('Accuracy known: {:2.2f}%'.format(acc_kno * 100))
-    print('hits', hits)
-    print('total', total)
-    print('hits_unk', hits_unk)
-    print('total_unk', total_unk)
 
     print('Confusion Matrix')
     print('\t'.join(top10_tags)) 
@@ -93,3 +83,4 @@ if __name__ == '__main__':
         print(g_t  + '  ', end='')
         print_confusion = [str(confusion[g_t][m_t]) for m_t in top10_tags]
         print('\t'.join(print_confusion))
+

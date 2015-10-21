@@ -31,7 +31,6 @@ models = {
 
 if __name__ == '__main__':
     opts = docopt(__doc__)
-    print(opts)
 
     # load the data
     files = 'CESS-CAST-(A|AA|P)/.*\.tbf\.xml'
@@ -42,8 +41,6 @@ if __name__ == '__main__':
     model = None
     if opts['-m'] != 'base':
         n = int(opts['<n>'])
-
-        print('N', n)
         model = models[opts['-m']](n, sents)
     else:
         model = models[opts['-m']](sents)
