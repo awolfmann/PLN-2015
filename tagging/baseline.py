@@ -7,7 +7,7 @@ class BaselineTagger:
         """
         tagged_sents -- training sentences, each one being a list of pairs.
         """
-        tagged_text = [item for sent in tagged_sents for item in sent]
+        tagged_text = [item for sent in filter(lambda x: x, tagged_sents) for item in sent]
         self.bow = set([item[0] for item in tagged_text])
         tags = [item[1] for item in tagged_text]
         self.most_common_tag = Counter(tags).most_common(1)[0][0]
