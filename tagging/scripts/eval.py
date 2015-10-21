@@ -64,9 +64,11 @@ if __name__ == '__main__':
         total_unk += len(unk_words) 
         progress('{:3.1f}% ({:2.2f}%)'.format(float(i) * 100 / n, acc * 100))
 
-        errors_sent = [(m,g) for m, g in zip(model_tag_sent, gold_tag_sent) if m != g]
-        for m,g in errors_sent:
-            confusion[m][g] += 1
+        errors_sent = [(g, m) for g, m in zip(gold_tag_sent, model_tag_sent) if g != m]
+        # print("errors_sent", errors_sent)
+        for g, m in errors_sent:
+            # print('m', str(m), m)
+            confusion[g][m] += 1
 
     acc = float(hits) / total
     acc_unk = float(hits_unk) / total_unk
