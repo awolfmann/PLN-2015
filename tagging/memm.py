@@ -1,13 +1,16 @@
 from featureforge.vectorizer import Vectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
 
 from tagging.features import (History, word_lower, word_istitle, word_isupper,
-                              word_isdigit, NPrevTags, PrevWord)
+                              word_isdigit, word_len, NPrevTags, PrevWord, 
+                              word_prefix, word_sufix)
 
 class MEMM(object):
 
-    def __init__(self, n, tagged_sents):
+    def __init__(self, n, tagged_sents, clf=LogisticRegression):
         """
         n -- order of the model.
         tagged_sents -- list of sentences, each one being a list of pairs.
@@ -16,15 +19,19 @@ class MEMM(object):
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
         self.features= [word_lower, word_istitle, word_isupper, word_isdigit]
+        
+        prev_word_features = []
+        for feature in self.features:
+            prev_word_features.append(PrevWord(feature))
+
+        self.features += prev_word_features
+
         prev_tags_features = []
         for i in range (1,n):
             prev_tags_features.append(NPrevTags(i))
-            print(i, prev_tags_features, n)
         self.features += prev_tags_features
-        # prev_word_features = PrevWord(self.features)
-        # self.features += prev_word_features
         self.pipeline = Pipeline([('vect', Vectorizer(self.features)),
-                                ('clf', LogisticRegression()),
+                                ('clf', clf()),
                                 ])
         self.pipeline.fit(self.sents_histories(tagged_sents), 
                         self.sents_tags(tagged_sents) )
@@ -101,7 +108,7 @@ class MEMM(object):
         """Tag a history.
         h -- the history.
         """
-        tag = self.pipeline.predict([h])
+        tag = self.pipeline.predict([h])[0]
         return tag
     
     def unknown(self, w):
