@@ -1,11 +1,15 @@
 """Evaulate a parser.
 
+Evaulate a parser.
+
 Usage:
-  eval.py -i <file>
+  eval.py -i <file> [-m <m>] [-n <n>]
   eval.py -h | --help
 
 Options:
   -i <file>     Parsing model file.
+  -m <m>        Parse only sentences of length <= <m>.
+  -n <n>        Parse only <n> sentences (useful for profiling).
   -h --help     Show this screen.
 """
 from docopt import docopt
@@ -40,7 +44,7 @@ if __name__ == '__main__':
     parsed_sents = list(corpus.parsed_sents())
 
     print('Parsing...')
-    hits, total_gold, total_model = 0, 0, 0
+    hits, total_gold, total_model, hits_unl = 0, 0, 0,0
     n = len(parsed_sents)
     format_str = '{:3.1f}% ({}/{}) (P={:2.2f}%, R={:2.2f}%, F1={:2.2f}%)'
     progress(format_str.format(0.0, 0, n, 0.0, 0.0, 0.0))
@@ -62,6 +66,16 @@ if __name__ == '__main__':
         rec = float(hits) / total_gold * 100
         f1 = 2 * prec * rec / (prec + rec)
 
+        # compute unlabeled scores
+        gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
+        model_spans_unl = set([(i, j) for n, i, j in model_spans])
+        hits_unl += len(gold_spans_unl & model_spans_unl)
+
+        # compute unlabeled partial results
+        prec_unl = float(hits_unl) / total_model * 100
+        rec_unl = float(hits_unl) / total_gold * 100
+        f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
+
         progress(format_str.format(float(i+1) * 100 / n, i+1, n, prec, rec, f1))
 
     print('')
@@ -70,3 +84,7 @@ if __name__ == '__main__':
     print('  Precision: {:2.2f}% '.format(prec))
     print('  Recall: {:2.2f}% '.format(rec))
     print('  F1: {:2.2f}% '.format(f1))
+    print('Unlabeled')
+    print('  Precision: {:2.2f}% '.format(prec_unl))
+    print('  Recall: {:2.2f}% '.format(rec_unl))
+    print('  F1: {:2.2f}% '.format(f1_unl))
