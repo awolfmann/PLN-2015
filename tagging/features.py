@@ -11,9 +11,9 @@ History = namedtuple('History', 'sent prev_tags i')
 def prev_tags(h):
     return h.prev_tags
 
+
 def word_lower(h):
     """Feature: current lowercased word.
-
     h -- a history.
     """
     sent, i = h.sent, h.i
@@ -101,36 +101,32 @@ def word_sufix(h, sufix=3):
     sent, i = h.sent, h.i
     return sent[i][-sufix:]
 
+
 class NPrevTags(Feature):
- 
+
     def __init__(self, n):
         """Feature: n previous tags tuple.
- 
         n -- number of previous tags to consider.
         """
         self.n = n
- 
+
     def _evaluate(self, h):
         """n previous tags tuple.
- 
         h -- a history.
         """
-        sent, i, = h.sent, h.i
         return h.prev_tags[-self.n:]
-         
- 
+
+
 class PrevWord(Feature):
- 
+
     def __init__(self, f):
         """Feature: the feature f applied to the previous word.
- 
         f -- the feature.
         """
         self.f = f
- 
+
     def _evaluate(self, h):
         """Apply the feature to the previous word in the history.
- 
         h -- the history.
         """
         result = None

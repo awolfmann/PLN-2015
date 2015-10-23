@@ -1,6 +1,6 @@
-import math
 from math import log2
 from collections import Counter, defaultdict
+
 
 class HMM(object):
 
@@ -27,7 +27,7 @@ class HMM(object):
         prev_tags -- tuple with the previous n-1 tags (optional only if n = 1).
         """
         assert len(prev_tags) == self.n-1
-        # assert tag in self.tagset
+        # assert tag in self._tagset
         prev_tags_trans = self.trans[tuple(prev_tags)]
         trans_prob = 0.0
         if tag in prev_tags_trans:
@@ -48,7 +48,7 @@ class HMM(object):
             out_prob = tag_out[word]
 
         return out_prob
- 
+
     def tag_prob(self, y):
         """
         Probability of a tagging.
@@ -85,7 +85,7 @@ class HMM(object):
                 prob = float('-inf')
                 break
         prob *= tag_prob
-        
+
         return prob
 
     def tag_log_prob(self, y):
@@ -121,35 +121,32 @@ class HMM(object):
                 log_prob = float('-inf')
                 break
         log_prob += tag_log_prob
-        return log_prob 
+        return log_prob
 
     def tag(self, sent):
         """Returns the most probable tagging for a sentence.
         sent -- the sentence.
         """
         tagger = ViterbiTagger(self)
-        return tagger.tag(sent)          
- 
- 
+        return tagger.tag(sent)
+
+
 class ViterbiTagger(object):
- 
+
     def __init__(self, hmm):
         """
         hmm -- the HMM.
         """
         self.hmm = hmm
 
-
     def tag(self, sent):
-        """Returns the most probable tagging for a sentence. 
+        """Returns the most probable tagging for a sentence.
         sent -- the sentence.
         """
-        self._pi = {
-                    0: {
-                        tuple(['<s>'] * (self.hmm.n - 1)): 
-                            ((0.0), []),
-            }
-        }
+        self._pi = {0: {tuple(['<s>'] * (self.hmm.n - 1)):
+                        ((0.0), []),
+                        }
+                    }
         tag_list = []
         for k, word in enumerate(sent, start=1):
             self._pi[k] = {}
@@ -169,7 +166,7 @@ class ViterbiTagger(object):
                                 if value > prev_value[0]:
                                     self._pi[k][site] = (value, tag_list)
                             else:
-                                self._pi[k][site] = (value, tag_list)                   
+                                self._pi[k][site] = (value, tag_list)
 
         max_lp = float('-inf')
         best_tag = None
@@ -185,7 +182,7 @@ class ViterbiTagger(object):
 
 
 class MLHMM(HMM):
- 
+
     def __init__(self, n, tagged_sents, addone=True):
         """
         n -- order of the model.
@@ -197,29 +194,28 @@ class MLHMM(HMM):
         self._tcount = tcount = defaultdict(int)
         tagged_text = [item for sent in tagged_sents for item in sent]
         self.bow = set([item[0] for item in tagged_text])
-        self._bow_size =  len(self.bow)
-        # all_tags = []
+        self._bow_size = len(self.bow)
+
         for sent in filter(lambda x: x, tagged_sents):
             words, tags = zip(*sent)
             prev_tags = ('<s>',) * (self.n - 1)
             tags = prev_tags + tags + ('</s>',)
-            # all_tags += list(tags)
             for i in range(len(tags) - n + 1):
                 n_tags = tags[i: i + n]
                 tcount[n_tags] += 1
                 tcount[n_tags[:-1]] += 1
 
         self._tcount = dict(tcount)
-        all_tags = [item[1] for item in  tagged_text]
+        all_tags = [item[1] for item in tagged_text]
         self.tag_counts = dict(Counter(all_tags))
         self._tagset = set(all_tags)
-        self._tagset_size = len(self._tagset) 
+        self._tagset_size = len(self._tagset)
         self.words_tagged_count = dict(Counter(tagged_text))
 
     def tcount(self, tags):
         """Count for an k-gram for k <= n.
         tags -- the k-gram tuple.
-        """ 
+        """
         return self._tcount.get(tags, 0)
 
     def unknown(self, w):
@@ -238,15 +234,14 @@ class MLHMM(HMM):
         tcount_prev_tags = self._tcount.get(prev_tags, 0)
         tcount_tags = self._tcount.get(tags, 0)
         if self.addone:
-            tcount_tags +=  1
-            tcount_prev_tags +=  self._tagset_size
-            trans_prob =  tcount_tags / float(tcount_prev_tags)
-            
+            tcount_tags += 1
+            tcount_prev_tags += self._tagset_size
+            trans_prob = tcount_tags / float(tcount_prev_tags)
+
         elif tcount_prev_tags > 0:
             trans_prob = tcount_tags / float(tcount_prev_tags)
-        
-        return trans_prob
 
+        return trans_prob
 
     def out_prob(self, word, tag):
         """Probability of a word given a tag.
@@ -257,7 +252,7 @@ class MLHMM(HMM):
         if word not in self.bow:
             out_prob = 1.0 / self._bow_size
         else:
-            trans_count  = self.words_tagged_count.get((word, tag), 0)
+            trans_count = self.words_tagged_count.get((word, tag), 0)
             tag_count = self.tag_counts[tag]
             if tag_count > 0:
                 out_prob = trans_count / float(tag_count)

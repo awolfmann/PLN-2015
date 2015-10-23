@@ -9,7 +9,6 @@ Options:
 """
 from docopt import docopt
 from collections import Counter, defaultdict
-from itertools import groupby
 
 from corpus.ancora import SimpleAncoraCorpusReader
 
@@ -20,25 +19,6 @@ if __name__ == '__main__':
     # load the data
     corpus = SimpleAncoraCorpusReader('ancora/ancora-2.0/')
     sents = list(corpus.tagged_sents())
-    # tokens = []
-    # tagg_list = []
-    # bow = []
-    # for sent in sents:
-    #     words, taggs = zip(*sent)
-    #     tokens += list(words)
-    #     tagg_list += list(taggs)
-    #     bow += sent
-    
-    # tagg_count = Counter(tagg_list)
-    # top_taggs = tagg_count.most_common(10)
-
-    # tokens_count = Counter(tokens)
-    # tagg_set = set(tagg_list)
-    
-    # for tagg in top_taggs:
-    #     tagg_words = [word[0] for word in bow if tagg[0] == word[1]]
-    #     top_words = Counter(tagg_words).most_common(5)
-    #     print("top words", tagg, top_words) 
 
     tagged_text = [item for sent in sents for item in sent]
     tokens = [item[0] for item in tagged_text]
@@ -50,10 +30,25 @@ if __name__ == '__main__':
     tag_count = Counter(tags)
     top_tags = tag_count.most_common(10)
 
+    # compute the statistics
+    print('sents: {}'.format(len(sents)))
+    print('tokens: {}'.format(len(tokens)))
+    print('words: {}'.format(len(bow)))
+    print('tags: {}'.format(len(tagset)))
+
+    print('Top 10 tags statistics')
+    print('Tag\tFrecuency\tPercentage')
+    for tag in top_tags:
+        print('{}\t{}\t{:2.2f}%'.
+              format(tag[0], tag[1], float(tag[1]) / len(tokens) * 100.0))
+
+    print('Top 5 words per tag')
     for tag in top_tags:
         tag_words = [item[0] for item in tagged_text if tag[0] == item[1]]
         top_words = Counter(tag_words).most_common(5)
-        print("top words", tag, top_words)
+        top_words = [word[0] for word in top_words]
+        print(tag[0] + '\t', end='')
+        print('\t'.join(top_words))
 
     # AMBIGUEDAD
     tagged_text_count = Counter(tagged_text)
@@ -69,18 +64,7 @@ if __name__ == '__main__':
         ambiguity = len(tags)
         word_ocurrencies = sum(tags.values())
         ambig_dict[ambiguity] += word_ocurrencies
-    print(ambig_dict)
-    print("sum", sum(ambig_dict.values()))
-
-    # compute the statistics
-    print('sents: {}'.format(len(sents)))
-    print('tokens: {}'.format(len(tokens)))
-    print('words: {}'.format(len(bow)))
-    print('tags: {}'.format(len(tagset)))
-    print('most common tags: {}'.format(top_tags))
-
-# print('{0}\t{1}\t{2}\t{3}'.format())
-# sents: 17379
-# tokens: 517268
-# words: 46483
-# tags: 48
+    print('AMBIGUEDAD')
+    for level, freq in ambig_dict.items():
+        print('{}\t{}\t{:2.2f}%'
+              .format(level, freq, float(freq)/len(tokens) * 100.0))

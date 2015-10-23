@@ -67,7 +67,6 @@ Por ejemplo 'memm4SVCextra' significa el reporte para un modelo de maxima entrop
 * Accuracy known: 94.28%
 * Confusion Matrix  
 |    |nc  |sp |vm  |da  |aq  |fc  |fp  |rg  |np  |cc  |  
-|--- |--- |---|--- |--- |--- |--- |--- |--- |--- |--- |  
 |nc  | 0  | 11|  84|  63| 450|  0 |   0| 23 |   3|   1|  
 |sp  |45  |  0|   0|   0|   0|   0|   0|  10|   0|   3|  
 |vm  |2131|  1|   0|   0| 200| 0  |   0|   0|   0|   0|  
@@ -79,9 +78,9 @@ Por ejemplo 'memm4SVCextra' significa el reporte para un modelo de maxima entrop
 |np  |1936|  3|   0|   0|   1|   0|   0|   0|   0|   1|  
 |cc  |12  |1  |0   |0   |   0|   0|   0|  52|   0|   0|  
 
-* * real    0m7.765s
-* * user    0m7.532s
-* * sys 0m0.180s
+* real    0m7.765s
+* user    0m7.532s
+* sys 0m0.180s
 
 #### hmm1 ####
 100.0% (89.01%)
@@ -89,8 +88,7 @@ Por ejemplo 'memm4SVCextra' significa el reporte para un modelo de maxima entrop
 * Accuracy Unknown: 31.80%
 * Accuracy known: 95.32%
 * Confusion Matrix  
-|    |nc  |sp |vm |da |aq |fc |fp |rg |np |cc  |  
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|  
+|    |nc  |sp |vm |da |aq |fc |fp |rg |np |cc  |    
 |nc  |0   |11 | 88| 1 |471| 0 | 0 | 32|  4|   1|  
 |sp  | 45 |0  |  0|  0|  0|  0|  0|  5|  0|   0|  
 |vm  |2105|  1|  0|  0|167| 0 |  0|  0|  0|   0|  

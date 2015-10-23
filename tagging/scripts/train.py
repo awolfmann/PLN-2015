@@ -1,7 +1,7 @@
 """Train a sequence tagger.
 
 Usage:
-  train.py [-m <model>] -o <file> [-n <n>] 
+  train.py [-m <model>] -o <file> [-n <n>]
   train.py -h | --help
 
 Options:
@@ -18,14 +18,14 @@ import pickle
 
 from corpus.ancora import SimpleAncoraCorpusReader
 from tagging.baseline import BaselineTagger
-from tagging.hmm import HMM, MLHMM
+from tagging.hmm import MLHMM
 from tagging.memm import MEMM
 
 
 models = {
     'base': BaselineTagger,
-    'hmm' : MLHMM,
-    'memm' : MEMM, 
+    'hmm': MLHMM,
+    'memm': MEMM,
 }
 
 
