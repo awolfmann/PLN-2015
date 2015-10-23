@@ -11,19 +11,20 @@ Cantidad de palabras (vocabulario): 46483
 Cantidad de etiquetas (vocabulario de tags): 48  
 Etiquetas más frecuentes: Una tabla con las 10 etiquetas más frecuentes y la siguiente información para cada una:  
 Cantidad de veces que aparece (frecuencia), y porcentaje del total.  
-Top 10 tags statistics
-|Tag| Frecuency|Percentage|
-|---|---|---|
-|nc  |92002|   17.79%|
-|sp  |79904|   15.45%|
-|da  |54552|   10.55%|
-|vm  |50609|   9.78%|
-|aq  |33904|   6.55%|
-|fc  |30148|   5.83%|
-|np  |29113|   5.63%|
-|fp  |21157|   4.09%|
-|rg  |15333|   2.96%|
-|cc  |15023|   2.90%|
+Top 10 tags statistics  
+
+|Tag    |Freq |Percent  |
+|-------|-----|---------|
+|nc     |92002|   17.79%|
+|sp     |79904|   15.45%|
+|da     |54552|   10.55%|
+|vm     |50609|    9.78%|
+|aq     |33904|    6.55%|
+|fc     |30148|    5.83%|
+|np     |29113|    5.63%|
+|fp     |21157|    4.09%|
+|rg     |15333|    2.96%|
+|cc     |15023|    2.90%|
 
 Cinco palabras más frecuentes con esa etiqueta:
 * nc(nombre común) :años, presidente, millones, equipo, partido
@@ -37,15 +38,16 @@ Cinco palabras más frecuentes con esa etiqueta:
 * rg(adverbio general): más, hoy, también, ayer, ya
 * cc(conjunción coordinada): y, pero, o, Pero, e
 
-Niveles de ambigüedad de las palabras: 
+Niveles de ambigüedad de las palabras:  
+
 |Nivel   |Frecuencia  |Porcentaje|
-|---|---|---|
-|1       |289397|      55.95%|
-|2       |122816|      23.74%|
-|3       |50530|       9.77%|
-|4       |32635|       6.31%|
-|5       |15967|       3.09%|
-|6       |5923|        1.15%|
+|--------|------------|----------|
+|1       |      289397|    55.95%|
+|2       |      122816|    23.74%|
+|3       |       50530|     9.77%|
+|4       |       32635|     6.31%|
+|5       |       15967|     3.09%|
+|6       |        5923|     1.15%|
 
 ### Ejercicio 6: Features para Etiquetado de Secuencias ###
 Features extra implementados:
@@ -66,17 +68,19 @@ Por ejemplo 'memm4SVCextra' significa el reporte para un modelo de maxima entrop
 * Accuracy Unknown: 31.80%
 * Accuracy known: 94.28%
 * Confusion Matrix  
-|    |nc  |sp |vm  |da  |aq  |fc  |fp  |rg  |np  |cc  |  
-|nc  | 0  | 11|  84|  63| 450|  0 |   0| 23 |   3|   1|  
-|sp  |45  |  0|   0|   0|   0|   0|   0|  10|   0|   3|  
-|vm  |2131|  1|   0|   0| 200| 0  |   0|   0|   0|   0|  
-|da  |143 |  0|   0|0   |   0|   0|   0|   0|   0|   0|  
-|aq  |2194|  5| 183| 0  |   0|   0|   0|  68|   0|   0|  
-|fc  |0   |0  |0   | 0  |   0|   0|   0|   0|   0|   0|  
-|fp  |0   |0  |0   |0   |   0|   0|   0|   0|   0|   0|  
-|rg  |304 |18 |0   |0   |  12|  0 |   0|   0|   0|  21|  
-|np  |1936|  3|   0|   0|   1|   0|   0|   0|   0|   1|  
-|cc  |12  |1  |0   |0   |   0|   0|   0|  52|   0|   0|  
+
+|        |nc  |sp |vm  |da  |aq  |fc  |fp  |rg  |np  |cc  |
+|--------|----|---|----|----|----|----|----|----|----|----|
+|**nc**  | 0  | 11|  84|  63| 450|  0 |   0| 23 |   3|   1|  
+|**sp**  |45  |  0|   0|   0|   0|   0|   0|  10|   0|   3|  
+|**vm**  |2131|  1|   0|   0| 200| 0  |   0|   0|   0|   0|  
+|**da**  |143 |  0|   0|0   |   0|   0|   0|   0|   0|   0|  
+|**aq**  |2194|  5| 183| 0  |   0|   0|   0|  68|   0|   0|  
+|**fc**  |0   |0  |0   | 0  |   0|   0|   0|   0|   0|   0|  
+|**fp**  |0   |0  |0   |0   |   0|   0|   0|   0|   0|   0|  
+|**rg**  |304 |18 |0   |0   |  12|  0 |   0|   0|   0|  21|  
+|**np**  |1936|  3|   0|   0|   1|   0|   0|   0|   0|   1|  
+|**cc**  |12  |1  |0   |0   |   0|   0|   0|  52|   0|   0|  
 
 * real    0m7.765s
 * user    0m7.532s
@@ -88,17 +92,19 @@ Por ejemplo 'memm4SVCextra' significa el reporte para un modelo de maxima entrop
 * Accuracy Unknown: 31.80%
 * Accuracy known: 95.32%
 * Confusion Matrix  
-|    |nc  |sp |vm |da |aq |fc |fp |rg |np |cc  |    
-|nc  |0   |11 | 88| 1 |471| 0 | 0 | 32|  4|   1|  
-|sp  | 45 |0  |  0|  0|  0|  0|  0|  5|  0|   0|  
-|vm  |2105|  1|  0|  0|167| 0 |  0|  0|  0|   0|  
-|da  |143 |0  |  0|  0|  0|  0|  0|  0|  0|   0|  
-|aq  |2041|  5|183| 0 |  0|  0| 0 |3  | 0 |   0|  
-|fc  |0   |0  |0  | 0 | 0 | 0 |  0| 0 | 0 |   0|  
-|fp  |0   |0  |0  | 0 | 0 | 0 |  0| 0 |  0|   0|  
-|rg  |297 |17 |0  | 0 |29 | 0 |  0| 0 |  0|  21|  
-|np  |1935| 3 |0  |0  | 1 |  0| 0 | 0 |  0|   1|  
-|cc  |12  |1  |0  |0  | 0 |  0| 0 |46 | 1 |   0|  
+
+|        |nc  |sp |vm |da |aq |fc |fp |rg |np |cc  |
+|--------|----|---|---|---|---|---|---|---|---|----|    
+|**nc**  |0   |11 | 88| 1 |471| 0 | 0 | 32|  4|   1|  
+|**sp**  | 45 |0  |  0|  0|  0|  0|  0|  5|  0|   0|  
+|**vm**  |2105|  1|  0|  0|167| 0 |  0|  0|  0|   0|  
+|**da**  |143 |0  |  0|  0|  0|  0|  0|  0|  0|   0|  
+|**aq**  |2041|  5|183| 0 |  0|  0| 0 |3  | 0 |   0|  
+|**fc**  |0   |0  |0  | 0 | 0 | 0 |  0| 0 | 0 |   0|  
+|**fp**  |0   |0  |0  | 0 | 0 | 0 |  0| 0 |  0|   0|  
+|**rg**  |297 |17 |0  | 0 |29 | 0 |  0| 0 |  0|  21|  
+|**np**  |1935| 3 |0  |0  | 1 |  0| 0 | 0 |  0|   1|  
+|**cc**  |12  |1  |0  |0  | 0 |  0| 0 |46 | 1 |   0|  
 
 * real    0m13.038s
 * user    0m12.629s
