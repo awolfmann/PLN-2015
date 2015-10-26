@@ -42,9 +42,17 @@ if __name__ == '__main__':
     files = '3LB-CAST/.*\.tbf\.xml'
     corpus = SimpleAncoraCorpusReader('ancora/ancora-2.0/', files)
     parsed_sents = list(corpus.parsed_sents())
+    
+    if opts['-m']:
+        m = int(opts['-m'])
+        parsed_sents = [ s for s in parsed_sents if len(s.leaves()) < m]
+    
+    if opts['-n']:
+        n_len = int(opts['-n'])
+        parsed_sents = parsed_sents[:n_len]
 
     print('Parsing...')
-    hits, total_gold, total_model, hits_unl = 0, 0, 0,0
+    hits, total_gold, total_model, hits_unl = 0, 0, 0, 0
     n = len(parsed_sents)
     format_str = '{:3.1f}% ({}/{}) (P={:2.2f}%, R={:2.2f}%, F1={:2.2f}%)'
     progress(format_str.format(0.0, 0, n, 0.0, 0.0, 0.0))
