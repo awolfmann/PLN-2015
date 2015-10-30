@@ -17,16 +17,20 @@ class CKYParser(object):
         """
         n = len(sent)
         start = self._grammar.start().symbol()
+        productions = self._grammar.productions()
         self._pi = {}
         self._bp = {}
-        lex_prods = [prod for prod in self._grammar.productions() 
-                     if prod.is_lexical()]
-        non_lex_prods = [prod for prod in self._grammar.productions() 
-                         if prod.is_nonlexical()]
+        uni_prods = [prod for prod in productions if len(prod.rhs()) == 1]
+        bin_prods = [prod for prod in productions if len(prod.rhs()) == 2]
+        
+        # word_prods_dict = {}
+        # for word in sent:
+        #     word_prods = [prod for prod in uni_prods if prod.rhs()[0] == word]
+        #     word_prods_dict[word] = word_prods
         
         # init leaves
         for i, word in enumerate(sent, start=1):
-            word_prods = [prod for prod in lex_prods if prod.rhs()[0] == word]
+            word_prods = [prod for prod in uni_prods if prod.rhs()[0] == word]
             if len(word_prods) > 0:
                 for prod in word_prods:
                     non_term = prod.lhs().symbol()
@@ -41,7 +45,7 @@ class CKYParser(object):
                 self._pi[(begin, end)] = {}
                 self._bp[(begin, end)] = {}
                 for split in range(begin, end):  # Partition of span
-                    for prod in non_lex_prods:
+                    for prod in bin_prods:
                         lnt = prod.lhs().symbol()
                         rnt1 = prod.rhs()[0].symbol()
                         rnt2 = prod.rhs()[1].symbol()
@@ -56,6 +60,7 @@ class CKYParser(object):
                                 bp_rnt2 = self._bp[(split + 1, end)][rnt2]
                                 t = Tree(lnt, [bp_rnt1, bp_rnt2])
                                 self._bp[(begin, end)][lnt] = t 
-
-        pprint(self._pi)
-        return (self._pi[(1, n)][start], self._bp[(1, n)][start]) 
+        
+        pi_best = self._pi[(1, n)].get(start, float('-inf'))
+        bp_best = self._bp[(1, n)].get(start, None)            
+        return (pi_best, bp_best) 
