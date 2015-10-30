@@ -2,36 +2,55 @@ from collections import defaultdict
 from nltk.tree import Tree
 from nltk.grammar import PCFG, induce_pcfg, Nonterminal
 
+import parsing.util as util
+from parsing.cky_parser import CKYParser
+
 class UPCFG(object):
     """Unlexicalized PCFG.
     """
- 
-    def __init__(self, parsed_sents):
+    def __init__(self, parsed_sents, start='sentence'):
         """
         parsed_sents -- list of training trees.
         """
         # assert is binarised
         # induce pcfg induce_pcfg(start, productions)
+        # collapse_unary, un_chomsky
         self.parsed_sents = parsed_sents
-        self.productions = []
+        productions = []
         starters = defaultdict(int)
-        for tree in parsed_sents:
-            starters[tree.label()] += 1
-            self.productions += list(tree.productions())
+
+        for t in parsed_sents:
+            t_copy = t.copy(deep=True)
+            ut = util.unlexicalize(t_copy)
+            starters[ut.label()] += 1
+            productions += list(ut.productions())
 
         start = max(starters, key=starters.get)
         start = Nonterminal(start)
 
-        self.pcfg = induce_pcfg(start, self.productions)
+        self.pcfg = induce_pcfg(start, productions)
         assert self.pcfg.is_binarised()
 
     def productions(self):
         """Returns the list of UPCFG probabilistic productions.
         """
-
+        return self.pcfg.productions()
  
     def parse(self, tagged_sent):
         """Parse a tagged sentence.
  
         tagged_sent -- the tagged sentence (a list of pairs (word, tag)).
         """
+        words, tags = zip(*tagged_sent)
+        tags = list(tags)
+        words = list(words)
+        parser = CKYParser(self.pcfg)
+        pi, tree = parser.parse(tags)
+        if tree is not None:
+            tree = util.lexicalize(tree, words)
+        else:
+            subtrees = []
+            for word, tag in tagged_sent:
+                subtrees.append(Tree(tag, [word]))
+            tree = Tree('S', subtrees)
+        return tree
