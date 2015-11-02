@@ -12,16 +12,13 @@ class UPCFG(object):
         """
         parsed_sents -- list of training trees.
         """
-        # assert is binarised
-        # induce pcfg induce_pcfg(start, productions)
-        # collapse_unary, un_chomsky
-        self.parsed_sents = parsed_sents
         productions = []
         starters = defaultdict(int)
-
         for t in parsed_sents:
             t_copy = t.copy(deep=True)
             ut = util.unlexicalize(t_copy)
+            ut.chomsky_normal_form()
+            ut.collapse_unary(collapsePOS = True)
             starters[ut.label()] += 1
             productions += list(ut.productions())
 
@@ -45,9 +42,11 @@ class UPCFG(object):
         tags = list(tags)
         words = list(words)
         parser = CKYParser(self.pcfg)
+        self._parser = parser
         pi, tree = parser.parse(tags)
         if tree is not None:
             tree = util.lexicalize(tree, words)
+            tree.un_chomsky_normal_form()
         else:
             subtrees = []
             for word, tag in tagged_sent:
