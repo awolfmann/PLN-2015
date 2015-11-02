@@ -51,21 +51,22 @@ class CKYParser(object):
                 self._pi[(begin, end)] = {}
                 self._bp[(begin, end)] = {}
                 for split in range(begin, end):  # Partition of span
-                    for prod in bin_prods:
-                        lnt = prod.lhs().symbol()
-                        rnt1 = prod.rhs()[0].symbol()
-                        rnt2 = prod.rhs()[1].symbol()
-                        rnt1_lp = self._pi[(begin, split)].get(rnt1, float('-inf'))
-                        rnt2_lp = self._pi[(split + 1, end)].get(rnt2, float('-inf'))
-                        if  rnt1_lp > float('-inf') and rnt2_lp > float('-inf'):
-                            lp = rnt1_lp + rnt2_lp + prod.logprob()
+                    for rhs, lhs_list in prods_dict.items():
+                        if len(rhs) > 1:
+                            rnt1 = rhs[0].symbol()
+                            rnt2 = rhs[1].symbol()
+                            rnt1_lp = self._pi[(begin, split)].get(rnt1, float('-inf'))
+                            rnt2_lp = self._pi[(split + 1, end)].get(rnt2, float('-inf'))
+                            if rnt1_lp > float('-inf') and rnt2_lp > float('-inf'):    
+                                for (lhs, lp_lhs) in lhs_list:
+                                    lp = rnt1_lp + rnt2_lp + lp_lhs
 
-                            if lp > self._pi[(begin, end)].get(lnt, float('-inf')):
-                                self._pi[(begin, end)][lnt] = lp
-                                bp_rnt1 = self._bp[(begin, split)][rnt1]
-                                bp_rnt2 = self._bp[(split + 1, end)][rnt2]
-                                t = Tree(lnt, [bp_rnt1, bp_rnt2])
-                                self._bp[(begin, end)][lnt] = t 
+                                    if lp > self._pi[(begin, end)].get(lhs, float('-inf')):
+                                        self._pi[(begin, end)][lhs] = lp
+                                        bp_rnt1 = self._bp[(begin, split)][rnt1]
+                                        bp_rnt2 = self._bp[(split + 1, end)][rnt2]
+                                        t = Tree(lhs, [bp_rnt1, bp_rnt2])
+                                        self._bp[(begin, end)][lhs] = t 
 
         pi_best = self._pi[(1, n)].get(start, float('-inf'))
         bp_best = self._bp[(1, n)].get(start, None)            
