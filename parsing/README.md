@@ -40,3 +40,23 @@ Unlabeled
   Precision: 15.43% 
   Recall: 25.67% 
   F1: 19.28% 
+
+Upcfg
+time python parsing/scripts/eval.py -i upcfg -m 20
+Loading model...
+Loading corpus...
+Parsing...
+100.0% (1336/1336) (P=72.15%, R=72.31%, F1=72.23%)
+Parsed 1336 sentences
+Labeled
+  Precision: 72.15% 
+  Recall: 72.31% 
+  F1: 72.23% 
+Unlabeled
+  Precision: 75.53% 
+  Recall: 75.70% 
+  F1: 75.61% 
+
+real  9m30.741s
+user  9m27.771s
+sys 0m1.404s

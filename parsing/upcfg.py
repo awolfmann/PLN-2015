@@ -42,7 +42,7 @@ class UPCFG(object):
         tags = list(tags)
         words = list(words)
         parser = CKYParser(self.pcfg)
-        self._parser = parser
+        # self._parser = parser
         pi, tree = parser.parse(tags)
         if tree is not None:
             tree = util.lexicalize(tree, words)
