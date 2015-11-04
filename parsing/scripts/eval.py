@@ -95,6 +95,7 @@ if __name__ == '__main__':
         # compute labeled partial results
         prec = float(hits) / total_model * 100
         rec = float(hits) / total_gold * 100
+        f1 = 0.0
         if (prec + rec) > 0.0:
             f1 = 2 * prec * rec / (prec + rec)
 
@@ -106,6 +107,7 @@ if __name__ == '__main__':
         # compute unlabeled results
         prec_unl = float(hits_unl) / total_model * 100
         rec_unl = float(hits_unl) / total_gold * 100
+        f1_unl = 0.0
         if (prec_unl + rec_unl) > 0.0:
             f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
         

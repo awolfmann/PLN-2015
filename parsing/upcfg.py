@@ -23,15 +23,18 @@ class UPCFG(object):
             productions += list(ut.productions())
 
         start = max(starters, key=starters.get)
-        start = Nonterminal(start)
+        self._start = Nonterminal(start)
 
-        self.pcfg = induce_pcfg(start, productions)
-        assert self.pcfg.is_binarised()
+        pcfg = induce_pcfg(self._start, productions)
+        assert pcfg.is_binarised()
+        self._parser = CKYParser(pcfg)
+        self._productions = pcfg.productions()
+        
 
     def productions(self):
         """Returns the list of UPCFG probabilistic productions.
         """
-        return self.pcfg.productions()
+        return self._productions
  
     def parse(self, tagged_sent):
         """Parse a tagged sentence.
@@ -41,9 +44,7 @@ class UPCFG(object):
         words, tags = zip(*tagged_sent)
         tags = list(tags)
         words = list(words)
-        parser = CKYParser(self.pcfg)
-        # self._parser = parser
-        pi, tree = parser.parse(tags)
+        pi, tree = self._parser.parse(tags)
         if tree is not None:
             tree = util.lexicalize(tree, words)
             tree.un_chomsky_normal_form()
@@ -51,5 +52,5 @@ class UPCFG(object):
             subtrees = []
             for word, tag in tagged_sent:
                 subtrees.append(Tree(tag, [word]))
-            tree = Tree('S', subtrees)
+            tree = Tree('S', subtrees) ## VER LA S
         return tree
