@@ -99,11 +99,116 @@ class TestCKYParser(TestCase):
         lp2 = log2(1.0 * 0.6 * 1.0 * 0.9 * 1.0 * 1.0 * 0.4 * 0.1 * 1.0)
         self.assertAlmostEqual(lp, lp2)
 
+    def test_ambiguity(self):
+        grammar = PCFG.fromstring(
+            """
+                S -> NP             [1.0]
+                NP -> NP NP         [0.4]
+                NP -> 'Natural'     [0.2]
+                NP -> 'language'    [0.15]
+                NP -> 'processing'  [0.25]
+            """)
+
+        parser = CKYParser(grammar)
+
+        lp, t = parser.parse('Natural language processing'.split())
+
+        # check chart
+        pi = {
+            (1, 1): {'NP': log2(0.2)},
+            (2, 2): {'NP': log2(0.15)},
+            (3, 3): {'NP': log2(0.25)},
+            
+            (1, 2): {'NP': log2(0.4 * 0.2 * 0.15)},
+            (2, 3): {'NP': log2(0.4 * 0.15 * 0.25)},
+
+            (1, 3): {'NP':
+                     log2(1.0) +  # rule S -> NP
+                     log2(0.2) +  # left part
+                     log2(0.4 * 0.15 * 0.25)},  # right part
+        }
+        # from pprint import pprint
+        # pprint(parser._pi, pi)
+        self.assertEqualPi(parser._pi, pi)
+
+        # check partial results
+        bp = {
+            (1, 1): {'Det': Tree.fromstring("(NP Natural)")},
+            (2, 2): {'Noun': Tree.fromstring("(NP processing)")},
+            (3, 3): {'Verb': Tree.fromstring("(NP language)")},
+
+            (1, 2): {'NP': Tree.fromstring("(NP (NP Natural) (NP processing))")},
+            (2, 3): {'NP': Tree.fromstring("(NP (NP processing) (NP language))")},
+
+            (1, 3): {'S': Tree.fromstring(
+                """(S
+                    (NP Natural)
+                    (NP (NP processing) (NP language))
+                   )
+                """)},
+        }
+
+        # print(parser._bp)
+        self.assertEqual(parser._bp, bp)
+
+        # check tree
+        t2 = Tree.fromstring(
+            """
+                (S
+                    (NP Natural)
+                    (NP (NP processing) (NP language))
+                )
+            """)
+        self.assertEqual(t, t2)
+
+        # check log probability
+        # lp2 = log2(1.0 * 0.6 * 1.0 * 0.9 * 1.0 * 1.0 * 0.4 * 0.1 * 1.0)
+        # self.assertAlmostEqual(lp, lp2)
+
+    def test_ambiguity1(self):
+        grammar = PCFG.fromstring(
+            """
+                S -> NP VP      [1.0]
+                PP -> P NP      [1.0]
+                NP -> Det N     [0.4]
+                NP -> Det N PP  [0.25]
+                NP -> 'I'       [0.35]
+                VP -> V NP      [0.6]
+                VP -> VP PP     [0.4]
+                Det -> 'an'     [0.65]
+                Det -> 'my'     [0.35]
+                N -> 'elephant' [0.7]
+                N -> 'pajamas'  [0.3]
+                V -> 'shot'     [1.0]
+                P -> 'in'       [1.0]
+            """)
+
+        parser = CKYParser(grammar)
+
+        lp, t = parser.parse('I shot an elephant in my pajamas'.split())
+        # This grammar permits the sentence to be analyzed in two ways, 
+        # depending on whether the prepositional phrase in my pajamas 
+        # describes the elephant or the shooting event
+
+# (S
+#   (NP I)
+#   (VP
+#     (VP (V shot) (NP (Det an) (N elephant)))
+#     (PP (P in) (NP (Det my) (N pajamas)))))
+# (S
+#   (NP I)
+#   (VP
+#     (V shot)
+#     (NP (Det an) (N elephant) (PP (P in) (NP (Det my) (N pajamas))))))
+    
+
+    
     def assertEqualPi(self, pi1, pi2):
         self.assertEqual(set(pi1.keys()), set(pi2.keys()))
 
         for k in pi1.keys():
             d1, d2 = pi1[k], pi2[k]
+            print(d1.keys(), d2.keys())
             self.assertEqual(d1.keys(), d2.keys(), k)
             for k2 in d1.keys():
                 prob1 = d1[k2]
