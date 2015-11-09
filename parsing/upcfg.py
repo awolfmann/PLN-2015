@@ -8,7 +8,7 @@ from parsing.cky_parser import CKYParser
 class UPCFG(object):
     """Unlexicalized PCFG.
     """
-    def __init__(self, parsed_sents, start='sentence'):
+    def __init__(self, parsed_sents, start='sentence', horzMarkov=None):
         """
         parsed_sents -- list of training trees.
         """
@@ -17,7 +17,7 @@ class UPCFG(object):
         for t in parsed_sents:
             t_copy = t.copy(deep=True)
             ut = util.unlexicalize(t_copy)
-            ut.chomsky_normal_form()
+            ut.chomsky_normal_form(horzMarkov=horzMarkov)
             ut.collapse_unary(collapsePOS = True)
             starters[ut.label()] += 1
             productions += list(ut.productions())
@@ -29,7 +29,6 @@ class UPCFG(object):
         assert pcfg.is_binarised()
         self._parser = CKYParser(pcfg)
         self._productions = pcfg.productions()
-        
 
     def productions(self):
         """Returns the list of UPCFG probabilistic productions.
@@ -38,7 +37,6 @@ class UPCFG(object):
  
     def parse(self, tagged_sent):
         """Parse a tagged sentence.
- 
         tagged_sent -- the tagged sentence (a list of pairs (word, tag)).
         """
         words, tags = zip(*tagged_sent)
@@ -49,8 +47,6 @@ class UPCFG(object):
             tree = util.lexicalize(tree, words)
             tree.un_chomsky_normal_form()
         else:
-            subtrees = []
-            for word, tag in tagged_sent:
-                subtrees.append(Tree(tag, [word]))
-            tree = Tree('S', subtrees) ## VER LA S
+            subtrees = [Tree(tag, [word]) for word, tag in tagged_sent]
+            tree = Tree(self._start.symbol(), subtrees)
         return tree

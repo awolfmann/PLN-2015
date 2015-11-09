@@ -68,7 +68,7 @@ if __name__ == '__main__':
     
     if opts['-m']:
         m = int(opts['-m'])
-        parsed_sents = [ s for s in parsed_sents if len(s.leaves()) < m]
+        parsed_sents = [s for s in parsed_sents if len(s.leaves()) <= m]
     
     if opts['-n']:
         n_len = int(opts['-n'])
