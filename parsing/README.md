@@ -3,44 +3,80 @@
 ## Practico 3: Análisis Sintáctico  ##
 ## Wolfmann, Ariel, FaMAF, UNC  ##
 
-Ejercicio 1
+### Ejercicio 1: Evaluación de Parsers ###
 Baseline Flat
-100.0% (1336/1336) (P=99.93%, R=15.49%, F1=26.83%)
-Parsed 1336 sentences
+100.0% (1444/1444) (P=99.93%, R=14.57%, F1=25.43%)
+Parsed 1444 sentences
 Labeled
   Precision: 99.93% 
-  Recall: 15.49% 
-  F1: 26.83% 
+  Recall: 14.57% 
+  F1: 25.43% 
 Unlabeled
   Precision: 100.00% 
-  Recall: 15.51% 
-  F1: 26.85%
+  Recall: 14.58% 
+  F1: 25.45% 
+
+real  0m12.330s
+user  0m11.137s
+sys 0m0.260s
+
 
 Baseline Rbranch
 
-100.0% (1336/1336) (P=9.31%, R=15.49%, F1=11.63%)
-Parsed 1336 sentences
+100.0% (1444/1444) (P=8.81%, R=14.57%, F1=10.98%)
+Parsed 1444 sentences
 Labeled
-  Precision: 9.31% 
-  Recall: 15.49% 
-  F1: 11.63% 
+  Precision: 8.81% 
+  Recall: 14.57% 
+  F1: 10.98% 
 Unlabeled
-  Precision: 9.39% 
-  Recall: 15.62% 
-  F1: 11.73% 
+  Precision: 8.87% 
+  Recall: 14.68% 
+  F1: 11.06% 
+
+real  0m12.037s
+user  0m11.813s
+sys 0m0.192s
+
 
 Baseline Lbranch
-100.0% (1336/1336) (P=9.31%, R=15.49%, F1=11.63%)
-Parsed 1336 sentences
+100.0% (1444/1444) (P=8.81%, R=14.57%, F1=10.98%)
+Parsed 1444 sentences
 Labeled
-  Precision: 9.31% 
-  Recall: 15.49% 
-  F1: 11.63% 
+  Precision: 8.81% 
+  Recall: 14.57% 
+  F1: 10.98% 
 Unlabeled
-  Precision: 15.43% 
-  Recall: 25.67% 
-  F1: 19.28% 
+  Precision: 14.71% 
+  Recall: 24.33% 
+  F1: 18.33% 
 
+real  0m11.753s
+user  0m11.509s
+sys 0m0.196s
+
+### Ejercicio 2: Algoritmo CKY ###
+Gramatica ambigua
+S -> NP NP           [1.0]
+NP -> NP NN          [0.3]
+NP -> NN NP          [0.4]
+NP -> 'Natural'      [0.15]
+NP -> 'processing'   [0.15]
+NN -> 'language'     [1.0]
+
+Para la oracion Natural language processing, existen 2 posibles arboles de parseo:
+(S
+    (NP (NP Natural) (NN language))
+    (NP processing)
+)
+
+(S
+    (NP Natural)
+    (NP (NN language) (NP processing))
+)
+Como el algoritmo elige la opcion con mayor probabilidad, selecciona el segundo arbol como arbol de parseo para esta oracion
+
+### Ejercicio 3: PCFGs No Lexicalizadas ###
 Upcfg
 time python parsing/scripts/eval.py -i upcfg -m 20
 100.0% (1444/1444) (P=73.26%, R=72.96%, F1=73.11%)
@@ -58,6 +94,9 @@ real  2m58.922s
 user  2m58.167s
 sys 0m0.300s
 
+### Ejercicio 4: Markovización Horizontal ###
+Para este ejercicio, la unica modificacion al anterior fue agregarle un parametro adicional, que determine el orden de la Markovización Horizontal, pasandole este parametro al metodo chomsky_normal_form provisto por NLTK.
+ 
 upcfg0
 100.0% (1444/1444) (P=70.25%, R=70.02%, F1=70.14%)
 Parsed 1444 sentences
@@ -110,9 +149,6 @@ sys 0m0.264s
 
 
 upcfg3
-Loading model...
-Loading corpus...
-Parsing...
 100.0% (1444/1444) (P=74.08%, R=73.45%, F1=73.76%)
 Parsed 1444 sentences
 Labeled
