@@ -3,19 +3,20 @@
 Evaulate a parser.
 
 Usage:
-  eval.py -i <file> [-m <m>] [-n <n>]
+  eval.py -i <file> [-m <m>] [-n <n>] [-p]
   eval.py -h | --help
 
 Options:
   -i <file>     Parsing model file.
   -m <m>        Parse only sentences of length <= <m>.
   -n <n>        Parse only <n> sentences (useful for profiling).
+  -p            Use multiprocessing
   -h --help     Show this screen.
 """
 from docopt import docopt
 import pickle
 import sys
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 from itertools import repeat
 from functools import partial
 
@@ -31,25 +32,25 @@ def progress(msg, width=None):
     print('\b' * width + msg, end='')
     sys.stdout.flush()
 
-# def parsing(gold_parsed_sent, model):
-#     tagged_sent = gold_parsed_sent.pos()
+def parsing(gold_parsed_sent, model):
+    tagged_sent = gold_parsed_sent.pos()
 
-#     # parse
-#     model_parsed_sent = model.parse(tagged_sent)
+    # parse
+    model_parsed_sent = model.parse(tagged_sent)
 
-#     # compute labeled scores
-#     gold_spans = spans(gold_parsed_sent, unary=False)
-#     model_spans = spans(model_parsed_sent, unary=False)
-#     parcial_hits = len(gold_spans & model_spans)
-#     parcial_gold = len(gold_spans)
-#     parcial_model = len(model_spans)
+    # compute labeled scores
+    gold_spans = spans(gold_parsed_sent, unary=False)
+    model_spans = spans(model_parsed_sent, unary=False)
+    parcial_hits = len(gold_spans & model_spans)
+    parcial_gold = len(gold_spans)
+    parcial_model = len(model_spans)
 
-#     # compute unlabeled scores
-#     gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
-#     model_spans_unl = set([(i, j) for n, i, j in model_spans])
-#     parcial_hits_unl = len(gold_spans_unl & model_spans_unl)
+    # compute unlabeled scores
+    gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
+    model_spans_unl = set([(i, j) for n, i, j in model_spans])
+    parcial_hits_unl = len(gold_spans_unl & model_spans_unl)
 
-#     return (parcial_gold, parcial_model, parcial_hits, parcial_hits_unl)
+    return (parcial_gold, parcial_model, parcial_hits, parcial_hits_unl)
 
 
 if __name__ == '__main__':
@@ -77,63 +78,65 @@ if __name__ == '__main__':
     print('Parsing...')
     hits, total_gold, total_model, hits_unl = 0, 0, 0, 0
     n = len(parsed_sents)
-    format_str = '{:3.1f}% ({}/{}) (P={:2.2f}%, R={:2.2f}%, F1={:2.2f}%)'
-    progress(format_str.format(0.0, 0, n, 0.0, 0.0, 0.0))
-    for i, gold_parsed_sent in enumerate(parsed_sents, start=1):
-        tagged_sent = gold_parsed_sent.pos()
+    if opts['-p']:
+        pool = Pool(cpu_count())
+        # args = zip(repeat(model), parsed_sents)
+        results = pool.map(partial(parsing, model=model), parsed_sents)
+        
+        total_gold = sum([item[0] for item in results])
+        total_model = sum([item[1] for item in results])
+        hits = sum([item[2] for item in results])
+        hits_unl = sum([item[3] for item in results])
 
-        # parse
-        model_parsed_sent = model.parse(tagged_sent)
-
-        # compute labeled scores
-        gold_spans = spans(gold_parsed_sent, unary=False)
-        model_spans = spans(model_parsed_sent, unary=False)
-        hits += len(gold_spans & model_spans)
-        total_gold += len(gold_spans)
-        total_model += len(model_spans)
-
-        # compute labeled partial results
+        # compute labeled results
         prec = float(hits) / total_model * 100
         rec = float(hits) / total_gold * 100
-        f1 = 0.0
         if (prec + rec) > 0.0:
             f1 = 2 * prec * rec / (prec + rec)
-
-        # compute unlabeled scores
-        gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
-        model_spans_unl = set([(i, j) for n, i, j in model_spans])
-        hits_unl += len(gold_spans_unl & model_spans_unl)
-
+        
         # compute unlabeled results
         prec_unl = float(hits_unl) / total_model * 100
         rec_unl = float(hits_unl) / total_gold * 100
-        f1_unl = 0.0
         if (prec_unl + rec_unl) > 0.0:
             f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
-        
-        progress(format_str.format(float(i) * 100 / n, i, n, prec, rec, f1))
 
-    # n = len(parsed_sents)
-    # pool = Pool(3)
-    # args = zip(repeat(model), parsed_sents)
-    # results = pool.map(partial(parsing, model=model), parsed_sents)
-    
-    # total_gold = sum([item[0] for item in results])
-    # total_model = sum([item[1] for item in results])
-    # hits = sum([item[2] for item in results])
-    # hits_unl = sum([item[3] for item in results])
+    else:
+        format_str = '{:3.1f}% ({}/{}) (P={:2.2f}%, R={:2.2f}%, F1={:2.2f}%)'
+        progress(format_str.format(0.0, 0, n, 0.0, 0.0, 0.0))
+        for i, gold_parsed_sent in enumerate(parsed_sents, start=1):
+            tagged_sent = gold_parsed_sent.pos()
 
-    # # compute labeled results
-    # prec = float(hits) / total_model * 100
-    # rec = float(hits) / total_gold * 100
-    # if (prec + rec) > 0.0:
-    #     f1 = 2 * prec * rec / (prec + rec)
-    
-    # # compute unlabeled results
-    # prec_unl = float(hits_unl) / total_model * 100
-    # rec_unl = float(hits_unl) / total_gold * 100
-    # if (prec_unl + rec_unl) > 0.0:
-    #     f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
+            # parse
+            model_parsed_sent = model.parse(tagged_sent)
+
+            # compute labeled scores
+            gold_spans = spans(gold_parsed_sent, unary=False)
+            model_spans = spans(model_parsed_sent, unary=False)
+            hits += len(gold_spans & model_spans)
+            total_gold += len(gold_spans)
+            total_model += len(model_spans)
+
+            # compute labeled partial results
+            prec = float(hits) / total_model * 100
+            rec = float(hits) / total_gold * 100
+            f1 = 0.0
+            if (prec + rec) > 0.0:
+                f1 = 2 * prec * rec / (prec + rec)
+
+            # compute unlabeled scores
+            gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
+            model_spans_unl = set([(i, j) for n, i, j in model_spans])
+            hits_unl += len(gold_spans_unl & model_spans_unl)
+
+            # compute unlabeled results
+            prec_unl = float(hits_unl) / total_model * 100
+            rec_unl = float(hits_unl) / total_gold * 100
+            f1_unl = 0.0
+            if (prec_unl + rec_unl) > 0.0:
+                f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
+            
+            progress(format_str.format(float(i) * 100 / n, i, n, prec, rec, f1))
+
 
     print('')
     print('Parsed {} sentences'.format(n))
