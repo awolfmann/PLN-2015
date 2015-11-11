@@ -51,7 +51,7 @@ class TestCKYParser(TestCase):
             (1, 5): {'S':
                      log2(1.0) +  # rule S -> NP VP
                      log2(0.6 * 1.0 * 0.9) +  # left part
-                     log2(1.0) + log2(1.0) + log2(0.4 * 0.1 * 1.0)},  # right part
+                     log2(1.0) + log2(1.0) + log2(0.4 * 0.1 * 1.0)},  # right
         }
         self.assertEqualPi(parser._pi, pi)
 
@@ -108,7 +108,6 @@ class TestCKYParser(TestCase):
                 NP -> 'Natural'      [0.15]
                 NP -> 'processing'   [0.15]
                 NN -> 'language'     [1.0]
-                
             """)
 
         parser = CKYParser(grammar)
@@ -120,7 +119,7 @@ class TestCKYParser(TestCase):
             (1, 1): {'NP': log2(0.15)},
             (2, 2): {'NN': log2(1.0)},
             (3, 3): {'NP': log2(0.15)},
-            
+
             (1, 2): {'NP': log2(0.3 * 0.15 * 1.0)},
             (2, 3): {'NP': log2(0.4 * 1.0 * 0.15)},
 
@@ -138,8 +137,10 @@ class TestCKYParser(TestCase):
             (2, 2): {'NN': Tree.fromstring("(NN language)")},
             (3, 3): {'NP': Tree.fromstring("(NP processing)")},
 
-            (1, 2): {'NP': Tree.fromstring("(NP (NP Natural) (NN language))")},
-            (2, 3): {'NP': Tree.fromstring("(NP (NN language) (NP processing))")},
+            (1, 2): {'NP': Tree.fromstring("(NP (NP Natural) \
+                                           (NN language))")},
+            (2, 3): {'NP': Tree.fromstring("(NP (NN language) \
+                                           (NP processing))")},
 
             (1, 3): {'S': Tree.fromstring(
                 """(S
@@ -163,8 +164,8 @@ class TestCKYParser(TestCase):
 
         # check log probability
         lp2 = log2(1.0 * 0.15 * 0.4 * 1.0 * 0.15)
-        self.assertAlmostEqual(lp, lp2)  
-    
+        self.assertAlmostEqual(lp, lp2)
+
     def assertEqualPi(self, pi1, pi2):
         self.assertEqual(set(pi1.keys()), set(pi2.keys()))
 

@@ -1,9 +1,10 @@
 from collections import defaultdict
 from nltk.tree import Tree
-from nltk.grammar import PCFG, induce_pcfg, Nonterminal
+from nltk.grammar import induce_pcfg, Nonterminal
 
 import parsing.util as util
 from parsing.cky_parser import CKYParser
+
 
 class UPCFG(object):
     """Unlexicalized PCFG.
@@ -18,7 +19,7 @@ class UPCFG(object):
             t_copy = t.copy(deep=True)
             ut = util.unlexicalize(t_copy)
             ut.chomsky_normal_form(horzMarkov=horzMarkov)
-            ut.collapse_unary(collapsePOS = True)
+            ut.collapse_unary(collapsePOS=True)
             starters[ut.label()] += 1
             productions += list(ut.productions())
 
@@ -34,7 +35,7 @@ class UPCFG(object):
         """Returns the list of UPCFG probabilistic productions.
         """
         return self._productions
- 
+
     def parse(self, tagged_sent):
         """Parse a tagged sentence.
         tagged_sent -- the tagged sentence (a list of pairs (word, tag)).

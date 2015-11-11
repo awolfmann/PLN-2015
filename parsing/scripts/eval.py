@@ -17,7 +17,6 @@ from docopt import docopt
 import pickle
 import sys
 from multiprocessing import Pool, cpu_count
-from itertools import repeat
 from functools import partial
 
 from corpus.ancora import SimpleAncoraCorpusReader
@@ -31,6 +30,7 @@ def progress(msg, width=None):
         width = len(msg)
     print('\b' * width + msg, end='')
     sys.stdout.flush()
+
 
 def parsing(gold_parsed_sent, model):
     tagged_sent = gold_parsed_sent.pos()
@@ -66,11 +66,11 @@ if __name__ == '__main__':
     files = '3LB-CAST/.*\.tbf\.xml'
     corpus = SimpleAncoraCorpusReader('ancora/ancora-2.0/', files)
     parsed_sents = list(corpus.parsed_sents())
-    
+
     if opts['-m']:
         m = int(opts['-m'])
         parsed_sents = [s for s in parsed_sents if len(s.leaves()) <= m]
-    
+
     if opts['-n']:
         n_len = int(opts['-n'])
         parsed_sents = parsed_sents[:n_len]
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     if opts['-p']:
         pool = Pool(cpu_count())
         results = pool.map(partial(parsing, model=model), parsed_sents)
-        
+
         total_gold = sum([item[0] for item in results])
         total_model = sum([item[1] for item in results])
         hits = sum([item[2] for item in results])
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         rec = float(hits) / total_gold * 100
         if (prec + rec) > 0.0:
             f1 = 2 * prec * rec / (prec + rec)
-        
+
         # compute unlabeled results
         prec_unl = float(hits_unl) / total_model * 100
         rec_unl = float(hits_unl) / total_gold * 100
@@ -123,8 +123,8 @@ if __name__ == '__main__':
                 f1 = 2 * prec * rec / (prec + rec)
 
             # compute unlabeled scores
-            gold_spans_unl = set([(i, j) for n, i, j in gold_spans])
-            model_spans_unl = set([(i, j) for n, i, j in model_spans])
+            gold_spans_unl = set([(k, j) for t, k, j in gold_spans])
+            model_spans_unl = set([(k, j) for t, k, j in model_spans])
             hits_unl += len(gold_spans_unl & model_spans_unl)
 
             # compute unlabeled results
@@ -133,9 +133,9 @@ if __name__ == '__main__':
             f1_unl = 0.0
             if (prec_unl + rec_unl) > 0.0:
                 f1_unl = 2 * prec_unl * rec_unl / (prec_unl + rec_unl)
-            
-            progress(format_str.format(float(i) * 100 / n, i, n, prec, rec, f1))
 
+            progress(format_str.format(float(i) * 100 / n, i, n, prec, rec,
+                                       f1))
 
     print('')
     print('Parsed {} sentences'.format(n))

@@ -41,11 +41,11 @@ if __name__ == '__main__':
     m = opts['-m']
     n = opts['-n']
     if m == 'upcfg' and n is not None:
-      n = int(n)
-      model = models[opts['-m']](parsed_sents=corpus.parsed_sents(), 
-                                 horzMarkov=n)
+        n = int(n)
+        model = models[opts['-m']](parsed_sents=corpus.parsed_sents(),
+                                   horzMarkov=n)
     else:
-      model = models[opts['-m']](corpus.parsed_sents()) 
+        model = models[opts['-m']](corpus.parsed_sents())
 
     print('Saving...')
     filename = opts['-o']
