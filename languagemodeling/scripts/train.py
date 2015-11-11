@@ -29,10 +29,7 @@ if __name__ == '__main__':
     sents = gutenberg.sents()
     train_sents = sents[:int(0.9*len(sents))]
     eval_sents = sents[int(0.9*len(sents)):]
-    # train_sents = [
-    #     'el gato come pescado .'.split(),
-    #     'la gata come salmón .'.split(),
-    # ]
+
     # train the model
     n = int(opts['-n'])
     if '-m' in opts and opts['-m'] == "addone":

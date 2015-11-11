@@ -28,5 +28,6 @@ if __name__ == '__main__':
     n = int(opts['-n'])
     for i in range(n):
         sent = generator.generate_sent()
-        print(sent)
+        print("SENTENCE")
+        print(' '.join(sent))
         # armar figura
