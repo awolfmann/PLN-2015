@@ -80,7 +80,6 @@ if __name__ == '__main__':
     n = len(parsed_sents)
     if opts['-p']:
         pool = Pool(cpu_count())
-        # args = zip(repeat(model), parsed_sents)
         results = pool.map(partial(parsing, model=model), parsed_sents)
         
         total_gold = sum([item[0] for item in results])
