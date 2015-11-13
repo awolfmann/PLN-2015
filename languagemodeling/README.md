@@ -48,10 +48,10 @@ Cuatrigramas
 ### Ejercicio 5: Evaluación de Modelos de Lenguaje ###
 Se decidió agregar metodos avg_lp, cross_entropy y perplexity a la clase Ngram, los cuales permiten evaluar el modelo, proveyendo un conjunto de evaluación
 #### Resultados obtenidos ####
- n            1   | 2   | 3      |  4
-addone       1432|4409 |24092    |35244
-interpolated 1578|1318|1357|1364
-backoff      inf |inf  |inf        |inf
+ n            1   | 2   | 3      |  4  
+addone       1432|4409 |24092    |35244  
+interpolated 1578|1318|1357|1364  
+backoff      inf |inf  |inf        |inf  
 
 ### Ejercicio 6: Suavizado por Interpolación ###
 Se utilizó un unico diccionario contador para cargar todos los tamaños de ngramas

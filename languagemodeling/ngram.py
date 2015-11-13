@@ -315,16 +315,16 @@ class BackOffNGram(NGram):
         self._counts = counts = defaultdict(int)
         self._len_v = 0
         self._addone = addone
+        self._alpha = {}
+        self._denom = {}
+        self._A = {}
+
         if beta is not None:
             self._beta = beta
         else:
             held_out = sents[int(0.9*len(sents)):]
             sents = sents[:int(0.9*len(sents))]
-            self._beta = self.estimate_beta(held_out)
 
-        self._alpha = {}
-        self._denom = {}
-        self._A = {}
         words = []
         for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
@@ -333,25 +333,29 @@ class BackOffNGram(NGram):
 
             for i in range(len(sent_marked) - n + 1):
                 ngram = tuple(sent_marked[i: i + n])
-                counts[ngram] += 1
-                for j in range(1, n + 1):
+                for j in range(n + 1):
                     counts[ngram[j:]] += 1
-            counts[('<s>',)] += 1
-            # The first unigram is ignored in the recursion
+            
+            for i in range(1, n):
+                counts[('<s>',) * i] += 1
+            
             words += sent
 
         self._counts = dict(self._counts)
         vocab = set(words)
         vocab.add('</s>')
         self._vocab = vocab
+        self._len_vocab = len(self._vocab)
+
+        if beta is None:
+            self._beta = self.estimate_beta(held_out)
 
     def A(self, tokens):
         """
         Set of words with counts > 0 for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert len(tokens) < self._n
-        assert isinstance(tokens, tuple), tokens
+        # assert len(tokens) < self._n
         A = None
         if tokens in self._A:
             A = self._A[tokens]
@@ -366,7 +370,7 @@ class BackOffNGram(NGram):
         for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert isinstance(tokens, tuple), tokens
+        # assert isinstance(tokens, tuple), tokens
         A = {word for word in self._vocab
                 if self.count(tokens + (word,)) > 0}
         return A
@@ -377,7 +381,7 @@ class BackOffNGram(NGram):
         for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert isinstance(tokens, tuple), tokens
+        # assert isinstance(tokens, tuple), tokens
         alpha = None
         if tokens in self._alpha: 
             alpha = self._alpha[tokens]
@@ -393,11 +397,13 @@ class BackOffNGram(NGram):
         for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert isinstance(tokens, tuple), tokens
+        # assert isinstance(tokens, tuple), tokens
         token_count = self.count(tokens)
         len_A = len(self.A(tokens))
         alpha = 1.0
-        if token_count > 0 and len_A > 0:
+
+        if len_A > 0:
+            # assert token_count > 0 , tokens
             alpha = self._beta * len_A / token_count
         return alpha
 
@@ -406,7 +412,7 @@ class BackOffNGram(NGram):
         Normalization factor for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert isinstance(tokens, tuple), tokens
+        # assert isinstance(tokens, tuple), tokens
         denom = None
         if tokens in self._denom: 
             denom = self._denom[tokens]
@@ -422,7 +428,7 @@ class BackOffNGram(NGram):
         for a k-gram with 0 < k < n.
         tokens -- the k-gram tuple.
         """
-        assert isinstance(tokens, tuple), tokens
+        # assert isinstance(tokens, tuple), tokens
         A_set = self.A(tokens)
         sum_prob = 0.0
         for x in A_set:
@@ -446,27 +452,27 @@ class BackOffNGram(NGram):
             prev_tokens = tuple(prev_tokens)
 
         A_prev = self.A(prev_tokens)
-        cond_prob = 0.0
-        # ver que pasa si prev_tokens es vacio, 
+        cond_prob = 0.0 
         prev_count = float(self.count(prev_tokens))
-        if len(prev_tokens) == 0:
-            tokens_count = self.count(token)
-            if self._addone:  # Unigram
+        tokens = prev_tokens + (token,)
+        tokens_count = self.count(tokens)
+
+        if len(prev_tokens) == 0:  # Unigram
+            if self._addone:  
                 tokens_count += 1.0
                 prev_count += len(self._vocab)
-            if prev_count > 0:
-                cond_prob = tokens_count / prev_count
+            cond_prob = tokens_count / prev_count
+        
         else:
-            if token in A_prev:
-                tokens = prev_tokens + (token,)
-                tokens_count = self.discount_count(tokens)
-                if prev_count > 0:
-                    cond_prob = tokens_count / prev_count
+            if token in A_prev:  
+                tokens_count -= self._beta  # Discount
+                cond_prob = tokens_count / prev_count
             else:
                 denom = self.denom(prev_tokens)
-                if denom > 0.0 and len(prev_tokens) > 0:
-                    prob = self.cond_prob(token, prev_tokens[1:])
-                    cond_prob = self.alpha(prev_tokens) * prob / denom
+                alpha = self.alpha(prev_tokens)
+                prob = self.cond_prob(token, prev_tokens[1:])
+                if denom > 0:
+                    cond_prob = alpha * prob / denom
 
         return cond_prob
 
@@ -479,5 +485,5 @@ class BackOffNGram(NGram):
             perp = self.perplexity(held_out)
             perplexities[beta] = perp
         best_beta = min(perplexities.items(), key=operator.itemgetter(1))[0]
-        print('best_beta', best_beta)
+        
         return best_beta
