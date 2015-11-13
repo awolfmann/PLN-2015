@@ -50,7 +50,7 @@ Se decidió agregar metodos avg_lp, cross_entropy y perplexity a la clase Ngram,
 #### Resultados obtenidos ####
  n            1   | 2   | 3      |  4
 addone       1432|4409 |24092    |35244
-interpolated 1578|49313|106633789|6267861583
+interpolated 1578|1318|1357|1364
 backoff      inf |inf  |inf        |inf
 
 ### Ejercicio 6: Suavizado por Interpolación ###
