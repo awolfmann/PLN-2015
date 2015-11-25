@@ -301,7 +301,7 @@ class InterpolatedNGram(NGram):
 
 class BackOffNGram(NGram):
 
-    def __init__(self, n, sents, beta=0.8, addone=True):
+    def __init__(self, n, sents, beta=None, addone=True):
         """
         Back-off NGram model with discounting as described by Michael Collins.
         n -- order of the model.
@@ -326,7 +326,7 @@ class BackOffNGram(NGram):
             sents = sents[:int(0.9*len(sents))]
 
         vocab = ['</s>']
-        for sent in enumerate(sents):
+        for sent in sents:
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
             sent_marked = init_markers + sent + final_marker
