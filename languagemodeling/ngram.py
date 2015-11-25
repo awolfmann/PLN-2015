@@ -301,7 +301,7 @@ class InterpolatedNGram(NGram):
 
 class BackOffNGram(NGram):
 
-    def __init__(self, n, sents, beta=None, addone=True):
+    def __init__(self, n, sents, beta=0.8, addone=True):
         """
         Back-off NGram model with discounting as described by Michael Collins.
         n -- order of the model.
@@ -317,7 +317,7 @@ class BackOffNGram(NGram):
         self._addone = addone
         self._alpha = {}
         self._denom = {}
-        self._A = {}
+        self._A = defaultdict(set)
 
         if beta is not None:
             self._beta = beta
@@ -325,8 +325,8 @@ class BackOffNGram(NGram):
             held_out = sents[int(0.9*len(sents)):]
             sents = sents[:int(0.9*len(sents))]
 
-        words = []
-        for sent in sents:
+        vocab = ['</s>']
+        for sent in enumerate(sents):
             init_markers = ['<s>' for _ in range(n - 1)]
             final_marker = ['</s>']
             sent_marked = init_markers + sent + final_marker
@@ -335,17 +335,18 @@ class BackOffNGram(NGram):
                 ngram = tuple(sent_marked[i: i + n])
                 for j in range(n + 1):
                     counts[ngram[j:]] += 1
-            
+                # precalculate A
+                self._A[ngram[:-1]].add(ngram[-1])
+
             for i in range(1, n):
                 counts[('<s>',) * i] += 1
-            
-            words += sent
+
+            vocab += sent
 
         self._counts = dict(self._counts)
-        vocab = set(words)
-        vocab.add('</s>')
-        self._vocab = vocab
+        self._vocab = set(vocab)
         self._len_vocab = len(self._vocab)
+        self._A = dict(self._A)
 
         if beta is None:
             self._beta = self.estimate_beta(held_out)
@@ -357,6 +358,7 @@ class BackOffNGram(NGram):
         """
         # assert len(tokens) < self._n
         A = None
+        # assert tokens in self._A, tokens
         if tokens in self._A:
             A = self._A[tokens]
         else:
@@ -372,7 +374,7 @@ class BackOffNGram(NGram):
         """
         # assert isinstance(tokens, tuple), tokens
         A = {word for word in self._vocab
-                if self.count(tokens + (word,)) > 0}
+             if self.count(tokens + (word,)) > 0}
         return A
 
     def alpha(self, tokens):
@@ -383,7 +385,7 @@ class BackOffNGram(NGram):
         """
         # assert isinstance(tokens, tuple), tokens
         alpha = None
-        if tokens in self._alpha: 
+        if tokens in self._alpha:
             alpha = self._alpha[tokens]
         else:
             alpha = self.compute_alpha(tokens)
@@ -414,7 +416,7 @@ class BackOffNGram(NGram):
         """
         # assert isinstance(tokens, tuple), tokens
         denom = None
-        if tokens in self._denom: 
+        if tokens in self._denom:
             denom = self._denom[tokens]
         else:
             denom = self.compute_denom(tokens)
@@ -451,27 +453,27 @@ class BackOffNGram(NGram):
         else:
             prev_tokens = tuple(prev_tokens)
 
-        A_prev = self.A(prev_tokens)
-        cond_prob = 0.0 
+        cond_prob = 0.0
         prev_count = float(self.count(prev_tokens))
         tokens = prev_tokens + (token,)
         tokens_count = self.count(tokens)
 
         if len(prev_tokens) == 0:  # Unigram
-            if self._addone:  
+            if self._addone:
                 tokens_count += 1.0
                 prev_count += len(self._vocab)
             cond_prob = tokens_count / prev_count
-        
+
         else:
-            if token in A_prev:  
+            A_prev = self.A(prev_tokens)
+            if token in A_prev:
                 tokens_count -= self._beta  # Discount
                 cond_prob = tokens_count / prev_count
             else:
                 denom = self.denom(prev_tokens)
-                alpha = self.alpha(prev_tokens)
-                prob = self.cond_prob(token, prev_tokens[1:])
                 if denom > 0:
+                    alpha = self.alpha(prev_tokens)
+                    prob = self.cond_prob(token, prev_tokens[1:])
                     cond_prob = alpha * prob / denom
 
         return cond_prob
@@ -485,5 +487,4 @@ class BackOffNGram(NGram):
             perp = self.perplexity(held_out)
             perplexities[beta] = perp
         best_beta = min(perplexities.items(), key=operator.itemgetter(1))[0]
-        
         return best_beta
