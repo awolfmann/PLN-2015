@@ -19,7 +19,7 @@ class PersonNERRunner(RegExpNERRunner):
         # name_re = lowerletters_re('name')
         # name_re = u'(?P<<name>><[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*>)'
         name = capitalizedletters_re() + optional_re(' ' + capitalizedletters_re()) 
-        regexp = surname_re + u'<,>' + name_re
+        regexp = surname + tokenized_re('<,>') + name
 
         super(PersonNERRunner, self).__init__('person', regexp, override)
 
