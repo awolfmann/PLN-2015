@@ -2,8 +2,8 @@
 import codecs
 
 from iepy.data.models import Entity, EntityOccurrence
-
-from process.regexp_ner import RegExpNERRunner, options_re, options_file_re, optional_re
+from iepy.preprocess.ner.regexp import RegExpNERRunner
+from process.regexp_ner import options_re, options_file_re, optional_re
 
 
 class DateNERRunner(RegExpNERRunner):

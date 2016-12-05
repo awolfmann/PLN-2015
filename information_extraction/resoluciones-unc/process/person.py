@@ -3,8 +3,8 @@ import codecs
 
 from iepy.data.models import Entity, EntityOccurrence
 
-from process.regexp_ner import RegExpNERRunner, options_re, options_file_re,\
-    upperletters_re, lowerletters_re, tokenized_re
+from process.regexp_ner import (RegExpNERRunner, options_re, optional_re,
+    upperletters_re, lowerletters_re, tokenized_re, capitalizedletters_re)
 
 
 class PersonNERRunner(RegExpNERRunner):

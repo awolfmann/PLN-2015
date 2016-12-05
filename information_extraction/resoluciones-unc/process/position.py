@@ -3,23 +3,25 @@ import codecs
 
 from iepy.data.models import Entity, EntityOccurrence
 
-from iepy.preprocess.ner.regexp import RegExpNERRunner
+# from iepy.preprocess.ner.regexp import RegExpNERRunner
+from process.regexp_ner import (RegExpNERRunner, options_re, optional_re, 
+    tokenized_re)
 
-def options_re(options):
-    options2 = []
-    for o in options:
-        options2.append(tokenized_re(o))
-    result = '(' + ' | '.join(options2) + ')'
-    return result
+# def options_re(options):
+#     options2 = []
+#     for o in options:
+#         options2.append(tokenized_re(o))
+#     result = '(' + ' | '.join(options2) + ')'
+#     return result
 
-def optional_re(option):
-    result = '(' + option + ')?'
-    return result
+# def optional_re(option):
+#     result = '(' + option + ')?'
+#     return result
 
-def tokenized_re(s):
-    return '<' + '> <'.join(s.split()) + '>'
+# def tokenized_re(s):
+#     return '<' + '> <'.join(s.split()) + '>'
 
-class  PositionNERRunner(RegExpNERRunner):
+class PositionNERRunner(RegExpNERRunner):
 
     def __init__(self, override=False):
         positions = ['Ayudante A', 'Ayudante B',

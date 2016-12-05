@@ -27,6 +27,12 @@ from iepy.preprocess.segmenter import SyntacticSegmenterRunner
 from iepy.preprocess.tokenizer import TokenizeSentencerRunner
 
 from process.position import PositionNERRunner
+from process.date import DateNERRunner
+from process.person import PersonNERRunner
+from process.dedication import DedicationNERRunner
+from process.designation import DesignationNERRunner
+from process.designation_type import DesignationTypeNERRunner
+
 
 class ParallelDocManager(DocumentManager):
 
@@ -40,7 +46,10 @@ def start_preprocess(docs, increment_ner):
     pipeline = PreProcessPipeline([
         TokenizeSentencerRunner(),
         SyntacticSegmenterRunner(),
-        PositionNERRunner()
+        PositionNERRunner(),
+        DateNERRunner(),
+        PersonNERRunner(),
+        DesignationNERRunner()
     ], docs)
     pipeline.process_everything()
 

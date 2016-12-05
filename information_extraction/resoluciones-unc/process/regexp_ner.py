@@ -132,6 +132,10 @@ def optional_re(option):
 #     result = '(' + s + ')+'
 #     return result
 
+# def zeroormore_re(s):
+#     result = '(' + s + ')*'
+#     return result
+
 def upperletters_re(name=None):
     if name:
         return u'(?P<<{}>>'.format(name) + tokenized_re(u'[A-ZÁÉÍÓÚÑ]*') + u')'
