@@ -11,7 +11,7 @@ from process.regexp_ner import (RegExpNERRunner, options_re, optional_re,
 class DesignationNERRunner(RegExpNERRunner):
 
     def __init__(self, override=False):
-        designations = ['Deslgnar', 'Aceptar', 'Prorrogar', 'designaci6n', 'Otorgar']
+        designations = ['Deslgnar', 'Aceptar', 'Prorrogar', 'designaci6n', 'Otorgar', 'Designar']
         designations_p = ['designaciones', ]
         regexp = options_re(designations+designations_p)
         super(DesignationNERRunner, self).__init__('designation', regexp, override)

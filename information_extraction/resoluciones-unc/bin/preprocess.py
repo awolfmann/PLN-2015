@@ -25,6 +25,7 @@ from iepy.data.db import DocumentManager
 from iepy.preprocess.pipeline import PreProcessPipeline, PreProcessSteps
 from iepy.preprocess.segmenter import SyntacticSegmenterRunner
 from iepy.preprocess.tokenizer import TokenizeSentencerRunner
+from iepy.preprocess.ner.combiner import CombinedNERRunner
 
 from process.position import PositionNERRunner
 from process.date import DateNERRunner
@@ -46,10 +47,14 @@ def start_preprocess(docs, increment_ner):
     pipeline = PreProcessPipeline([
         TokenizeSentencerRunner(),
         SyntacticSegmenterRunner(),
-        PositionNERRunner(),
-        DateNERRunner(),
-        PersonNERRunner(),
-        DesignationNERRunner()
+        CombinedNERRunner([
+            PositionNERRunner(),
+            DateNERRunner(),
+            PersonNERRunner(),
+            DesignationNERRunner(),
+            DedicationNERRunner(),
+            DesignationTypeNERRunner()
+        ], override=True)
     ], docs)
     pipeline.process_everything()
 

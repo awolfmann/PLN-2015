@@ -11,10 +11,10 @@ from process.regexp_ner import (RegExpNERRunner, options_re, optional_re,
 class DesignationTypeNERRunner(RegExpNERRunner):
 
     def __init__(self, override=False):
-        temporaries = ['interinas', 'interina', 'interinamente', 'interi`no']
+        temporaries = ['interinas', 'interina', 'interinamente', 'interi`no', 'interlna']
         contests = ['concurso']
         resignations = ['renuncia']
-        expirations = ['cesan', 'cese']
+        expirations = ['cesan', 'cese', 'cesa']
         leave = ['licencia']
         regexp = options_re(temporaries+contests+resignations+expirations+leave)
         super(DesignationTypeNERRunner, self).__init__('designation_type', regexp, override)
