@@ -17,6 +17,7 @@ class PersonNERRunner(RegExpNERRunner):
         # surnames_re = u'(?P<<surname>><{}*\s{}*>)'.format(upperletter, upperletter)
         surname = upperletters_re() + optional_re(upperletters_re())
         # VER CASO MOISSET DE ESPANES
+        # Ver Diego DUBOIS, Demetrio VILELA y Carlos BEDERIAN
         # name_re = lowerletters_re('name')
         # name_re = u'(?P<<name>><[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*>)'
         name = capitalizedletters_re() + optional_re(capitalizedletters_re()) 
