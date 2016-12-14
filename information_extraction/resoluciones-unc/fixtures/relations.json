@@ -1,0 +1,47 @@
+[
+{
+    "model": "corpus.relation",
+    "pk": 6,
+    "fields": {
+        "left_entity_kind": 9,
+        "right_entity_kind": 11,
+        "name": "DesignationDate"
+    }
+},
+{
+    "model": "corpus.relation",
+    "pk": 7,
+    "fields": {
+        "left_entity_kind": 9,
+        "right_entity_kind": 13,
+        "name": "DesignationPerson"
+    }
+},
+{
+    "model": "corpus.relation",
+    "pk": 8,
+    "fields": {
+        "left_entity_kind": 9,
+        "right_entity_kind": 12,
+        "name": "DesignationPosition"
+    }
+},
+{
+    "model": "corpus.relation",
+    "pk": 9,
+    "fields": {
+        "left_entity_kind": 9,
+        "right_entity_kind": 10,
+        "name": "DesignationHasType"
+    }
+},
+{
+    "model": "corpus.relation",
+    "pk": 10,
+    "fields": {
+        "left_entity_kind": 9,
+        "right_entity_kind": 14,
+        "name": "DesignationDedication"
+    }
+}
+]

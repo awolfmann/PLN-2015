@@ -1,0 +1,44 @@
+[
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "DESIGNATION"
+    },
+    "pk": 9
+},
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "DESIGNATION_TYPE"
+    },
+    "pk": 10
+},
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "DATE"
+    },
+    "pk": 11
+},
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "POSITION"
+    },
+    "pk": 12
+},
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "PERSON"
+    },
+    "pk": 13
+},
+{
+    "model": "corpus.entitykind",
+    "fields": {
+        "name": "DEDICATION"
+    },
+    "pk": 14
+}
+]
