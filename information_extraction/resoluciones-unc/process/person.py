@@ -20,9 +20,9 @@ class PersonNERRunner(RegExpNERRunner):
         # Ver Diego DUBOIS, Demetrio VILELA y Carlos BEDERIAN
         # name_re = lowerletters_re('name')
         # name_re = u'(?P<<name>><[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*>)'
-        name = '<[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+>+'
-        surname_name = surname + '<,>' + name
-        name_surname = name + '(<[A-ZÁÉÍÓÚÑ]><.>)?' + surname 
+        name = '<[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+>+' + '(<[A-ZÁÉÍÓÚÑ]><.>)?'
+        surname_name = surname + '<,>?' + name 
+        name_surname = name + surname 
         # Caso: Daniel  MOISSET  DE  ESPANES  
         regexp = '(' + surname_name + ' | ' + name_surname + ')'
         # regexp = surname_name
