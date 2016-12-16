@@ -1,29 +1,6 @@
 from refo import Question, Star, Any, Plus
 from iepy.extraction.rules import rule, Token, Pos, NoKind
 
-RELATION = 'DesignationDate'
-
-
-@rule(True)
-def designation_date_before_nokindbetween(Subject, Object):
-    """
-    """
-    anything = Star(Any())
-    any_no_kind = Star(NoKind())
-    return anything + Object + any_no_kind + Subject + anything
-
-
-# @rule(True)
-# def designation_date_after_nokindbetween(Subject, Object):
-#     """
-#     """
-#     anything = Star(Any())
-#     any_no_kind = Star(NoKind())
-#     return anything + Subject + any_no_kind + Object + anything
-
-# Write here your rules
-# RELATION = 'your relation here'
-
 # Designation(Person, Date, Position, DesignationType, Dedication)
 # Binarize the relation to: 
 # DesignationPerson(Designation, Person)
@@ -31,6 +8,118 @@ def designation_date_before_nokindbetween(Subject, Object):
 # DesignationPosition(Designation, Position)
 # DesignationHasType(Designation, DesignationType)
 # DesignationDedication(Designation, Dedication)
+
+
+RELATIONS = ['DesignationDate', 'DesignationPerson', 'DesignationPosition',
+    'DesignationHasType', 'DesignationDedication']
+# Relation: DesignationDate(Designation, Date)
+# @rule(True)
+# def designation_date_before_nokindbetween(Subject, Object):
+#     """
+#     """
+#     anything = Star(Any())
+#     any_no_kind = Star(NoKind(kinds=[]))
+#     return anything + Object + any_no_kind + Subject + anything
+
+# # Relation: DesignationDate(Designation, Date)
+# @rule(True)
+# def designation_date_after_nokindbetween(Subject, Object):
+#     """
+#     """
+#     anything = Star(Any())
+#     any_no_kind = Star(NoKind(kinds=[]))
+#     return anything + Subject + any_no_kind + Object + anything
+
+# Relation: DesignationDate(Designation, Date)
+@rule(True, relation_name='DesignationDate')
+def designation_date_after_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Subject + any_no_designation + Object + anything
+
+# Relation: DesignationDate(Designation, Date)
+@rule(True, relation_name='DesignationDate')
+def designation_date_before_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Object + any_no_designation + Subject + anything
+
+
+@rule(True, relation_name='DesignationPerson')
+def designation_person_after_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return (anything + Subject + any_no_designation + Object +  anything)
+
+@rule(True, relation_name='DesignationPerson')
+def designation_person_before_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Object + any_no_designation + Subject + anything
+
+@rule(True, relation_name='DesignationPosition')
+def designation_position_after_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return (anything + Subject + any_no_designation + Object +  anything)
+
+@rule(True, relation_name='DesignationPosition')
+def designation_position_before_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Object + any_no_designation + Subject + anything
+
+@rule(True, relation_name='DesignationHasType')
+def designation_type_after_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return (anything + Subject + any_no_designation + Object +  anything)
+
+
+@rule(True, relation_name='DesignationHasType')
+def designation_type_before_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Object + any_no_designation + Subject + anything
+
+@rule(True, relation_name='DesignationDedication')
+def designation_dedication_after_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return (anything + Subject + any_no_designation + Object +  anything)
+
+
+@rule(True, relation_name='DesignationDedication')
+def designation_dedication_before_nodesignation_between(Subject, Object):
+    """
+    """
+    anything = Star(Any())
+    any_no_designation = Star(NoKind(kinds=['DESIGNATION']))
+    return anything + Object + any_no_designation + Subject + anything
+
+
+# Write here your rules
+# RELATION = 'your relation here'
+
+
 
 # # Relation: DesignationPerson(Designation, Person)
 # @rule(True)

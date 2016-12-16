@@ -29,30 +29,46 @@ from iepy.data.db import CandidateEvidenceManager
 def run_from_command_line():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-    try:
-        relation_name = iepy.instance.rules.RELATION
-    except AttributeError:
-        logging.error("RELATION not defined in rules file")
-        sys.exit(1)
+    # try:
+    #     relation_name = iepy.instance.rules.RELATION
+    # except AttributeError:
+    #     logging.error("RELATION not defined in rules file")
+    #     sys.exit(1)
 
+    # try:
+    #     relation = models.Relation.objects.get(name=relation_name)
+    # except ObjectDoesNotExist:
+    #     logging.error("Relation {!r} not found".format(relation_name))
+    #     sys.exit(1)
     try:
-        relation = models.Relation.objects.get(name=relation_name)
-    except ObjectDoesNotExist:
-        logging.error("Relation {!r} not found".format(relation_name))
+        relations_names = iepy.instance.rules.RELATIONS
+    except AttributeError:
+        logging.error("RELATIONS not defined in rules file")
         sys.exit(1)
 
     # Load rules
     rules = load_rules()
 
-    # Load evidences
-    evidences = CandidateEvidenceManager.candidates_for_relation(relation)
+    for relation_name in relations_names:
+        try:
+            relation = models.Relation.objects.get(name=relation_name)
+        except ObjectDoesNotExist:
+            logging.error("Relation {!r} not found".format(relation_name))
+            sys.exit(1)        
 
-    # Run the pipeline
-    iextractor = RuleBasedCore(relation, rules)
-    iextractor.start()
-    iextractor.process()
-    predictions = iextractor.predict(evidences)
-    output.dump_output_loop(predictions)
+
+        # Load evidences
+        evidences = CandidateEvidenceManager.candidates_for_relation(relation)
+
+        related_rules = [rule for rule in rules if rule.relation_name == relation_name]
+
+        # Run the pipeline
+        iextractor = RuleBasedCore(relation, related_rules)
+        iextractor.start()
+        iextractor.process()
+        predictions = iextractor.predict(evidences)
+        # print('PREDICTIONS', list(predictions))
+        output.dump_output_loop_relation(predictions, relation_name)
 
 
 if __name__ == u'__main__':

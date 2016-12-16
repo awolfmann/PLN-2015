@@ -33,6 +33,7 @@ from process.person import PersonNERRunner
 from process.dedication import DedicationNERRunner
 from process.designation import DesignationNERRunner
 from process.designation_type import DesignationTypeNERRunner
+from process.clear import ClearEntities
 
 
 class ParallelDocManager(DocumentManager):
@@ -45,8 +46,9 @@ class ParallelDocManager(DocumentManager):
 
 def start_preprocess(docs, increment_ner):
     pipeline = PreProcessPipeline([
-        TokenizeSentencerRunner(),
+        TokenizeSentencerRunner(override=True),
         SyntacticSegmenterRunner(),
+        # ClearEntities('DESIGNATION'),
         CombinedNERRunner([
             PositionNERRunner(),
             DateNERRunner(),

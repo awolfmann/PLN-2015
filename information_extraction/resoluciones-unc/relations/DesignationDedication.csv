@@ -1,0 +1,232 @@
+Candidate evidence id,Candidate evidence left entity,Candidate evidence right entity,Relation present
+1536,"designacion 5 (468, 469)","DS (231, 232)",False
+1537,"designacion 5 (468, 469)","dedicaci6n simple (330, 332)",False
+1538,"designacion 5 (468, 469)","dedicaci6n simple (436, 438)",True
+1539,"designacion 5 (468, 469)","dedicaci6n simple (490, 492)",False
+1540,"designacion 5 (468, 469)","dedicaci6n simple (544, 546)",False
+1541,"designacion 5 (468, 469)","dedicaci6n simple (681, 683)",False
+1542,"designacion 6 (481, 482)","DS (46, 47)",False
+1543,"designacion 6 (481, 482)","DS (72, 73)",False
+1544,"designacion 6 (481, 482)","DS (97, 98)",False
+1545,"designacion 6 (481, 482)","DS (122, 123)",False
+1546,"designacion 6 (481, 482)","DS (152, 153)",False
+1547,"designacion 6 (481, 482)","dedicaci6n simple (184, 186)",False
+1548,"designacion 6 (481, 482)","DS (220, 221)",False
+1549,"designacion 6 (481, 482)","DS (231, 232)",False
+1550,"designacion 6 (481, 482)","dedicaci6n simple (330, 332)",False
+1551,"designacion 6 (481, 482)","dedicaci6n simple (436, 438)",False
+1552,"designacion 6 (481, 482)","dedicaci6n simple (490, 492)",True
+1553,"designacion 6 (481, 482)","dedicaci6n simple (544, 546)",False
+1554,"designacion 6 (481, 482)","dedicaci6n simple (681, 683)",False
+1555,"designacion 7 (519, 520)","DS (46, 47)",False
+1556,"designacion 7 (519, 520)","DS (72, 73)",False
+1557,"designacion 7 (519, 520)","DS (97, 98)",False
+1558,"designacion 7 (519, 520)","DS (122, 123)",False
+1559,"designacion 7 (519, 520)","DS (152, 153)",False
+1560,"designacion 7 (519, 520)","dedicaci6n simple (184, 186)",False
+1561,"designacion 7 (519, 520)","DS (220, 221)",False
+1562,"designacion 7 (519, 520)","DS (231, 232)",False
+1563,"designacion 7 (519, 520)","dedicaci6n simple (330, 332)",False
+1564,"designacion 7 (519, 520)","dedicaci6n simple (436, 438)",False
+1565,"designacion 7 (519, 520)","dedicaci6n simple (490, 492)",True
+1566,"designacion 7 (519, 520)","dedicaci6n simple (544, 546)",False
+1567,"designacion 7 (519, 520)","dedicaci6n simple (681, 683)",False
+1568,"designacion 8 (534, 535)","DS (46, 47)",False
+1569,"designacion 8 (534, 535)","DS (72, 73)",False
+1570,"designacion 8 (534, 535)","DS (97, 98)",False
+1571,"designacion 8 (534, 535)","DS (122, 123)",False
+1572,"designacion 8 (534, 535)","DS (152, 153)",False
+1573,"designacion 8 (534, 535)","dedicaci6n simple (184, 186)",False
+1574,"designacion 8 (534, 535)","DS (220, 221)",False
+1575,"designacion 8 (534, 535)","DS (231, 232)",False
+1576,"designacion 8 (534, 535)","dedicaci6n simple (330, 332)",False
+1577,"designacion 8 (534, 535)","dedicaci6n simple (436, 438)",False
+1578,"designacion 8 (534, 535)","dedicaci6n simple (490, 492)",False
+1579,"designacion 8 (534, 535)","dedicaci6n simple (544, 546)",True
+1580,"designacion 8 (534, 535)","dedicaci6n simple (681, 683)",False
+1581,"designacion 9 (656, 657)","DS (46, 47)",False
+1582,"designacion 9 (656, 657)","DS (72, 73)",False
+1583,"designacion 9 (656, 657)","DS (97, 98)",False
+1584,"designacion 9 (656, 657)","DS (122, 123)",False
+1585,"designacion 9 (656, 657)","DS (152, 153)",False
+1586,"designacion 9 (656, 657)","dedicaci6n simple (184, 186)",False
+1587,"designacion 9 (656, 657)","DS (220, 221)",False
+1588,"designacion 9 (656, 657)","DS (231, 232)",False
+1589,"designacion 9 (656, 657)","dedicaci6n simple (330, 332)",False
+1590,"designacion 9 (656, 657)","dedicaci6n simple (436, 438)",False
+1591,"designacion 9 (656, 657)","dedicaci6n simple (490, 492)",False
+1592,"designacion 9 (656, 657)","dedicaci6n simple (544, 546)",True
+1593,"designacion 9 (656, 657)","dedicaci6n simple (681, 683)",True
+1594,"designacion 10 (706, 707)","DS (46, 47)",False
+1595,"designacion 10 (706, 707)","DS (72, 73)",False
+1596,"designacion 10 (706, 707)","DS (97, 98)",False
+1597,"designacion 10 (706, 707)","DS (122, 123)",False
+1598,"designacion 10 (706, 707)","DS (152, 153)",False
+1599,"designacion 10 (706, 707)","dedicaci6n simple (184, 186)",False
+1600,"designacion 10 (706, 707)","DS (220, 221)",False
+1601,"designacion 10 (706, 707)","DS (231, 232)",False
+1602,"designacion 10 (706, 707)","dedicaci6n simple (330, 332)",False
+1603,"designacion 10 (706, 707)","dedicaci6n simple (436, 438)",False
+1604,"designacion 10 (706, 707)","dedicaci6n simple (490, 492)",False
+1605,"designacion 10 (706, 707)","dedicaci6n simple (544, 546)",False
+1606,"designacion 10 (706, 707)","dedicaci6n simple (681, 683)",True
+1376,"designacion 14 (104, 105)","DS (32, 33)",True
+1377,"designacion 14 (104, 105)","dedicaci6n simple (146, 148)",True
+1378,"designacion 14 (104, 105)","DS (170, 171)",True
+1379,"designacion 14 (104, 105)","DS (182, 183)",False
+1380,"designacion 14 (104, 105)","dedicaci6n simple (305, 307)",False
+1381,"designacion 14 (104, 105)","DS (414, 415)",False
+1382,"designacion 14 (104, 105)","DS (463, 464)",False
+1383,"designacion 15 (175, 176)","DS (32, 33)",False
+1384,"designacion 15 (175, 176)","dedicaci6n simple (146, 148)",True
+1385,"designacion 15 (175, 176)","DS (170, 171)",True
+1386,"designacion 15 (175, 176)","DS (182, 183)",True
+1387,"designacion 15 (175, 176)","dedicaci6n simple (305, 307)",False
+1388,"designacion 15 (175, 176)","DS (414, 415)",False
+1389,"designacion 15 (175, 176)","DS (463, 464)",False
+1390,"designacion 16 (278, 279)","DS (32, 33)",False
+1391,"designacion 16 (278, 279)","dedicaci6n simple (146, 148)",False
+1392,"designacion 16 (278, 279)","DS (170, 171)",False
+1393,"designacion 16 (278, 279)","DS (182, 183)",True
+1394,"designacion 16 (278, 279)","dedicaci6n simple (305, 307)",True
+1395,"designacion 16 (278, 279)","DS (414, 415)",False
+1396,"designacion 16 (278, 279)","DS (463, 464)",False
+1397,"designacion 17 (407, 408)","DS (32, 33)",False
+1398,"designacion 17 (407, 408)","dedicaci6n simple (146, 148)",False
+1399,"designacion 17 (407, 408)","DS (170, 171)",False
+1400,"designacion 17 (407, 408)","DS (182, 183)",False
+1401,"designacion 17 (407, 408)","dedicaci6n simple (305, 307)",True
+1402,"designacion 17 (407, 408)","DS (414, 415)",True
+1403,"designacion 17 (407, 408)","DS (463, 464)",False
+1404,"designacion 18 (445, 446)","DS (32, 33)",False
+1405,"designacion 18 (445, 446)","dedicaci6n simple (146, 148)",False
+1406,"designacion 18 (445, 446)","DS (170, 171)",False
+1407,"designacion 18 (445, 446)","DS (182, 183)",False
+1408,"designacion 18 (445, 446)","dedicaci6n simple (305, 307)",False
+1409,"designacion 18 (445, 446)","DS (414, 415)",True
+1410,"designacion 18 (445, 446)","DS (463, 464)",True
+1411,"designacion 19 (494, 495)","DS (32, 33)",False
+1412,"designacion 19 (494, 495)","dedicaci6n simple (146, 148)",False
+1413,"designacion 19 (494, 495)","DS (170, 171)",False
+1414,"designacion 19 (494, 495)","DS (182, 183)",False
+1415,"designacion 19 (494, 495)","dedicaci6n simple (305, 307)",False
+1416,"designacion 19 (494, 495)","DS (414, 415)",False
+1417,"designacion 19 (494, 495)","DS (463, 464)",True
+1418,"designacion 14 (104, 105)","DS (32, 33)",True
+1419,"designacion 14 (104, 105)","dedicaci6n simple (146, 148)",True
+1420,"designacion 14 (104, 105)","DS (170, 171)",True
+1421,"designacion 14 (104, 105)","DS (182, 183)",False
+1422,"designacion 15 (175, 176)","DS (32, 33)",False
+1423,"designacion 15 (175, 176)","dedicaci6n simple (146, 148)",True
+1424,"designacion 15 (175, 176)","DS (170, 171)",True
+1425,"designacion 15 (175, 176)","DS (182, 183)",True
+1426,"designacion 16 (278, 279)","dedicaci6n simple (305, 307)",True
+1427,"designacion 17 (407, 408)","DS (414, 415)",True
+1428,"designacion 18 (445, 446)","DS (463, 464)",True
+1429,"designacion 19 (494, 495)","DS (463, 464)",True
+1430,"designacion 11 (221, 222)","dedicaci6n simple (39, 41)",True
+1431,"designacion 11 (221, 222)","dedicaci6n simple (76, 78)",True
+1432,"designacion 11 (221, 222)","dedicaci6n simple (118, 120)",True
+1433,"designacion 11 (221, 222)","dedicaci6n simple (227, 229)",True
+1434,"designacion 11 (221, 222)","dedicaci6n simple (296, 298)",False
+1435,"designacion 12 (271, 272)","dedicaci6n simple (39, 41)",False
+1436,"designacion 12 (271, 272)","dedicaci6n simple (76, 78)",False
+1437,"designacion 12 (271, 272)","dedicaci6n simple (118, 120)",False
+1438,"designacion 12 (271, 272)","dedicaci6n simple (227, 229)",True
+1439,"designacion 12 (271, 272)","dedicaci6n simple (296, 298)",True
+1440,"designacion 13 (348, 349)","dedicaci6n simple (39, 41)",False
+1441,"designacion 13 (348, 349)","dedicaci6n simple (76, 78)",False
+1442,"designacion 13 (348, 349)","dedicaci6n simple (118, 120)",False
+1443,"designacion 13 (348, 349)","dedicaci6n simple (227, 229)",False
+1444,"designacion 13 (348, 349)","dedicaci6n simple (296, 298)",True
+1445,"designacion 11 (221, 222)","dedicaci6n simple (227, 229)",True
+1446,"designacion 12 (271, 272)","dedicaci6n simple (296, 298)",True
+1447,"designacion 0 (15, 16)","DS (46, 47)",True
+1448,"designacion 0 (15, 16)","DS (72, 73)",True
+1449,"designacion 0 (15, 16)","DS (97, 98)",True
+1450,"designacion 0 (15, 16)","DS (122, 123)",True
+1451,"designacion 0 (15, 16)","DS (152, 153)",True
+1452,"designacion 0 (15, 16)","dedicaci6n simple (184, 186)",True
+1453,"designacion 0 (15, 16)","DS (220, 221)",True
+1454,"designacion 0 (15, 16)","DS (231, 232)",True
+1455,"designacion 1 (306, 307)","dedicaci6n simple (330, 332)",False
+1456,"designacion 2 (321, 322)","dedicaci6n simple (330, 332)",True
+1457,"designacion 3 (394, 395)","dedicaci6n simple (436, 438)",False
+1458,"designacion 4 (427, 428)","dedicaci6n simple (436, 438)",True
+1459,"designacion 5 (468, 469)","dedicaci6n simple (490, 492)",False
+1460,"designacion 6 (481, 482)","dedicaci6n simple (490, 492)",True
+1461,"designacion 7 (519, 520)","dedicaci6n simple (544, 546)",False
+1462,"designacion 8 (534, 535)","dedicaci6n simple (544, 546)",True
+1463,"designacion 9 (656, 657)","dedicaci6n simple (681, 683)",True
+1464,"designacion 0 (15, 16)","DS (46, 47)",True
+1465,"designacion 0 (15, 16)","DS (72, 73)",True
+1466,"designacion 0 (15, 16)","DS (97, 98)",True
+1467,"designacion 0 (15, 16)","DS (122, 123)",True
+1468,"designacion 0 (15, 16)","DS (152, 153)",True
+1469,"designacion 0 (15, 16)","dedicaci6n simple (184, 186)",True
+1470,"designacion 0 (15, 16)","DS (220, 221)",True
+1471,"designacion 0 (15, 16)","DS (231, 232)",True
+1472,"designacion 0 (15, 16)","dedicaci6n simple (330, 332)",False
+1473,"designacion 0 (15, 16)","dedicaci6n simple (436, 438)",False
+1474,"designacion 0 (15, 16)","dedicaci6n simple (490, 492)",False
+1475,"designacion 0 (15, 16)","dedicaci6n simple (544, 546)",False
+1476,"designacion 0 (15, 16)","dedicaci6n simple (681, 683)",False
+1477,"designacion 1 (306, 307)","DS (46, 47)",True
+1478,"designacion 1 (306, 307)","DS (72, 73)",True
+1479,"designacion 1 (306, 307)","DS (97, 98)",True
+1480,"designacion 1 (306, 307)","DS (122, 123)",True
+1481,"designacion 1 (306, 307)","DS (152, 153)",True
+1482,"designacion 1 (306, 307)","dedicaci6n simple (184, 186)",True
+1483,"designacion 1 (306, 307)","DS (220, 221)",True
+1484,"designacion 1 (306, 307)","DS (231, 232)",True
+1485,"designacion 1 (306, 307)","dedicaci6n simple (330, 332)",False
+1486,"designacion 1 (306, 307)","dedicaci6n simple (436, 438)",False
+1487,"designacion 1 (306, 307)","dedicaci6n simple (490, 492)",False
+1488,"designacion 1 (306, 307)","dedicaci6n simple (544, 546)",False
+1489,"designacion 1 (306, 307)","dedicaci6n simple (681, 683)",False
+1490,"designacion 2 (321, 322)","DS (46, 47)",False
+1491,"designacion 2 (321, 322)","DS (72, 73)",False
+1492,"designacion 2 (321, 322)","DS (97, 98)",False
+1493,"designacion 2 (321, 322)","DS (122, 123)",False
+1494,"designacion 2 (321, 322)","DS (152, 153)",False
+1495,"designacion 2 (321, 322)","dedicaci6n simple (184, 186)",False
+1496,"designacion 2 (321, 322)","DS (220, 221)",False
+1497,"designacion 2 (321, 322)","DS (231, 232)",False
+1498,"designacion 2 (321, 322)","dedicaci6n simple (330, 332)",True
+1499,"designacion 2 (321, 322)","dedicaci6n simple (436, 438)",False
+1500,"designacion 2 (321, 322)","dedicaci6n simple (490, 492)",False
+1501,"designacion 2 (321, 322)","dedicaci6n simple (544, 546)",False
+1502,"designacion 2 (321, 322)","dedicaci6n simple (681, 683)",False
+1503,"designacion 3 (394, 395)","DS (46, 47)",False
+1504,"designacion 3 (394, 395)","DS (72, 73)",False
+1505,"designacion 3 (394, 395)","DS (97, 98)",False
+1506,"designacion 3 (394, 395)","DS (122, 123)",False
+1507,"designacion 3 (394, 395)","DS (152, 153)",False
+1508,"designacion 3 (394, 395)","dedicaci6n simple (184, 186)",False
+1509,"designacion 3 (394, 395)","DS (220, 221)",False
+1510,"designacion 3 (394, 395)","DS (231, 232)",False
+1511,"designacion 3 (394, 395)","dedicaci6n simple (330, 332)",True
+1512,"designacion 3 (394, 395)","dedicaci6n simple (436, 438)",False
+1513,"designacion 3 (394, 395)","dedicaci6n simple (490, 492)",False
+1514,"designacion 3 (394, 395)","dedicaci6n simple (544, 546)",False
+1515,"designacion 3 (394, 395)","dedicaci6n simple (681, 683)",False
+1516,"designacion 4 (427, 428)","DS (46, 47)",False
+1517,"designacion 4 (427, 428)","DS (72, 73)",False
+1518,"designacion 4 (427, 428)","DS (97, 98)",False
+1519,"designacion 4 (427, 428)","DS (122, 123)",False
+1520,"designacion 4 (427, 428)","DS (152, 153)",False
+1521,"designacion 4 (427, 428)","dedicaci6n simple (184, 186)",False
+1522,"designacion 4 (427, 428)","DS (220, 221)",False
+1523,"designacion 4 (427, 428)","DS (231, 232)",False
+1524,"designacion 4 (427, 428)","dedicaci6n simple (330, 332)",False
+1525,"designacion 4 (427, 428)","dedicaci6n simple (436, 438)",True
+1526,"designacion 4 (427, 428)","dedicaci6n simple (490, 492)",False
+1527,"designacion 4 (427, 428)","dedicaci6n simple (544, 546)",False
+1528,"designacion 4 (427, 428)","dedicaci6n simple (681, 683)",False
+1529,"designacion 5 (468, 469)","DS (46, 47)",False
+1530,"designacion 5 (468, 469)","DS (72, 73)",False
+1531,"designacion 5 (468, 469)","DS (97, 98)",False
+1532,"designacion 5 (468, 469)","DS (122, 123)",False
+1533,"designacion 5 (468, 469)","DS (152, 153)",False
+1534,"designacion 5 (468, 469)","dedicaci6n simple (184, 186)",False
+1535,"designacion 5 (468, 469)","DS (220, 221)",False
