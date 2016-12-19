@@ -1,111 +1,18 @@
 Candidate evidence id,Candidate evidence left entity,Candidate evidence right entity,Relation present
-769,"designacion 16 (278, 279)","1 de mayo de 2014 (284, 289)",True
-770,"designacion 17 (407, 408)","1 de mayo de 2014 (434, 439)",True
-771,"designacion 18 (445, 446)","1 de mayo de 2014 (476, 481)",True
-772,"designacion 18 (445, 446)","1 de mayo de 2014 (510, 515)",False
-773,"designacion 19 (494, 495)","1 de mayo de 2014 (476, 481)",True
-774,"designacion 19 (494, 495)","1 de mayo de 2014 (510, 515)",True
-775,"designacion 11 (221, 222)","01 de abril (258, 261)",True
-776,"designacion 0 (15, 16)","28 de febrero (24, 27)",True
-777,"designacion 1 (306, 307)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
-778,"designacion 2 (321, 322)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
-779,"designacion 3 (394, 395)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
-780,"designacion 4 (427, 428)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
-781,"designacion 5 (468, 469)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
-782,"designacion 6 (481, 482)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
-783,"designacion 7 (519, 520)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
-784,"designacion 8 (534, 535)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
-785,"designacion 9 (656, 657)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",True
-161,"designacion 14 (104, 105)","1 de mayo de 2014 (284, 289)",False
-162,"designacion 14 (104, 105)","1 de mayo de 2014 (434, 439)",False
-163,"designacion 14 (104, 105)","1 de mayo de 2014 (476, 481)",False
-164,"designacion 14 (104, 105)","1 de mayo de 2014 (510, 515)",False
-165,"designacion 15 (175, 176)","1 de mayo de 2014 (284, 289)",False
-166,"designacion 15 (175, 176)","1 de mayo de 2014 (434, 439)",False
-167,"designacion 15 (175, 176)","1 de mayo de 2014 (476, 481)",False
-168,"designacion 15 (175, 176)","1 de mayo de 2014 (510, 515)",False
-169,"designacion 16 (278, 279)","1 de mayo de 2014 (284, 289)",True
-170,"designacion 16 (278, 279)","1 de mayo de 2014 (434, 439)",False
-171,"designacion 16 (278, 279)","1 de mayo de 2014 (476, 481)",False
-172,"designacion 16 (278, 279)","1 de mayo de 2014 (510, 515)",False
-173,"designacion 17 (407, 408)","1 de mayo de 2014 (284, 289)",True
-174,"designacion 17 (407, 408)","1 de mayo de 2014 (434, 439)",True
-175,"designacion 17 (407, 408)","1 de mayo de 2014 (476, 481)",False
-176,"designacion 17 (407, 408)","1 de mayo de 2014 (510, 515)",False
-177,"designacion 18 (445, 446)","1 de mayo de 2014 (284, 289)",False
-178,"designacion 18 (445, 446)","1 de mayo de 2014 (434, 439)",True
-179,"designacion 18 (445, 446)","1 de mayo de 2014 (476, 481)",True
-180,"designacion 18 (445, 446)","1 de mayo de 2014 (510, 515)",False
-181,"designacion 19 (494, 495)","1 de mayo de 2014 (284, 289)",False
-182,"designacion 19 (494, 495)","1 de mayo de 2014 (434, 439)",False
-183,"designacion 19 (494, 495)","1 de mayo de 2014 (476, 481)",True
-184,"designacion 19 (494, 495)","1 de mayo de 2014 (510, 515)",True
-185,"designacion 11 (221, 222)","01 de abril (258, 261)",True
-186,"designacion 12 (271, 272)","01 de abril (258, 261)",True
-187,"designacion 13 (348, 349)","01 de abril (258, 261)",False
-188,"designacion 0 (15, 16)","28 de febrero (24, 27)",True
-189,"designacion 0 (15, 16)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-190,"designacion 0 (15, 16)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-191,"designacion 0 (15, 16)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-192,"designacion 0 (15, 16)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-193,"designacion 0 (15, 16)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-194,"designacion 1 (306, 307)","28 de febrero (24, 27)",True
-195,"designacion 1 (306, 307)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
-196,"designacion 1 (306, 307)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-197,"designacion 1 (306, 307)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-198,"designacion 1 (306, 307)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-199,"designacion 1 (306, 307)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-200,"designacion 2 (321, 322)","28 de febrero (24, 27)",False
-201,"designacion 2 (321, 322)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
-202,"designacion 2 (321, 322)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-203,"designacion 2 (321, 322)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-204,"designacion 2 (321, 322)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-205,"designacion 2 (321, 322)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-206,"designacion 3 (394, 395)","28 de febrero (24, 27)",False
-207,"designacion 3 (394, 395)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-208,"designacion 3 (394, 395)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
-209,"designacion 3 (394, 395)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-210,"designacion 3 (394, 395)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-211,"designacion 3 (394, 395)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-212,"designacion 4 (427, 428)","28 de febrero (24, 27)",False
-213,"designacion 4 (427, 428)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-214,"designacion 4 (427, 428)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
-215,"designacion 4 (427, 428)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-216,"designacion 4 (427, 428)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-217,"designacion 4 (427, 428)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-218,"designacion 5 (468, 469)","28 de febrero (24, 27)",False
-219,"designacion 5 (468, 469)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-220,"designacion 5 (468, 469)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-221,"designacion 5 (468, 469)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
-222,"designacion 5 (468, 469)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-223,"designacion 5 (468, 469)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-224,"designacion 6 (481, 482)","28 de febrero (24, 27)",False
-225,"designacion 6 (481, 482)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-226,"designacion 6 (481, 482)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-227,"designacion 6 (481, 482)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
-228,"designacion 6 (481, 482)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-229,"designacion 6 (481, 482)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-230,"designacion 7 (519, 520)","28 de febrero (24, 27)",False
-231,"designacion 7 (519, 520)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-232,"designacion 7 (519, 520)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-233,"designacion 7 (519, 520)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-234,"designacion 7 (519, 520)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
-235,"designacion 7 (519, 520)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-236,"designacion 8 (534, 535)","28 de febrero (24, 27)",False
-237,"designacion 8 (534, 535)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-238,"designacion 8 (534, 535)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-239,"designacion 8 (534, 535)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-240,"designacion 8 (534, 535)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
-241,"designacion 8 (534, 535)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",False
-242,"designacion 9 (656, 657)","28 de febrero (24, 27)",False
-243,"designacion 9 (656, 657)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-244,"designacion 9 (656, 657)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-245,"designacion 9 (656, 657)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-246,"designacion 9 (656, 657)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-247,"designacion 9 (656, 657)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",True
-248,"designacion 10 (706, 707)","28 de febrero (24, 27)",False
-249,"designacion 10 (706, 707)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",False
-250,"designacion 10 (706, 707)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",False
-251,"designacion 10 (706, 707)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",False
-252,"designacion 10 (706, 707)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",False
-253,"designacion 10 (706, 707)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",True
+1607,"designacion 18 (445, 446)","1 de mayo de 2014 (476, 481)",True
+1608,"designacion 18 (445, 446)","1 de mayo de 2014 (510, 515)",False
+1609,"designacion 19 (494, 495)","1 de mayo de 2014 (476, 481)",True
+1610,"designacion 19 (494, 495)","1 de mayo de 2014 (510, 515)",True
+1611,"designacion 16 (278, 279)","1 de mayo de 2014 (284, 289)",True
+1612,"designacion 17 (407, 408)","1 de mayo de 2014 (434, 439)",True
+1613,"designacion 11 (221, 222)","01 de abril (258, 261)",True
+1614,"designacion 0 (15, 16)","28 de febrero (24, 27)",True
+1615,"designacion 1 (306, 307)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
+1616,"designacion 2 (321, 322)","a partir del 1 de marzo al 30 de junio de 2014 (308, 320)",True
+1617,"designacion 3 (394, 395)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
+1618,"designacion 4 (427, 428)","a partir del 1 de marzo al 30 de junio de 2014 (396, 408)",True
+1619,"designacion 5 (468, 469)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
+1620,"designacion 6 (481, 482)","a partir del 1 aI 31 de marzo de 2014 (470, 480)",True
+1621,"designacion 7 (519, 520)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
+1622,"designacion 8 (534, 535)","a partir del 1 de marzo aI 30 de junio de 2014 (521, 533)",True
+1623,"designacion 9 (656, 657)","a partir del 10 de marzo de 2014 y hasta el 28 de febrero de 2015 (659, 675)",True

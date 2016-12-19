@@ -25,7 +25,7 @@ from iepy.data.db import DocumentManager
 from iepy.preprocess.pipeline import PreProcessPipeline, PreProcessSteps
 from iepy.preprocess.segmenter import SyntacticSegmenterRunner
 from iepy.preprocess.tokenizer import TokenizeSentencerRunner
-from iepy.preprocess.ner.combiner import CombinedNERRunner
+from iepy.preprocess.ner.combiner import CombinedNERRunner, KindPreferenceCombinedNERRunner
 
 from process.position import PositionNERRunner
 from process.date import DateNERRunner
@@ -49,14 +49,15 @@ def start_preprocess(docs, increment_ner):
         TokenizeSentencerRunner(override=True),
         SyntacticSegmenterRunner(),
         # ClearEntities('DESIGNATION'),
-        CombinedNERRunner([
+        KindPreferenceCombinedNERRunner([
             PositionNERRunner(),
             DateNERRunner(),
             PersonNERRunner(),
             DesignationNERRunner(),
             DedicationNERRunner(),
             DesignationTypeNERRunner()
-        ], override=True)
+        ], override=True,
+        rank=('DATE','POSITION', 'DEDICATION', 'DESIGNATION', 'PERSON', 'DESIGNATION_TYPE'))
     ], docs)
     pipeline.process_everything()
 

@@ -1,595 +1,71 @@
 Candidate evidence id,Candidate evidence left entity,Candidate evidence right entity,Relation present
-254,"designacion 14 (104, 105)","RESOLUCION CD No (4, 7)",True
-255,"designacion 14 (104, 105)","VISTO El Ilamado (12, 15)",True
-256,"designacion 14 (104, 105)","Profesor Asistente DS (30, 33)",True
-257,"designacion 14 (104, 105)","CONSIDERANDO Que (49, 51)",True
-258,"designacion 14 (104, 105)","Araceli N . ACOSTA (111, 115)",True
-259,"designacion 14 (104, 105)","Diego G . DUBOIS (116, 120)",True
-260,"designacion 14 (104, 105)","Demetrio M . VILELA (121, 125)",True
-261,"designacion 14 (104, 105)","Carlos S . BEDERIAN (134, 138)",True
-262,"designacion 14 (104, 105)","Daniel MOISSET DE ESPANES (153, 157)",True
-263,"designacion 14 (104, 105)","Asistente DS (181, 183)",False
-264,"designacion 14 (104, 105)","Laura ALONSO ALEMANY (227, 230)",False
-265,"designacion 14 (104, 105)","Paula S . ESTRELLA (231, 235)",False
-266,"designacion 14 (104, 105)","Hector L . GRAMAGLIA (242, 246)",False
-267,"designacion 14 (104, 105)","ACOSTA , Araceli N . (320, 325)",False
-268,"designacion 14 (104, 105)","DUBOIS , Diego G . (334, 339)",False
-269,"designacion 14 (104, 105)","VILELA , Demetrio M . (348, 353)",False
-270,"designacion 14 (104, 105)","MOISSET DE ESPANES , Daniel (362, 367)",False
-271,"designacion 14 (104, 105)","BEDERIAN , Carlos (376, 379)",False
-272,"designacion 14 (104, 105)","Diego DUBOIS (396, 398)",False
-273,"designacion 14 (104, 105)","Demetrio VILELA (399, 401)",False
-274,"designacion 14 (104, 105)","Carlos BEDERIAN (402, 404)",False
-275,"designacion 14 (104, 105)","Daniel MOISSET DE ESPANES (451, 455)",False
-276,"designacion 14 (104, 105)","Daniel MOISSET DE ESPANES (487, 491)",False
-277,"designacion 14 (104, 105)","Asistente OS (499, 501)",False
-278,"designacion 14 (104, 105)","Ordenanza HCS (546, 548)",False
-279,"designacion 14 (104, 105)","Ordenanza HCS (604, 606)",False
-280,"designacion 15 (175, 176)","RESOLUCION CD No (4, 7)",False
-281,"designacion 15 (175, 176)","VISTO El Ilamado (12, 15)",False
-282,"designacion 15 (175, 176)","Profesor Asistente DS (30, 33)",False
-283,"designacion 15 (175, 176)","CONSIDERANDO Que (49, 51)",False
-284,"designacion 15 (175, 176)","Araceli N . ACOSTA (111, 115)",True
-285,"designacion 15 (175, 176)","Diego G . DUBOIS (116, 120)",True
-286,"designacion 15 (175, 176)","Demetrio M . VILELA (121, 125)",True
-287,"designacion 15 (175, 176)","Carlos S . BEDERIAN (134, 138)",True
-288,"designacion 15 (175, 176)","Daniel MOISSET DE ESPANES (153, 157)",True
-289,"designacion 15 (175, 176)","Asistente DS (181, 183)",True
-290,"designacion 15 (175, 176)","Laura ALONSO ALEMANY (227, 230)",True
-291,"designacion 15 (175, 176)","Paula S . ESTRELLA (231, 235)",True
-292,"designacion 15 (175, 176)","Hector L . GRAMAGLIA (242, 246)",True
-293,"designacion 15 (175, 176)","ACOSTA , Araceli N . (320, 325)",False
-294,"designacion 15 (175, 176)","DUBOIS , Diego G . (334, 339)",False
-295,"designacion 15 (175, 176)","VILELA , Demetrio M . (348, 353)",False
-296,"designacion 15 (175, 176)","MOISSET DE ESPANES , Daniel (362, 367)",False
-297,"designacion 15 (175, 176)","BEDERIAN , Carlos (376, 379)",False
-298,"designacion 15 (175, 176)","Diego DUBOIS (396, 398)",False
-299,"designacion 15 (175, 176)","Demetrio VILELA (399, 401)",False
-300,"designacion 15 (175, 176)","Carlos BEDERIAN (402, 404)",False
-301,"designacion 15 (175, 176)","Daniel MOISSET DE ESPANES (451, 455)",False
-302,"designacion 15 (175, 176)","Daniel MOISSET DE ESPANES (487, 491)",False
-303,"designacion 15 (175, 176)","Asistente OS (499, 501)",False
-304,"designacion 15 (175, 176)","Ordenanza HCS (546, 548)",False
-305,"designacion 15 (175, 176)","Ordenanza HCS (604, 606)",False
-306,"designacion 16 (278, 279)","RESOLUCION CD No (4, 7)",False
-307,"designacion 16 (278, 279)","VISTO El Ilamado (12, 15)",False
-308,"designacion 16 (278, 279)","Profesor Asistente DS (30, 33)",False
-309,"designacion 16 (278, 279)","CONSIDERANDO Que (49, 51)",False
-310,"designacion 16 (278, 279)","Araceli N . ACOSTA (111, 115)",False
-311,"designacion 16 (278, 279)","Diego G . DUBOIS (116, 120)",False
-312,"designacion 16 (278, 279)","Demetrio M . VILELA (121, 125)",False
-313,"designacion 16 (278, 279)","Carlos S . BEDERIAN (134, 138)",False
-314,"designacion 16 (278, 279)","Daniel MOISSET DE ESPANES (153, 157)",False
-315,"designacion 16 (278, 279)","Asistente DS (181, 183)",True
-316,"designacion 16 (278, 279)","Laura ALONSO ALEMANY (227, 230)",True
-317,"designacion 16 (278, 279)","Paula S . ESTRELLA (231, 235)",True
-318,"designacion 16 (278, 279)","Hector L . GRAMAGLIA (242, 246)",True
-319,"designacion 16 (278, 279)","ACOSTA , Araceli N . (320, 325)",True
-320,"designacion 16 (278, 279)","DUBOIS , Diego G . (334, 339)",True
-321,"designacion 16 (278, 279)","VILELA , Demetrio M . (348, 353)",True
-322,"designacion 16 (278, 279)","MOISSET DE ESPANES , Daniel (362, 367)",True
-323,"designacion 16 (278, 279)","BEDERIAN , Carlos (376, 379)",True
-324,"designacion 16 (278, 279)","Diego DUBOIS (396, 398)",True
-325,"designacion 16 (278, 279)","Demetrio VILELA (399, 401)",True
-326,"designacion 16 (278, 279)","Carlos BEDERIAN (402, 404)",True
-327,"designacion 16 (278, 279)","Daniel MOISSET DE ESPANES (451, 455)",False
-328,"designacion 16 (278, 279)","Daniel MOISSET DE ESPANES (487, 491)",False
-329,"designacion 16 (278, 279)","Asistente OS (499, 501)",False
-330,"designacion 16 (278, 279)","Ordenanza HCS (546, 548)",False
-331,"designacion 16 (278, 279)","Ordenanza HCS (604, 606)",False
-332,"designacion 17 (407, 408)","RESOLUCION CD No (4, 7)",False
-333,"designacion 17 (407, 408)","VISTO El Ilamado (12, 15)",False
-334,"designacion 17 (407, 408)","Profesor Asistente DS (30, 33)",False
-335,"designacion 17 (407, 408)","CONSIDERANDO Que (49, 51)",False
-336,"designacion 17 (407, 408)","Araceli N . ACOSTA (111, 115)",False
-337,"designacion 17 (407, 408)","Diego G . DUBOIS (116, 120)",False
-338,"designacion 17 (407, 408)","Demetrio M . VILELA (121, 125)",False
-339,"designacion 17 (407, 408)","Carlos S . BEDERIAN (134, 138)",False
-340,"designacion 17 (407, 408)","Daniel MOISSET DE ESPANES (153, 157)",False
-341,"designacion 17 (407, 408)","Asistente DS (181, 183)",False
-342,"designacion 17 (407, 408)","Laura ALONSO ALEMANY (227, 230)",False
-343,"designacion 17 (407, 408)","Paula S . ESTRELLA (231, 235)",False
-344,"designacion 17 (407, 408)","Hector L . GRAMAGLIA (242, 246)",False
-345,"designacion 17 (407, 408)","ACOSTA , Araceli N . (320, 325)",True
-346,"designacion 17 (407, 408)","DUBOIS , Diego G . (334, 339)",True
-347,"designacion 17 (407, 408)","VILELA , Demetrio M . (348, 353)",True
-348,"designacion 17 (407, 408)","MOISSET DE ESPANES , Daniel (362, 367)",True
-349,"designacion 17 (407, 408)","BEDERIAN , Carlos (376, 379)",True
-350,"designacion 17 (407, 408)","Diego DUBOIS (396, 398)",True
-351,"designacion 17 (407, 408)","Demetrio VILELA (399, 401)",True
-352,"designacion 17 (407, 408)","Carlos BEDERIAN (402, 404)",True
-353,"designacion 17 (407, 408)","Daniel MOISSET DE ESPANES (451, 455)",False
-354,"designacion 17 (407, 408)","Daniel MOISSET DE ESPANES (487, 491)",False
-355,"designacion 17 (407, 408)","Asistente OS (499, 501)",False
-356,"designacion 17 (407, 408)","Ordenanza HCS (546, 548)",False
-357,"designacion 17 (407, 408)","Ordenanza HCS (604, 606)",False
-358,"designacion 18 (445, 446)","RESOLUCION CD No (4, 7)",False
-359,"designacion 18 (445, 446)","VISTO El Ilamado (12, 15)",False
-360,"designacion 18 (445, 446)","Profesor Asistente DS (30, 33)",False
-361,"designacion 18 (445, 446)","CONSIDERANDO Que (49, 51)",False
-362,"designacion 18 (445, 446)","Araceli N . ACOSTA (111, 115)",False
-363,"designacion 18 (445, 446)","Diego G . DUBOIS (116, 120)",False
-364,"designacion 18 (445, 446)","Demetrio M . VILELA (121, 125)",False
-365,"designacion 18 (445, 446)","Carlos S . BEDERIAN (134, 138)",False
-366,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (153, 157)",False
-367,"designacion 18 (445, 446)","Asistente DS (181, 183)",False
-368,"designacion 18 (445, 446)","Laura ALONSO ALEMANY (227, 230)",False
-369,"designacion 18 (445, 446)","Paula S . ESTRELLA (231, 235)",False
-370,"designacion 18 (445, 446)","Hector L . GRAMAGLIA (242, 246)",False
-371,"designacion 18 (445, 446)","ACOSTA , Araceli N . (320, 325)",False
-372,"designacion 18 (445, 446)","DUBOIS , Diego G . (334, 339)",False
-373,"designacion 18 (445, 446)","VILELA , Demetrio M . (348, 353)",False
-374,"designacion 18 (445, 446)","MOISSET DE ESPANES , Daniel (362, 367)",False
-375,"designacion 18 (445, 446)","BEDERIAN , Carlos (376, 379)",False
-376,"designacion 18 (445, 446)","Diego DUBOIS (396, 398)",False
-377,"designacion 18 (445, 446)","Demetrio VILELA (399, 401)",False
-378,"designacion 18 (445, 446)","Carlos BEDERIAN (402, 404)",False
-379,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (451, 455)",True
-380,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (487, 491)",True
-381,"designacion 18 (445, 446)","Asistente OS (499, 501)",False
-382,"designacion 18 (445, 446)","Ordenanza HCS (546, 548)",False
-383,"designacion 18 (445, 446)","Ordenanza HCS (604, 606)",False
-384,"designacion 19 (494, 495)","RESOLUCION CD No (4, 7)",False
-385,"designacion 19 (494, 495)","VISTO El Ilamado (12, 15)",False
-386,"designacion 19 (494, 495)","Profesor Asistente DS (30, 33)",False
-387,"designacion 19 (494, 495)","CONSIDERANDO Que (49, 51)",False
-388,"designacion 19 (494, 495)","Araceli N . ACOSTA (111, 115)",False
-389,"designacion 19 (494, 495)","Diego G . DUBOIS (116, 120)",False
-390,"designacion 19 (494, 495)","Demetrio M . VILELA (121, 125)",False
-391,"designacion 19 (494, 495)","Carlos S . BEDERIAN (134, 138)",False
-392,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (153, 157)",False
-393,"designacion 19 (494, 495)","Asistente DS (181, 183)",False
-394,"designacion 19 (494, 495)","Laura ALONSO ALEMANY (227, 230)",False
-395,"designacion 19 (494, 495)","Paula S . ESTRELLA (231, 235)",False
-396,"designacion 19 (494, 495)","Hector L . GRAMAGLIA (242, 246)",False
-397,"designacion 19 (494, 495)","ACOSTA , Araceli N . (320, 325)",False
-398,"designacion 19 (494, 495)","DUBOIS , Diego G . (334, 339)",False
-399,"designacion 19 (494, 495)","VILELA , Demetrio M . (348, 353)",False
-400,"designacion 19 (494, 495)","MOISSET DE ESPANES , Daniel (362, 367)",False
-401,"designacion 19 (494, 495)","BEDERIAN , Carlos (376, 379)",False
-402,"designacion 19 (494, 495)","Diego DUBOIS (396, 398)",False
-403,"designacion 19 (494, 495)","Demetrio VILELA (399, 401)",False
-404,"designacion 19 (494, 495)","Carlos BEDERIAN (402, 404)",False
-405,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (451, 455)",True
-406,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (487, 491)",True
-407,"designacion 19 (494, 495)","Asistente OS (499, 501)",True
-408,"designacion 19 (494, 495)","Ordenanza HCS (546, 548)",True
-409,"designacion 19 (494, 495)","Ordenanza HCS (604, 606)",True
-410,"designacion 11 (221, 222)","RESOLUCION CD No (4, 7)",True
-411,"designacion 11 (221, 222)","VISTO El (10, 12)",True
-412,"designacion 11 (221, 222)","CONSIDERANDO Que (54, 56)",True
-413,"designacion 11 (221, 222)","Matfas D . LEE (188, 192)",True
-414,"designacion 11 (221, 222)","Matfas D . LEE (246, 250)",True
-415,"designacion 11 (221, 222)","Ordenanza HCS (444, 446)",False
-416,"designacion 12 (271, 272)","RESOLUCION CD No (4, 7)",False
-417,"designacion 12 (271, 272)","VISTO El (10, 12)",False
-418,"designacion 12 (271, 272)","CONSIDERANDO Que (54, 56)",False
-419,"designacion 12 (271, 272)","Matfas D . LEE (188, 192)",False
-420,"designacion 12 (271, 272)","Matfas D . LEE (246, 250)",True
-421,"designacion 12 (271, 272)","Ordenanza HCS (444, 446)",False
-422,"designacion 13 (348, 349)","RESOLUCION CD No (4, 7)",False
-423,"designacion 13 (348, 349)","VISTO El (10, 12)",False
-424,"designacion 13 (348, 349)","CONSIDERANDO Que (54, 56)",False
-425,"designacion 13 (348, 349)","Matfas D . LEE (188, 192)",False
-426,"designacion 13 (348, 349)","Matfas D . LEE (246, 250)",False
-427,"designacion 13 (348, 349)","Ordenanza HCS (444, 446)",True
-428,"designacion 0 (15, 16)","RESOLUCION CD No (5, 8)",True
-429,"designacion 0 (15, 16)","VISTO Los (11, 13)",True
-430,"designacion 0 (15, 16)","CONSIDERANDO Que (32, 34)",True
-431,"designacion 0 (15, 16)","Profesor Asistente DS (44, 47)",True
-432,"designacion 0 (15, 16)","Profesor Asistente DS (70, 73)",True
-433,"designacion 0 (15, 16)","Begun Res CD (77, 80)",True
-434,"designacion 0 (15, 16)","Res CD (103, 105)",True
-435,"designacion 0 (15, 16)","Begun Res CD (127, 130)",True
-436,"designacion 0 (15, 16)","Res HCS (193, 195)",True
-437,"designacion 0 (15, 16)","Claudia Maria EGEA (204, 207)",True
-438,"designacion 0 (15, 16)","Profesor Asistente DS (218, 221)",True
-439,"designacion 0 (15, 16)","Res CD (256, 258)",True
-440,"designacion 0 (15, 16)","GARCIA IGLESIAS , Agustin (338, 342)",False
-441,"designacion 0 (15, 16)","MEINARDI , Vanesa (352, 355)",False
-442,"designacion 0 (15, 16)","PLAVNIK , Julia (365, 368)",False
-443,"designacion 0 (15, 16)","ROCHA , Pablo (378, 381)",False
-444,"designacion 0 (15, 16)","PERALTA , Gonzalo (442, 445)",False
-445,"designacion 0 (15, 16)","VILELA , Demetrio (453, 456)",False
-446,"designacion 0 (15, 16)","FERVARI , Raul (496, 499)",False
-447,"designacion 0 (15, 16)","BADANO , Mariana (550, 553)",False
-448,"designacion 0 (15, 16)","BEDERIAN , Carlos (562, 565)",False
-449,"designacion 0 (15, 16)","CARRASCOSA , Rafael (574, 577)",False
-450,"designacion 0 (15, 16)","DUBOIS , Diego (586, 589)",False
-451,"designacion 0 (15, 16)","ORBE , Alejandro (597, 600)",False
-452,"designacion 0 (15, 16)","RODRIGUEZ , Leonardo (608, 611)",False
-453,"designacion 0 (15, 16)","TELLECHEA , Mauricio (620, 623)",False
-454,"designacion 0 (15, 16)","VILELA , Demetrio (631, 634)",False
-455,"designacion 0 (15, 16)","VILELA , Demetrio (642, 645)",False
-456,"designacion 0 (15, 16)","Ordenanza HCS (802, 804)",False
-457,"designacion 0 (15, 16)","PP Dr (856, 858)",False
-458,"designacion 0 (15, 16)","CANNA Secretario General (862, 865)",False
-459,"designacion 1 (306, 307)","RESOLUCION CD No (5, 8)",False
-460,"designacion 1 (306, 307)","VISTO Los (11, 13)",False
-461,"designacion 1 (306, 307)","CONSIDERANDO Que (32, 34)",True
-462,"designacion 1 (306, 307)","Profesor Asistente DS (44, 47)",True
-463,"designacion 1 (306, 307)","Profesor Asistente DS (70, 73)",True
-464,"designacion 1 (306, 307)","Begun Res CD (77, 80)",True
-465,"designacion 1 (306, 307)","Res CD (103, 105)",True
-466,"designacion 1 (306, 307)","Begun Res CD (127, 130)",True
-467,"designacion 1 (306, 307)","Res HCS (193, 195)",True
-468,"designacion 1 (306, 307)","Claudia Maria EGEA (204, 207)",True
-469,"designacion 1 (306, 307)","Profesor Asistente DS (218, 221)",True
-470,"designacion 1 (306, 307)","Res CD (256, 258)",True
-471,"designacion 1 (306, 307)","GARCIA IGLESIAS , Agustin (338, 342)",False
-472,"designacion 1 (306, 307)","MEINARDI , Vanesa (352, 355)",False
-473,"designacion 1 (306, 307)","PLAVNIK , Julia (365, 368)",False
-474,"designacion 1 (306, 307)","ROCHA , Pablo (378, 381)",False
-475,"designacion 1 (306, 307)","PERALTA , Gonzalo (442, 445)",False
-476,"designacion 1 (306, 307)","VILELA , Demetrio (453, 456)",False
-477,"designacion 1 (306, 307)","FERVARI , Raul (496, 499)",False
-478,"designacion 1 (306, 307)","BADANO , Mariana (550, 553)",False
-479,"designacion 1 (306, 307)","BEDERIAN , Carlos (562, 565)",False
-480,"designacion 1 (306, 307)","CARRASCOSA , Rafael (574, 577)",False
-481,"designacion 1 (306, 307)","DUBOIS , Diego (586, 589)",False
-482,"designacion 1 (306, 307)","ORBE , Alejandro (597, 600)",False
-483,"designacion 1 (306, 307)","RODRIGUEZ , Leonardo (608, 611)",False
-484,"designacion 1 (306, 307)","TELLECHEA , Mauricio (620, 623)",False
-485,"designacion 1 (306, 307)","VILELA , Demetrio (631, 634)",False
-486,"designacion 1 (306, 307)","VILELA , Demetrio (642, 645)",False
-487,"designacion 1 (306, 307)","Ordenanza HCS (802, 804)",False
-488,"designacion 1 (306, 307)","PP Dr (856, 858)",False
-489,"designacion 1 (306, 307)","CANNA Secretario General (862, 865)",False
-490,"designacion 2 (321, 322)","RESOLUCION CD No (5, 8)",False
-491,"designacion 2 (321, 322)","VISTO Los (11, 13)",False
-492,"designacion 2 (321, 322)","CONSIDERANDO Que (32, 34)",False
-493,"designacion 2 (321, 322)","Profesor Asistente DS (44, 47)",False
-494,"designacion 2 (321, 322)","Profesor Asistente DS (70, 73)",False
-495,"designacion 2 (321, 322)","Begun Res CD (77, 80)",False
-496,"designacion 2 (321, 322)","Res CD (103, 105)",False
-497,"designacion 2 (321, 322)","Begun Res CD (127, 130)",False
-498,"designacion 2 (321, 322)","Res HCS (193, 195)",False
-499,"designacion 2 (321, 322)","Claudia Maria EGEA (204, 207)",False
-500,"designacion 2 (321, 322)","Profesor Asistente DS (218, 221)",False
-501,"designacion 2 (321, 322)","Res CD (256, 258)",False
-502,"designacion 2 (321, 322)","GARCIA IGLESIAS , Agustin (338, 342)",True
-503,"designacion 2 (321, 322)","MEINARDI , Vanesa (352, 355)",True
-504,"designacion 2 (321, 322)","PLAVNIK , Julia (365, 368)",True
-505,"designacion 2 (321, 322)","ROCHA , Pablo (378, 381)",True
-506,"designacion 2 (321, 322)","PERALTA , Gonzalo (442, 445)",False
-507,"designacion 2 (321, 322)","VILELA , Demetrio (453, 456)",False
-508,"designacion 2 (321, 322)","FERVARI , Raul (496, 499)",False
-509,"designacion 2 (321, 322)","BADANO , Mariana (550, 553)",False
-510,"designacion 2 (321, 322)","BEDERIAN , Carlos (562, 565)",False
-511,"designacion 2 (321, 322)","CARRASCOSA , Rafael (574, 577)",False
-512,"designacion 2 (321, 322)","DUBOIS , Diego (586, 589)",False
-513,"designacion 2 (321, 322)","ORBE , Alejandro (597, 600)",False
-514,"designacion 2 (321, 322)","RODRIGUEZ , Leonardo (608, 611)",False
-515,"designacion 2 (321, 322)","TELLECHEA , Mauricio (620, 623)",False
-516,"designacion 2 (321, 322)","VILELA , Demetrio (631, 634)",False
-517,"designacion 2 (321, 322)","VILELA , Demetrio (642, 645)",False
-518,"designacion 2 (321, 322)","Ordenanza HCS (802, 804)",False
-519,"designacion 2 (321, 322)","PP Dr (856, 858)",False
-520,"designacion 2 (321, 322)","CANNA Secretario General (862, 865)",False
-521,"designacion 3 (394, 395)","RESOLUCION CD No (5, 8)",False
-522,"designacion 3 (394, 395)","VISTO Los (11, 13)",False
-523,"designacion 3 (394, 395)","CONSIDERANDO Que (32, 34)",False
-524,"designacion 3 (394, 395)","Profesor Asistente DS (44, 47)",False
-525,"designacion 3 (394, 395)","Profesor Asistente DS (70, 73)",False
-526,"designacion 3 (394, 395)","Begun Res CD (77, 80)",False
-527,"designacion 3 (394, 395)","Res CD (103, 105)",False
-528,"designacion 3 (394, 395)","Begun Res CD (127, 130)",False
-529,"designacion 3 (394, 395)","Res HCS (193, 195)",False
-530,"designacion 3 (394, 395)","Claudia Maria EGEA (204, 207)",False
-531,"designacion 3 (394, 395)","Profesor Asistente DS (218, 221)",False
-532,"designacion 3 (394, 395)","Res CD (256, 258)",False
-533,"designacion 3 (394, 395)","GARCIA IGLESIAS , Agustin (338, 342)",True
-534,"designacion 3 (394, 395)","MEINARDI , Vanesa (352, 355)",True
-535,"designacion 3 (394, 395)","PLAVNIK , Julia (365, 368)",True
-536,"designacion 3 (394, 395)","ROCHA , Pablo (378, 381)",True
-537,"designacion 3 (394, 395)","PERALTA , Gonzalo (442, 445)",False
-538,"designacion 3 (394, 395)","VILELA , Demetrio (453, 456)",False
-539,"designacion 3 (394, 395)","FERVARI , Raul (496, 499)",False
-540,"designacion 3 (394, 395)","BADANO , Mariana (550, 553)",False
-541,"designacion 3 (394, 395)","BEDERIAN , Carlos (562, 565)",False
-542,"designacion 3 (394, 395)","CARRASCOSA , Rafael (574, 577)",False
-543,"designacion 3 (394, 395)","DUBOIS , Diego (586, 589)",False
-544,"designacion 3 (394, 395)","ORBE , Alejandro (597, 600)",False
-545,"designacion 3 (394, 395)","RODRIGUEZ , Leonardo (608, 611)",False
-546,"designacion 3 (394, 395)","TELLECHEA , Mauricio (620, 623)",False
-547,"designacion 3 (394, 395)","VILELA , Demetrio (631, 634)",False
-548,"designacion 3 (394, 395)","VILELA , Demetrio (642, 645)",False
-549,"designacion 3 (394, 395)","Ordenanza HCS (802, 804)",False
-550,"designacion 3 (394, 395)","PP Dr (856, 858)",False
-551,"designacion 3 (394, 395)","CANNA Secretario General (862, 865)",False
-552,"designacion 4 (427, 428)","RESOLUCION CD No (5, 8)",False
-553,"designacion 4 (427, 428)","VISTO Los (11, 13)",False
-554,"designacion 4 (427, 428)","CONSIDERANDO Que (32, 34)",False
-555,"designacion 4 (427, 428)","Profesor Asistente DS (44, 47)",False
-556,"designacion 4 (427, 428)","Profesor Asistente DS (70, 73)",False
-557,"designacion 4 (427, 428)","Begun Res CD (77, 80)",False
-558,"designacion 4 (427, 428)","Res CD (103, 105)",False
-559,"designacion 4 (427, 428)","Begun Res CD (127, 130)",False
-560,"designacion 4 (427, 428)","Res HCS (193, 195)",False
-561,"designacion 4 (427, 428)","Claudia Maria EGEA (204, 207)",False
-562,"designacion 4 (427, 428)","Profesor Asistente DS (218, 221)",False
-563,"designacion 4 (427, 428)","Res CD (256, 258)",False
-564,"designacion 4 (427, 428)","GARCIA IGLESIAS , Agustin (338, 342)",False
-565,"designacion 4 (427, 428)","MEINARDI , Vanesa (352, 355)",False
-566,"designacion 4 (427, 428)","PLAVNIK , Julia (365, 368)",False
-567,"designacion 4 (427, 428)","ROCHA , Pablo (378, 381)",False
-568,"designacion 4 (427, 428)","PERALTA , Gonzalo (442, 445)",True
-569,"designacion 4 (427, 428)","VILELA , Demetrio (453, 456)",True
-570,"designacion 4 (427, 428)","FERVARI , Raul (496, 499)",False
-571,"designacion 4 (427, 428)","BADANO , Mariana (550, 553)",False
-572,"designacion 4 (427, 428)","BEDERIAN , Carlos (562, 565)",False
-573,"designacion 4 (427, 428)","CARRASCOSA , Rafael (574, 577)",False
-574,"designacion 4 (427, 428)","DUBOIS , Diego (586, 589)",False
-575,"designacion 4 (427, 428)","ORBE , Alejandro (597, 600)",False
-576,"designacion 4 (427, 428)","RODRIGUEZ , Leonardo (608, 611)",False
-577,"designacion 4 (427, 428)","TELLECHEA , Mauricio (620, 623)",False
-578,"designacion 4 (427, 428)","VILELA , Demetrio (631, 634)",False
-579,"designacion 4 (427, 428)","VILELA , Demetrio (642, 645)",False
-580,"designacion 4 (427, 428)","Ordenanza HCS (802, 804)",False
-581,"designacion 4 (427, 428)","PP Dr (856, 858)",False
-582,"designacion 4 (427, 428)","CANNA Secretario General (862, 865)",False
-583,"designacion 5 (468, 469)","RESOLUCION CD No (5, 8)",False
-584,"designacion 5 (468, 469)","VISTO Los (11, 13)",False
-585,"designacion 5 (468, 469)","CONSIDERANDO Que (32, 34)",False
-586,"designacion 5 (468, 469)","Profesor Asistente DS (44, 47)",False
-587,"designacion 5 (468, 469)","Profesor Asistente DS (70, 73)",False
-588,"designacion 5 (468, 469)","Begun Res CD (77, 80)",False
-589,"designacion 5 (468, 469)","Res CD (103, 105)",False
-590,"designacion 5 (468, 469)","Begun Res CD (127, 130)",False
-591,"designacion 5 (468, 469)","Res HCS (193, 195)",False
-592,"designacion 5 (468, 469)","Claudia Maria EGEA (204, 207)",False
-593,"designacion 5 (468, 469)","Profesor Asistente DS (218, 221)",False
-594,"designacion 5 (468, 469)","Res CD (256, 258)",False
-595,"designacion 5 (468, 469)","GARCIA IGLESIAS , Agustin (338, 342)",False
-596,"designacion 5 (468, 469)","MEINARDI , Vanesa (352, 355)",False
-597,"designacion 5 (468, 469)","PLAVNIK , Julia (365, 368)",False
-598,"designacion 5 (468, 469)","ROCHA , Pablo (378, 381)",False
-599,"designacion 5 (468, 469)","PERALTA , Gonzalo (442, 445)",True
-600,"designacion 5 (468, 469)","VILELA , Demetrio (453, 456)",True
-601,"designacion 5 (468, 469)","FERVARI , Raul (496, 499)",False
-602,"designacion 5 (468, 469)","BADANO , Mariana (550, 553)",False
-603,"designacion 5 (468, 469)","BEDERIAN , Carlos (562, 565)",False
-604,"designacion 5 (468, 469)","CARRASCOSA , Rafael (574, 577)",False
-605,"designacion 5 (468, 469)","DUBOIS , Diego (586, 589)",False
-606,"designacion 5 (468, 469)","ORBE , Alejandro (597, 600)",False
-607,"designacion 5 (468, 469)","RODRIGUEZ , Leonardo (608, 611)",False
-608,"designacion 5 (468, 469)","TELLECHEA , Mauricio (620, 623)",False
-609,"designacion 5 (468, 469)","VILELA , Demetrio (631, 634)",False
-610,"designacion 5 (468, 469)","VILELA , Demetrio (642, 645)",False
-611,"designacion 5 (468, 469)","Ordenanza HCS (802, 804)",False
-612,"designacion 5 (468, 469)","PP Dr (856, 858)",False
-613,"designacion 5 (468, 469)","CANNA Secretario General (862, 865)",False
-614,"designacion 6 (481, 482)","RESOLUCION CD No (5, 8)",False
-615,"designacion 6 (481, 482)","VISTO Los (11, 13)",False
-616,"designacion 6 (481, 482)","CONSIDERANDO Que (32, 34)",False
-617,"designacion 6 (481, 482)","Profesor Asistente DS (44, 47)",False
-618,"designacion 6 (481, 482)","Profesor Asistente DS (70, 73)",False
-619,"designacion 6 (481, 482)","Begun Res CD (77, 80)",False
-620,"designacion 6 (481, 482)","Res CD (103, 105)",False
-621,"designacion 6 (481, 482)","Begun Res CD (127, 130)",False
-622,"designacion 6 (481, 482)","Res HCS (193, 195)",False
-623,"designacion 6 (481, 482)","Claudia Maria EGEA (204, 207)",False
-624,"designacion 6 (481, 482)","Profesor Asistente DS (218, 221)",False
-625,"designacion 6 (481, 482)","Res CD (256, 258)",False
-626,"designacion 6 (481, 482)","GARCIA IGLESIAS , Agustin (338, 342)",False
-627,"designacion 6 (481, 482)","MEINARDI , Vanesa (352, 355)",False
-628,"designacion 6 (481, 482)","PLAVNIK , Julia (365, 368)",False
-629,"designacion 6 (481, 482)","ROCHA , Pablo (378, 381)",False
-630,"designacion 6 (481, 482)","PERALTA , Gonzalo (442, 445)",False
-631,"designacion 6 (481, 482)","VILELA , Demetrio (453, 456)",False
-632,"designacion 6 (481, 482)","FERVARI , Raul (496, 499)",True
-633,"designacion 6 (481, 482)","BADANO , Mariana (550, 553)",False
-634,"designacion 6 (481, 482)","BEDERIAN , Carlos (562, 565)",False
-635,"designacion 6 (481, 482)","CARRASCOSA , Rafael (574, 577)",False
-636,"designacion 6 (481, 482)","DUBOIS , Diego (586, 589)",False
-637,"designacion 6 (481, 482)","ORBE , Alejandro (597, 600)",False
-638,"designacion 6 (481, 482)","RODRIGUEZ , Leonardo (608, 611)",False
-639,"designacion 6 (481, 482)","TELLECHEA , Mauricio (620, 623)",False
-640,"designacion 6 (481, 482)","VILELA , Demetrio (631, 634)",False
-641,"designacion 6 (481, 482)","VILELA , Demetrio (642, 645)",False
-642,"designacion 6 (481, 482)","Ordenanza HCS (802, 804)",False
-643,"designacion 6 (481, 482)","PP Dr (856, 858)",False
-644,"designacion 6 (481, 482)","CANNA Secretario General (862, 865)",False
-645,"designacion 7 (519, 520)","RESOLUCION CD No (5, 8)",False
-646,"designacion 7 (519, 520)","VISTO Los (11, 13)",False
-647,"designacion 7 (519, 520)","CONSIDERANDO Que (32, 34)",False
-648,"designacion 7 (519, 520)","Profesor Asistente DS (44, 47)",False
-649,"designacion 7 (519, 520)","Profesor Asistente DS (70, 73)",False
-650,"designacion 7 (519, 520)","Begun Res CD (77, 80)",False
-651,"designacion 7 (519, 520)","Res CD (103, 105)",False
-652,"designacion 7 (519, 520)","Begun Res CD (127, 130)",False
-653,"designacion 7 (519, 520)","Res HCS (193, 195)",False
-654,"designacion 7 (519, 520)","Claudia Maria EGEA (204, 207)",False
-655,"designacion 7 (519, 520)","Profesor Asistente DS (218, 221)",False
-656,"designacion 7 (519, 520)","Res CD (256, 258)",False
-657,"designacion 7 (519, 520)","GARCIA IGLESIAS , Agustin (338, 342)",False
-658,"designacion 7 (519, 520)","MEINARDI , Vanesa (352, 355)",False
-659,"designacion 7 (519, 520)","PLAVNIK , Julia (365, 368)",False
-660,"designacion 7 (519, 520)","ROCHA , Pablo (378, 381)",False
-661,"designacion 7 (519, 520)","PERALTA , Gonzalo (442, 445)",False
-662,"designacion 7 (519, 520)","VILELA , Demetrio (453, 456)",False
-663,"designacion 7 (519, 520)","FERVARI , Raul (496, 499)",True
-664,"designacion 7 (519, 520)","BADANO , Mariana (550, 553)",False
-665,"designacion 7 (519, 520)","BEDERIAN , Carlos (562, 565)",False
-666,"designacion 7 (519, 520)","CARRASCOSA , Rafael (574, 577)",False
-667,"designacion 7 (519, 520)","DUBOIS , Diego (586, 589)",False
-668,"designacion 7 (519, 520)","ORBE , Alejandro (597, 600)",False
-669,"designacion 7 (519, 520)","RODRIGUEZ , Leonardo (608, 611)",False
-670,"designacion 7 (519, 520)","TELLECHEA , Mauricio (620, 623)",False
-671,"designacion 7 (519, 520)","VILELA , Demetrio (631, 634)",False
-672,"designacion 7 (519, 520)","VILELA , Demetrio (642, 645)",False
-673,"designacion 7 (519, 520)","Ordenanza HCS (802, 804)",False
-674,"designacion 7 (519, 520)","PP Dr (856, 858)",False
-675,"designacion 7 (519, 520)","CANNA Secretario General (862, 865)",False
-676,"designacion 8 (534, 535)","RESOLUCION CD No (5, 8)",False
-677,"designacion 8 (534, 535)","VISTO Los (11, 13)",False
-678,"designacion 8 (534, 535)","CONSIDERANDO Que (32, 34)",False
-679,"designacion 8 (534, 535)","Profesor Asistente DS (44, 47)",False
-680,"designacion 8 (534, 535)","Profesor Asistente DS (70, 73)",False
-681,"designacion 8 (534, 535)","Begun Res CD (77, 80)",False
-682,"designacion 8 (534, 535)","Res CD (103, 105)",False
-683,"designacion 8 (534, 535)","Begun Res CD (127, 130)",False
-684,"designacion 8 (534, 535)","Res HCS (193, 195)",False
-685,"designacion 8 (534, 535)","Claudia Maria EGEA (204, 207)",False
-686,"designacion 8 (534, 535)","Profesor Asistente DS (218, 221)",False
-687,"designacion 8 (534, 535)","Res CD (256, 258)",False
-688,"designacion 8 (534, 535)","GARCIA IGLESIAS , Agustin (338, 342)",False
-689,"designacion 8 (534, 535)","MEINARDI , Vanesa (352, 355)",False
-690,"designacion 8 (534, 535)","PLAVNIK , Julia (365, 368)",False
-691,"designacion 8 (534, 535)","ROCHA , Pablo (378, 381)",False
-692,"designacion 8 (534, 535)","PERALTA , Gonzalo (442, 445)",False
-693,"designacion 8 (534, 535)","VILELA , Demetrio (453, 456)",False
-694,"designacion 8 (534, 535)","FERVARI , Raul (496, 499)",False
-695,"designacion 8 (534, 535)","BADANO , Mariana (550, 553)",True
-696,"designacion 8 (534, 535)","BEDERIAN , Carlos (562, 565)",True
-697,"designacion 8 (534, 535)","CARRASCOSA , Rafael (574, 577)",True
-698,"designacion 8 (534, 535)","DUBOIS , Diego (586, 589)",True
-699,"designacion 8 (534, 535)","ORBE , Alejandro (597, 600)",True
-700,"designacion 8 (534, 535)","RODRIGUEZ , Leonardo (608, 611)",True
-701,"designacion 8 (534, 535)","TELLECHEA , Mauricio (620, 623)",True
-702,"designacion 8 (534, 535)","VILELA , Demetrio (631, 634)",True
-703,"designacion 8 (534, 535)","VILELA , Demetrio (642, 645)",True
-704,"designacion 8 (534, 535)","Ordenanza HCS (802, 804)",False
-705,"designacion 8 (534, 535)","PP Dr (856, 858)",False
-706,"designacion 8 (534, 535)","CANNA Secretario General (862, 865)",False
-707,"designacion 9 (656, 657)","RESOLUCION CD No (5, 8)",False
-708,"designacion 9 (656, 657)","VISTO Los (11, 13)",False
-709,"designacion 9 (656, 657)","CONSIDERANDO Que (32, 34)",False
-710,"designacion 9 (656, 657)","Profesor Asistente DS (44, 47)",False
-711,"designacion 9 (656, 657)","Profesor Asistente DS (70, 73)",False
-712,"designacion 9 (656, 657)","Begun Res CD (77, 80)",False
-713,"designacion 9 (656, 657)","Res CD (103, 105)",False
-714,"designacion 9 (656, 657)","Begun Res CD (127, 130)",False
-715,"designacion 9 (656, 657)","Res HCS (193, 195)",False
-716,"designacion 9 (656, 657)","Claudia Maria EGEA (204, 207)",False
-717,"designacion 9 (656, 657)","Profesor Asistente DS (218, 221)",False
-718,"designacion 9 (656, 657)","Res CD (256, 258)",False
-719,"designacion 9 (656, 657)","GARCIA IGLESIAS , Agustin (338, 342)",False
-720,"designacion 9 (656, 657)","MEINARDI , Vanesa (352, 355)",False
-721,"designacion 9 (656, 657)","PLAVNIK , Julia (365, 368)",False
-722,"designacion 9 (656, 657)","ROCHA , Pablo (378, 381)",False
-723,"designacion 9 (656, 657)","PERALTA , Gonzalo (442, 445)",False
-724,"designacion 9 (656, 657)","VILELA , Demetrio (453, 456)",False
-725,"designacion 9 (656, 657)","FERVARI , Raul (496, 499)",False
-726,"designacion 9 (656, 657)","BADANO , Mariana (550, 553)",True
-727,"designacion 9 (656, 657)","BEDERIAN , Carlos (562, 565)",True
-728,"designacion 9 (656, 657)","CARRASCOSA , Rafael (574, 577)",True
-729,"designacion 9 (656, 657)","DUBOIS , Diego (586, 589)",True
-730,"designacion 9 (656, 657)","ORBE , Alejandro (597, 600)",True
-731,"designacion 9 (656, 657)","RODRIGUEZ , Leonardo (608, 611)",True
-732,"designacion 9 (656, 657)","TELLECHEA , Mauricio (620, 623)",True
-733,"designacion 9 (656, 657)","VILELA , Demetrio (631, 634)",True
-734,"designacion 9 (656, 657)","VILELA , Demetrio (642, 645)",True
-735,"designacion 9 (656, 657)","Ordenanza HCS (802, 804)",False
-736,"designacion 9 (656, 657)","PP Dr (856, 858)",False
-737,"designacion 9 (656, 657)","CANNA Secretario General (862, 865)",False
-738,"designacion 10 (706, 707)","RESOLUCION CD No (5, 8)",False
-739,"designacion 10 (706, 707)","VISTO Los (11, 13)",False
-740,"designacion 10 (706, 707)","CONSIDERANDO Que (32, 34)",False
-741,"designacion 10 (706, 707)","Profesor Asistente DS (44, 47)",False
-742,"designacion 10 (706, 707)","Profesor Asistente DS (70, 73)",False
-743,"designacion 10 (706, 707)","Begun Res CD (77, 80)",False
-744,"designacion 10 (706, 707)","Res CD (103, 105)",False
-745,"designacion 10 (706, 707)","Begun Res CD (127, 130)",False
-746,"designacion 10 (706, 707)","Res HCS (193, 195)",False
-747,"designacion 10 (706, 707)","Claudia Maria EGEA (204, 207)",False
-748,"designacion 10 (706, 707)","Profesor Asistente DS (218, 221)",False
-749,"designacion 10 (706, 707)","Res CD (256, 258)",False
-750,"designacion 10 (706, 707)","GARCIA IGLESIAS , Agustin (338, 342)",False
-751,"designacion 10 (706, 707)","MEINARDI , Vanesa (352, 355)",False
-752,"designacion 10 (706, 707)","PLAVNIK , Julia (365, 368)",False
-753,"designacion 10 (706, 707)","ROCHA , Pablo (378, 381)",False
-754,"designacion 10 (706, 707)","PERALTA , Gonzalo (442, 445)",False
-755,"designacion 10 (706, 707)","VILELA , Demetrio (453, 456)",False
-756,"designacion 10 (706, 707)","FERVARI , Raul (496, 499)",False
-757,"designacion 10 (706, 707)","BADANO , Mariana (550, 553)",False
-758,"designacion 10 (706, 707)","BEDERIAN , Carlos (562, 565)",False
-759,"designacion 10 (706, 707)","CARRASCOSA , Rafael (574, 577)",False
-760,"designacion 10 (706, 707)","DUBOIS , Diego (586, 589)",False
-761,"designacion 10 (706, 707)","ORBE , Alejandro (597, 600)",False
-762,"designacion 10 (706, 707)","RODRIGUEZ , Leonardo (608, 611)",False
-763,"designacion 10 (706, 707)","TELLECHEA , Mauricio (620, 623)",False
-764,"designacion 10 (706, 707)","VILELA , Demetrio (631, 634)",False
-765,"designacion 10 (706, 707)","VILELA , Demetrio (642, 645)",False
-766,"designacion 10 (706, 707)","Ordenanza HCS (802, 804)",True
-767,"designacion 10 (706, 707)","PP Dr (856, 858)",True
-768,"designacion 10 (706, 707)","CANNA Secretario General (862, 865)",True
-786,"designacion 14 (104, 105)","RESOLUCION CD No (4, 7)",True
-787,"designacion 14 (104, 105)","VISTO El Ilamado (12, 15)",True
-788,"designacion 14 (104, 105)","Profesor Asistente DS (30, 33)",True
-789,"designacion 14 (104, 105)","CONSIDERANDO Que (49, 51)",True
-790,"designacion 14 (104, 105)","Araceli N . ACOSTA (111, 115)",True
-791,"designacion 14 (104, 105)","Diego G . DUBOIS (116, 120)",True
-792,"designacion 14 (104, 105)","Demetrio M . VILELA (121, 125)",True
-793,"designacion 14 (104, 105)","Carlos S . BEDERIAN (134, 138)",True
-794,"designacion 14 (104, 105)","Daniel MOISSET DE ESPANES (153, 157)",True
-795,"designacion 14 (104, 105)","Asistente DS (181, 183)",False
-796,"designacion 15 (175, 176)","RESOLUCION CD No (4, 7)",False
-797,"designacion 15 (175, 176)","VISTO El Ilamado (12, 15)",False
-798,"designacion 15 (175, 176)","Profesor Asistente DS (30, 33)",False
-799,"designacion 15 (175, 176)","CONSIDERANDO Que (49, 51)",False
-800,"designacion 15 (175, 176)","Araceli N . ACOSTA (111, 115)",True
-801,"designacion 15 (175, 176)","Diego G . DUBOIS (116, 120)",True
-802,"designacion 15 (175, 176)","Demetrio M . VILELA (121, 125)",True
-803,"designacion 15 (175, 176)","Carlos S . BEDERIAN (134, 138)",True
-804,"designacion 15 (175, 176)","Daniel MOISSET DE ESPANES (153, 157)",True
-805,"designacion 15 (175, 176)","Asistente DS (181, 183)",True
-806,"designacion 16 (278, 279)","ACOSTA , Araceli N . (320, 325)",True
-807,"designacion 16 (278, 279)","DUBOIS , Diego G . (334, 339)",True
-808,"designacion 16 (278, 279)","VILELA , Demetrio M . (348, 353)",True
-809,"designacion 16 (278, 279)","MOISSET DE ESPANES , Daniel (362, 367)",True
-810,"designacion 16 (278, 279)","BEDERIAN , Carlos (376, 379)",True
-811,"designacion 17 (407, 408)","Diego DUBOIS (396, 398)",True
-812,"designacion 17 (407, 408)","Demetrio VILELA (399, 401)",True
-813,"designacion 17 (407, 408)","Carlos BEDERIAN (402, 404)",True
-814,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (451, 455)",True
-815,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (487, 491)",True
-816,"designacion 18 (445, 446)","Asistente OS (499, 501)",False
-817,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (451, 455)",True
-818,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (487, 491)",True
-819,"designacion 19 (494, 495)","Asistente OS (499, 501)",True
-820,"designacion 11 (221, 222)","Matfas D . LEE (246, 250)",True
-821,"designacion 0 (15, 16)","RESOLUCION CD No (5, 8)",True
-822,"designacion 0 (15, 16)","VISTO Los (11, 13)",True
-823,"designacion 0 (15, 16)","CONSIDERANDO Que (32, 34)",True
-824,"designacion 0 (15, 16)","Profesor Asistente DS (44, 47)",True
-825,"designacion 0 (15, 16)","Profesor Asistente DS (70, 73)",True
-826,"designacion 0 (15, 16)","Begun Res CD (77, 80)",True
-827,"designacion 0 (15, 16)","Res CD (103, 105)",True
-828,"designacion 0 (15, 16)","Begun Res CD (127, 130)",True
-829,"designacion 0 (15, 16)","Res HCS (193, 195)",True
-830,"designacion 0 (15, 16)","Claudia Maria EGEA (204, 207)",True
-831,"designacion 0 (15, 16)","Profesor Asistente DS (218, 221)",True
-832,"designacion 0 (15, 16)","Res CD (256, 258)",True
-833,"designacion 1 (306, 307)","GARCIA IGLESIAS , Agustin (338, 342)",False
-834,"designacion 1 (306, 307)","MEINARDI , Vanesa (352, 355)",False
-835,"designacion 1 (306, 307)","PLAVNIK , Julia (365, 368)",False
-836,"designacion 1 (306, 307)","ROCHA , Pablo (378, 381)",False
-837,"designacion 2 (321, 322)","GARCIA IGLESIAS , Agustin (338, 342)",True
-838,"designacion 2 (321, 322)","MEINARDI , Vanesa (352, 355)",True
-839,"designacion 2 (321, 322)","PLAVNIK , Julia (365, 368)",True
-840,"designacion 2 (321, 322)","ROCHA , Pablo (378, 381)",True
-841,"designacion 3 (394, 395)","PERALTA , Gonzalo (442, 445)",False
-842,"designacion 3 (394, 395)","VILELA , Demetrio (453, 456)",False
-843,"designacion 4 (427, 428)","PERALTA , Gonzalo (442, 445)",True
-844,"designacion 4 (427, 428)","VILELA , Demetrio (453, 456)",True
-845,"designacion 5 (468, 469)","FERVARI , Raul (496, 499)",False
-846,"designacion 6 (481, 482)","FERVARI , Raul (496, 499)",True
-847,"designacion 7 (519, 520)","BADANO , Mariana (550, 553)",False
-848,"designacion 7 (519, 520)","BEDERIAN , Carlos (562, 565)",False
-849,"designacion 7 (519, 520)","CARRASCOSA , Rafael (574, 577)",False
-850,"designacion 7 (519, 520)","DUBOIS , Diego (586, 589)",False
-851,"designacion 7 (519, 520)","ORBE , Alejandro (597, 600)",False
-852,"designacion 7 (519, 520)","RODRIGUEZ , Leonardo (608, 611)",False
-853,"designacion 7 (519, 520)","TELLECHEA , Mauricio (620, 623)",False
-854,"designacion 7 (519, 520)","VILELA , Demetrio (631, 634)",False
-855,"designacion 7 (519, 520)","VILELA , Demetrio (642, 645)",False
-856,"designacion 8 (534, 535)","BADANO , Mariana (550, 553)",True
-857,"designacion 8 (534, 535)","BEDERIAN , Carlos (562, 565)",True
-858,"designacion 8 (534, 535)","CARRASCOSA , Rafael (574, 577)",True
-859,"designacion 8 (534, 535)","DUBOIS , Diego (586, 589)",True
-860,"designacion 8 (534, 535)","ORBE , Alejandro (597, 600)",True
-861,"designacion 8 (534, 535)","RODRIGUEZ , Leonardo (608, 611)",True
-862,"designacion 8 (534, 535)","TELLECHEA , Mauricio (620, 623)",True
-863,"designacion 8 (534, 535)","VILELA , Demetrio (631, 634)",True
-864,"designacion 8 (534, 535)","VILELA , Demetrio (642, 645)",True
+1664,"designacion 1 (306, 307)","PLAVNIK , Julia (365, 368)",False
+1665,"designacion 1 (306, 307)","ROCHA , Pablo (378, 381)",False
+1666,"designacion 2 (321, 322)","GARCIA IGLESIAS , Agustin (338, 342)",True
+1667,"designacion 2 (321, 322)","MEINARDI , Vanesa (352, 355)",True
+1668,"designacion 2 (321, 322)","PLAVNIK , Julia (365, 368)",True
+1669,"designacion 2 (321, 322)","ROCHA , Pablo (378, 381)",True
+1670,"designacion 3 (394, 395)","PERALTA , Gonzalo (442, 445)",False
+1671,"designacion 3 (394, 395)","VILELA , Demetrio (453, 456)",False
+1672,"designacion 4 (427, 428)","PERALTA , Gonzalo (442, 445)",True
+1673,"designacion 4 (427, 428)","VILELA , Demetrio (453, 456)",True
+1674,"designacion 5 (468, 469)","FERVARI , Raul (496, 499)",False
+1675,"designacion 6 (481, 482)","FERVARI , Raul (496, 499)",True
+1676,"designacion 7 (519, 520)","BADANO , Mariana (550, 553)",False
+1677,"designacion 7 (519, 520)","BEDERIAN , Carlos (562, 565)",False
+1678,"designacion 7 (519, 520)","CARRASCOSA , Rafael (574, 577)",False
+1679,"designacion 7 (519, 520)","DUBOIS , Diego (586, 589)",False
+1680,"designacion 7 (519, 520)","ORBE , Alejandro (597, 600)",False
+1681,"designacion 7 (519, 520)","RODRIGUEZ , Leonardo (608, 611)",False
+1682,"designacion 7 (519, 520)","TELLECHEA , Mauricio (620, 623)",False
+1683,"designacion 7 (519, 520)","VILELA , Demetrio (631, 634)",False
+1684,"designacion 7 (519, 520)","VILELA , Demetrio (642, 645)",False
+1685,"designacion 8 (534, 535)","BADANO , Mariana (550, 553)",True
+1686,"designacion 8 (534, 535)","BEDERIAN , Carlos (562, 565)",True
+1687,"designacion 8 (534, 535)","CARRASCOSA , Rafael (574, 577)",True
+1688,"designacion 8 (534, 535)","DUBOIS , Diego (586, 589)",True
+1689,"designacion 8 (534, 535)","ORBE , Alejandro (597, 600)",True
+1690,"designacion 8 (534, 535)","RODRIGUEZ , Leonardo (608, 611)",True
+1691,"designacion 8 (534, 535)","TELLECHEA , Mauricio (620, 623)",True
+1692,"designacion 8 (534, 535)","VILELA , Demetrio (631, 634)",True
+1693,"designacion 8 (534, 535)","VILELA , Demetrio (642, 645)",True
+1624,"designacion 14 (104, 105)","RESOLUCION CD No (4, 7)",True
+1625,"designacion 14 (104, 105)","VISTO El Ilamado (12, 15)",True
+1626,"designacion 14 (104, 105)","CONSIDERANDO Que (49, 51)",True
+1627,"designacion 14 (104, 105)","Araceli N . ACOSTA (111, 115)",True
+1628,"designacion 14 (104, 105)","Diego G . DUBOIS (116, 120)",True
+1629,"designacion 14 (104, 105)","Demetrio M . VILELA (121, 125)",True
+1630,"designacion 14 (104, 105)","Carlos S . BEDERIAN (134, 138)",True
+1631,"designacion 14 (104, 105)","Daniel MOISSET DE ESPANES (153, 157)",True
+1632,"designacion 15 (175, 176)","RESOLUCION CD No (4, 7)",False
+1633,"designacion 15 (175, 176)","VISTO El Ilamado (12, 15)",False
+1634,"designacion 15 (175, 176)","CONSIDERANDO Que (49, 51)",False
+1635,"designacion 15 (175, 176)","Araceli N . ACOSTA (111, 115)",True
+1636,"designacion 15 (175, 176)","Diego G . DUBOIS (116, 120)",True
+1637,"designacion 15 (175, 176)","Demetrio M . VILELA (121, 125)",True
+1638,"designacion 15 (175, 176)","Carlos S . BEDERIAN (134, 138)",True
+1639,"designacion 15 (175, 176)","Daniel MOISSET DE ESPANES (153, 157)",True
+1640,"designacion 16 (278, 279)","ACOSTA , Araceli N . (320, 325)",True
+1641,"designacion 16 (278, 279)","DUBOIS , Diego G . (334, 339)",True
+1642,"designacion 16 (278, 279)","VILELA , Demetrio M . (348, 353)",True
+1643,"designacion 16 (278, 279)","MOISSET DE ESPANES , Daniel (362, 367)",True
+1644,"designacion 16 (278, 279)","BEDERIAN , Carlos (376, 379)",True
+1645,"designacion 17 (407, 408)","Diego DUBOIS (396, 398)",True
+1646,"designacion 17 (407, 408)","Demetrio VILELA (399, 401)",True
+1647,"designacion 17 (407, 408)","Carlos BEDERIAN (402, 404)",True
+1648,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (451, 455)",True
+1649,"designacion 18 (445, 446)","Daniel MOISSET DE ESPANES (487, 491)",True
+1650,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (451, 455)",True
+1651,"designacion 19 (494, 495)","Daniel MOISSET DE ESPANES (487, 491)",True
+1652,"designacion 11 (221, 222)","Matfas D . LEE (246, 250)",True
+1653,"designacion 0 (15, 16)","RESOLUCION CD No (5, 8)",True
+1654,"designacion 0 (15, 16)","VISTO Los (11, 13)",True
+1655,"designacion 0 (15, 16)","CONSIDERANDO Que (32, 34)",True
+1656,"designacion 0 (15, 16)","Begun Res CD (77, 80)",True
+1657,"designacion 0 (15, 16)","Res CD (103, 105)",True
+1658,"designacion 0 (15, 16)","Begun Res CD (127, 130)",True
+1659,"designacion 0 (15, 16)","Res HCS (193, 195)",True
+1660,"designacion 0 (15, 16)","Claudia Maria EGEA (204, 207)",True
+1661,"designacion 0 (15, 16)","Res CD (256, 258)",True
+1662,"designacion 1 (306, 307)","GARCIA IGLESIAS , Agustin (338, 342)",False
+1663,"designacion 1 (306, 307)","MEINARDI , Vanesa (352, 355)",False

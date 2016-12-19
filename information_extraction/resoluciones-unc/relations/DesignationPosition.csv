@@ -1,240 +1,34 @@
 Candidate evidence id,Candidate evidence left entity,Candidate evidence right entity,Relation present
-1024,"designacion 4 (427, 428)","Profesor Ayudante A (540, 543)",False
-1025,"designacion 4 (427, 428)","Profesor Ayudante A (677, 680)",False
-1026,"designacion 5 (468, 469)","Profesor Asistente (44, 46)",False
-1027,"designacion 5 (468, 469)","Profesor Asistente (70, 72)",False
-1028,"designacion 5 (468, 469)","Profesor Ayudante A (94, 97)",False
-1029,"designacion 5 (468, 469)","Profesor Ayudante A (119, 122)",False
-1030,"designacion 5 (468, 469)","Prof , Ayudante A (148, 152)",False
-1031,"designacion 5 (468, 469)","Profesor Asociado (181, 183)",False
-1032,"designacion 5 (468, 469)","Profesor Asistente (218, 220)",False
-1033,"designacion 5 (468, 469)","Profesor Ayudante A (228, 231)",False
-1034,"designacion 5 (468, 469)","Profesores Asistentes (327, 329)",False
-1035,"designacion 5 (468, 469)","Profesor Ayudante A (432, 435)",True
-1036,"designacion 5 (468, 469)","Profesor Ayudante A (486, 489)",False
-1037,"designacion 5 (468, 469)","Profesor Ayudante A (540, 543)",False
-1038,"designacion 5 (468, 469)","Profesor Ayudante A (677, 680)",False
-1039,"designacion 6 (481, 482)","Profesor Asistente (44, 46)",False
-1040,"designacion 6 (481, 482)","Profesor Asistente (70, 72)",False
-1041,"designacion 6 (481, 482)","Profesor Ayudante A (94, 97)",False
-1042,"designacion 6 (481, 482)","Profesor Ayudante A (119, 122)",False
-1043,"designacion 6 (481, 482)","Prof , Ayudante A (148, 152)",False
-1044,"designacion 6 (481, 482)","Profesor Asociado (181, 183)",False
-1045,"designacion 6 (481, 482)","Profesor Asistente (218, 220)",False
-1046,"designacion 6 (481, 482)","Profesor Ayudante A (228, 231)",False
-1047,"designacion 6 (481, 482)","Profesores Asistentes (327, 329)",False
-1048,"designacion 6 (481, 482)","Profesor Ayudante A (432, 435)",False
-1049,"designacion 6 (481, 482)","Profesor Ayudante A (486, 489)",True
-1050,"designacion 6 (481, 482)","Profesor Ayudante A (540, 543)",False
-1051,"designacion 6 (481, 482)","Profesor Ayudante A (677, 680)",False
-1052,"designacion 7 (519, 520)","Profesor Asistente (44, 46)",False
-1053,"designacion 7 (519, 520)","Profesor Asistente (70, 72)",False
-1054,"designacion 7 (519, 520)","Profesor Ayudante A (94, 97)",False
-1055,"designacion 7 (519, 520)","Profesor Ayudante A (119, 122)",False
-1056,"designacion 7 (519, 520)","Prof , Ayudante A (148, 152)",False
-1057,"designacion 7 (519, 520)","Profesor Asociado (181, 183)",False
-1058,"designacion 7 (519, 520)","Profesor Asistente (218, 220)",False
-1059,"designacion 7 (519, 520)","Profesor Ayudante A (228, 231)",False
-1060,"designacion 7 (519, 520)","Profesores Asistentes (327, 329)",False
-1061,"designacion 7 (519, 520)","Profesor Ayudante A (432, 435)",False
-1062,"designacion 7 (519, 520)","Profesor Ayudante A (486, 489)",True
-1063,"designacion 7 (519, 520)","Profesor Ayudante A (540, 543)",False
-1064,"designacion 7 (519, 520)","Profesor Ayudante A (677, 680)",False
-1065,"designacion 8 (534, 535)","Profesor Asistente (44, 46)",False
-1066,"designacion 8 (534, 535)","Profesor Asistente (70, 72)",False
-1067,"designacion 8 (534, 535)","Profesor Ayudante A (94, 97)",False
-1068,"designacion 8 (534, 535)","Profesor Ayudante A (119, 122)",False
-1069,"designacion 8 (534, 535)","Prof , Ayudante A (148, 152)",False
-1070,"designacion 8 (534, 535)","Profesor Asociado (181, 183)",False
-1071,"designacion 8 (534, 535)","Profesor Asistente (218, 220)",False
-1072,"designacion 8 (534, 535)","Profesor Ayudante A (228, 231)",False
-1073,"designacion 8 (534, 535)","Profesores Asistentes (327, 329)",False
-1074,"designacion 8 (534, 535)","Profesor Ayudante A (432, 435)",False
-1075,"designacion 8 (534, 535)","Profesor Ayudante A (486, 489)",False
-1076,"designacion 8 (534, 535)","Profesor Ayudante A (540, 543)",True
-1077,"designacion 8 (534, 535)","Profesor Ayudante A (677, 680)",False
-1078,"designacion 9 (656, 657)","Profesor Asistente (44, 46)",False
-1079,"designacion 9 (656, 657)","Profesor Asistente (70, 72)",False
-1080,"designacion 9 (656, 657)","Profesor Ayudante A (94, 97)",False
-1081,"designacion 9 (656, 657)","Profesor Ayudante A (119, 122)",False
-1082,"designacion 9 (656, 657)","Prof , Ayudante A (148, 152)",False
-1083,"designacion 9 (656, 657)","Profesor Asociado (181, 183)",False
-1084,"designacion 9 (656, 657)","Profesor Asistente (218, 220)",False
-1085,"designacion 9 (656, 657)","Profesor Ayudante A (228, 231)",False
-1086,"designacion 9 (656, 657)","Profesores Asistentes (327, 329)",False
-1087,"designacion 9 (656, 657)","Profesor Ayudante A (432, 435)",False
-1088,"designacion 9 (656, 657)","Profesor Ayudante A (486, 489)",False
-1089,"designacion 9 (656, 657)","Profesor Ayudante A (540, 543)",True
-1090,"designacion 9 (656, 657)","Profesor Ayudante A (677, 680)",True
-1091,"designacion 10 (706, 707)","Profesor Asistente (44, 46)",False
-1092,"designacion 10 (706, 707)","Profesor Asistente (70, 72)",False
-1093,"designacion 10 (706, 707)","Profesor Ayudante A (94, 97)",False
-1094,"designacion 10 (706, 707)","Profesor Ayudante A (119, 122)",False
-1095,"designacion 10 (706, 707)","Prof , Ayudante A (148, 152)",False
-1096,"designacion 10 (706, 707)","Profesor Asociado (181, 183)",False
-1097,"designacion 10 (706, 707)","Profesor Asistente (218, 220)",False
-1098,"designacion 10 (706, 707)","Profesor Ayudante A (228, 231)",False
-1099,"designacion 10 (706, 707)","Profesores Asistentes (327, 329)",False
-1100,"designacion 10 (706, 707)","Profesor Ayudante A (432, 435)",False
-1101,"designacion 10 (706, 707)","Profesor Ayudante A (486, 489)",False
-1102,"designacion 10 (706, 707)","Profesor Ayudante A (540, 543)",False
-1103,"designacion 10 (706, 707)","Profesor Ayudante A (677, 680)",True
-865,"designacion 14 (104, 105)","Profesor Asistente (30, 32)",True
-866,"designacion 14 (104, 105)","Profesor Asistente (143, 145)",True
-867,"designacion 14 (104, 105)","Prof . Ayudante A (166, 170)",True
-868,"designacion 14 (104, 105)","Prof . Asistente (179, 182)",False
-869,"designacion 14 (104, 105)","Profesores Asistentes (302, 304)",False
-870,"designacion 14 (104, 105)","Prof . Ayudante A (410, 414)",False
-871,"designacion 14 (104, 105)","Prof . Ayudante A (459, 463)",False
-872,"designacion 14 (104, 105)","Prof . Asistente (497, 500)",False
-873,"designacion 15 (175, 176)","Profesor Asistente (30, 32)",False
-874,"designacion 15 (175, 176)","Profesor Asistente (143, 145)",True
-875,"designacion 15 (175, 176)","Prof . Ayudante A (166, 170)",True
-876,"designacion 15 (175, 176)","Prof . Asistente (179, 182)",True
-877,"designacion 15 (175, 176)","Profesores Asistentes (302, 304)",False
-878,"designacion 15 (175, 176)","Prof . Ayudante A (410, 414)",False
-879,"designacion 15 (175, 176)","Prof . Ayudante A (459, 463)",False
-880,"designacion 15 (175, 176)","Prof . Asistente (497, 500)",False
-881,"designacion 16 (278, 279)","Profesor Asistente (30, 32)",False
-882,"designacion 16 (278, 279)","Profesor Asistente (143, 145)",False
-883,"designacion 16 (278, 279)","Prof . Ayudante A (166, 170)",False
-884,"designacion 16 (278, 279)","Prof . Asistente (179, 182)",True
-885,"designacion 16 (278, 279)","Profesores Asistentes (302, 304)",True
-886,"designacion 16 (278, 279)","Prof . Ayudante A (410, 414)",False
-887,"designacion 16 (278, 279)","Prof . Ayudante A (459, 463)",False
-888,"designacion 16 (278, 279)","Prof . Asistente (497, 500)",False
-889,"designacion 17 (407, 408)","Profesor Asistente (30, 32)",False
-890,"designacion 17 (407, 408)","Profesor Asistente (143, 145)",False
-891,"designacion 17 (407, 408)","Prof . Ayudante A (166, 170)",False
-892,"designacion 17 (407, 408)","Prof . Asistente (179, 182)",False
-893,"designacion 17 (407, 408)","Profesores Asistentes (302, 304)",True
-894,"designacion 17 (407, 408)","Prof . Ayudante A (410, 414)",True
-895,"designacion 17 (407, 408)","Prof . Ayudante A (459, 463)",False
-896,"designacion 17 (407, 408)","Prof . Asistente (497, 500)",False
-897,"designacion 18 (445, 446)","Profesor Asistente (30, 32)",False
-898,"designacion 18 (445, 446)","Profesor Asistente (143, 145)",False
-899,"designacion 18 (445, 446)","Prof . Ayudante A (166, 170)",False
-900,"designacion 18 (445, 446)","Prof . Asistente (179, 182)",False
-901,"designacion 18 (445, 446)","Profesores Asistentes (302, 304)",False
-902,"designacion 18 (445, 446)","Prof . Ayudante A (410, 414)",True
-903,"designacion 18 (445, 446)","Prof . Ayudante A (459, 463)",True
-904,"designacion 18 (445, 446)","Prof . Asistente (497, 500)",False
-905,"designacion 19 (494, 495)","Profesor Asistente (30, 32)",False
-906,"designacion 19 (494, 495)","Profesor Asistente (143, 145)",False
-907,"designacion 19 (494, 495)","Prof . Ayudante A (166, 170)",False
-908,"designacion 19 (494, 495)","Prof . Asistente (179, 182)",False
-909,"designacion 19 (494, 495)","Profesores Asistentes (302, 304)",False
-910,"designacion 19 (494, 495)","Prof . Ayudante A (410, 414)",False
-911,"designacion 19 (494, 495)","Prof . Ayudante A (459, 463)",True
-912,"designacion 19 (494, 495)","Prof . Asistente (497, 500)",True
-913,"designacion 14 (104, 105)","Profesor Asistente (30, 32)",True
-914,"designacion 14 (104, 105)","Profesor Asistente (143, 145)",True
-915,"designacion 14 (104, 105)","Prof . Ayudante A (166, 170)",True
-916,"designacion 14 (104, 105)","Prof . Asistente (179, 182)",False
-917,"designacion 15 (175, 176)","Profesor Asistente (30, 32)",False
-918,"designacion 15 (175, 176)","Profesor Asistente (143, 145)",True
-919,"designacion 15 (175, 176)","Prof . Ayudante A (166, 170)",True
-920,"designacion 15 (175, 176)","Prof . Asistente (179, 182)",True
-921,"designacion 16 (278, 279)","Profesores Asistentes (302, 304)",True
-922,"designacion 17 (407, 408)","Prof . Ayudante A (410, 414)",True
-923,"designacion 18 (445, 446)","Prof . Ayudante A (459, 463)",True
-924,"designacion 18 (445, 446)","Prof . Asistente (497, 500)",False
-925,"designacion 19 (494, 495)","Prof . Ayudante A (459, 463)",True
-926,"designacion 19 (494, 495)","Prof . Asistente (497, 500)",True
-927,"designacion 11 (221, 222)","Profesor Adjunto (36, 38)",True
-928,"designacion 11 (221, 222)","Profesor Adjunto (73, 75)",True
-929,"designacion 11 (221, 222)","Profesor Adjunto (115, 117)",True
-930,"designacion 11 (221, 222)","Profesor Adjunto (224, 226)",True
-931,"designacion 11 (221, 222)","Profesor Asistente (292, 294)",False
-932,"designacion 12 (271, 272)","Profesor Adjunto (36, 38)",False
-933,"designacion 12 (271, 272)","Profesor Adjunto (73, 75)",False
-934,"designacion 12 (271, 272)","Profesor Adjunto (115, 117)",False
-935,"designacion 12 (271, 272)","Profesor Adjunto (224, 226)",True
-936,"designacion 12 (271, 272)","Profesor Asistente (292, 294)",True
-937,"designacion 13 (348, 349)","Profesor Adjunto (36, 38)",False
-938,"designacion 13 (348, 349)","Profesor Adjunto (73, 75)",False
-939,"designacion 13 (348, 349)","Profesor Adjunto (115, 117)",False
-940,"designacion 13 (348, 349)","Profesor Adjunto (224, 226)",False
-941,"designacion 13 (348, 349)","Profesor Asistente (292, 294)",True
-942,"designacion 11 (221, 222)","Profesor Adjunto (224, 226)",True
-943,"designacion 12 (271, 272)","Profesor Asistente (292, 294)",True
-944,"designacion 0 (15, 16)","Profesor Asistente (44, 46)",True
-945,"designacion 0 (15, 16)","Profesor Asistente (70, 72)",True
-946,"designacion 0 (15, 16)","Profesor Ayudante A (94, 97)",True
-947,"designacion 0 (15, 16)","Profesor Ayudante A (119, 122)",True
-948,"designacion 0 (15, 16)","Prof , Ayudante A (148, 152)",True
-949,"designacion 0 (15, 16)","Profesor Asociado (181, 183)",True
-950,"designacion 0 (15, 16)","Profesor Asistente (218, 220)",True
-951,"designacion 0 (15, 16)","Profesor Ayudante A (228, 231)",True
-952,"designacion 1 (306, 307)","Profesores Asistentes (327, 329)",False
-953,"designacion 2 (321, 322)","Profesores Asistentes (327, 329)",True
-954,"designacion 3 (394, 395)","Profesor Ayudante A (432, 435)",False
-955,"designacion 4 (427, 428)","Profesor Ayudante A (432, 435)",True
-956,"designacion 5 (468, 469)","Profesor Ayudante A (486, 489)",False
-957,"designacion 6 (481, 482)","Profesor Ayudante A (486, 489)",True
-958,"designacion 7 (519, 520)","Profesor Ayudante A (540, 543)",False
-959,"designacion 8 (534, 535)","Profesor Ayudante A (540, 543)",True
-960,"designacion 9 (656, 657)","Profesor Ayudante A (677, 680)",True
-961,"designacion 0 (15, 16)","Profesor Asistente (44, 46)",True
-962,"designacion 0 (15, 16)","Profesor Asistente (70, 72)",True
-963,"designacion 0 (15, 16)","Profesor Ayudante A (94, 97)",True
-964,"designacion 0 (15, 16)","Profesor Ayudante A (119, 122)",True
-965,"designacion 0 (15, 16)","Prof , Ayudante A (148, 152)",True
-966,"designacion 0 (15, 16)","Profesor Asociado (181, 183)",True
-967,"designacion 0 (15, 16)","Profesor Asistente (218, 220)",True
-968,"designacion 0 (15, 16)","Profesor Ayudante A (228, 231)",True
-969,"designacion 0 (15, 16)","Profesores Asistentes (327, 329)",False
-970,"designacion 0 (15, 16)","Profesor Ayudante A (432, 435)",False
-971,"designacion 0 (15, 16)","Profesor Ayudante A (486, 489)",False
-972,"designacion 0 (15, 16)","Profesor Ayudante A (540, 543)",False
-973,"designacion 0 (15, 16)","Profesor Ayudante A (677, 680)",False
-974,"designacion 1 (306, 307)","Profesor Asistente (44, 46)",True
-975,"designacion 1 (306, 307)","Profesor Asistente (70, 72)",True
-976,"designacion 1 (306, 307)","Profesor Ayudante A (94, 97)",True
-977,"designacion 1 (306, 307)","Profesor Ayudante A (119, 122)",True
-978,"designacion 1 (306, 307)","Prof , Ayudante A (148, 152)",True
-979,"designacion 1 (306, 307)","Profesor Asociado (181, 183)",True
-980,"designacion 1 (306, 307)","Profesor Asistente (218, 220)",True
-981,"designacion 1 (306, 307)","Profesor Ayudante A (228, 231)",True
-982,"designacion 1 (306, 307)","Profesores Asistentes (327, 329)",False
-983,"designacion 1 (306, 307)","Profesor Ayudante A (432, 435)",False
-984,"designacion 1 (306, 307)","Profesor Ayudante A (486, 489)",False
-985,"designacion 1 (306, 307)","Profesor Ayudante A (540, 543)",False
-986,"designacion 1 (306, 307)","Profesor Ayudante A (677, 680)",False
-987,"designacion 2 (321, 322)","Profesor Asistente (44, 46)",False
-988,"designacion 2 (321, 322)","Profesor Asistente (70, 72)",False
-989,"designacion 2 (321, 322)","Profesor Ayudante A (94, 97)",False
-990,"designacion 2 (321, 322)","Profesor Ayudante A (119, 122)",False
-991,"designacion 2 (321, 322)","Prof , Ayudante A (148, 152)",False
-992,"designacion 2 (321, 322)","Profesor Asociado (181, 183)",False
-993,"designacion 2 (321, 322)","Profesor Asistente (218, 220)",False
-994,"designacion 2 (321, 322)","Profesor Ayudante A (228, 231)",False
-995,"designacion 2 (321, 322)","Profesores Asistentes (327, 329)",True
-996,"designacion 2 (321, 322)","Profesor Ayudante A (432, 435)",False
-997,"designacion 2 (321, 322)","Profesor Ayudante A (486, 489)",False
-998,"designacion 2 (321, 322)","Profesor Ayudante A (540, 543)",False
-999,"designacion 2 (321, 322)","Profesor Ayudante A (677, 680)",False
-1000,"designacion 3 (394, 395)","Profesor Asistente (44, 46)",False
-1001,"designacion 3 (394, 395)","Profesor Asistente (70, 72)",False
-1002,"designacion 3 (394, 395)","Profesor Ayudante A (94, 97)",False
-1003,"designacion 3 (394, 395)","Profesor Ayudante A (119, 122)",False
-1004,"designacion 3 (394, 395)","Prof , Ayudante A (148, 152)",False
-1005,"designacion 3 (394, 395)","Profesor Asociado (181, 183)",False
-1006,"designacion 3 (394, 395)","Profesor Asistente (218, 220)",False
-1007,"designacion 3 (394, 395)","Profesor Ayudante A (228, 231)",False
-1008,"designacion 3 (394, 395)","Profesores Asistentes (327, 329)",True
-1009,"designacion 3 (394, 395)","Profesor Ayudante A (432, 435)",False
-1010,"designacion 3 (394, 395)","Profesor Ayudante A (486, 489)",False
-1011,"designacion 3 (394, 395)","Profesor Ayudante A (540, 543)",False
-1012,"designacion 3 (394, 395)","Profesor Ayudante A (677, 680)",False
-1013,"designacion 4 (427, 428)","Profesor Asistente (44, 46)",False
-1014,"designacion 4 (427, 428)","Profesor Asistente (70, 72)",False
-1015,"designacion 4 (427, 428)","Profesor Ayudante A (94, 97)",False
-1016,"designacion 4 (427, 428)","Profesor Ayudante A (119, 122)",False
-1017,"designacion 4 (427, 428)","Prof , Ayudante A (148, 152)",False
-1018,"designacion 4 (427, 428)","Profesor Asociado (181, 183)",False
-1019,"designacion 4 (427, 428)","Profesor Asistente (218, 220)",False
-1020,"designacion 4 (427, 428)","Profesor Ayudante A (228, 231)",False
-1021,"designacion 4 (427, 428)","Profesores Asistentes (327, 329)",False
-1022,"designacion 4 (427, 428)","Profesor Ayudante A (432, 435)",True
-1023,"designacion 4 (427, 428)","Profesor Ayudante A (486, 489)",False
+1694,"designacion 14 (104, 105)","Profesor Asistente (30, 32)",True
+1695,"designacion 14 (104, 105)","Profesor Asistente (143, 145)",True
+1696,"designacion 14 (104, 105)","Prof . Ayudante A (166, 170)",True
+1697,"designacion 14 (104, 105)","Prof . Asistente (179, 182)",False
+1698,"designacion 15 (175, 176)","Profesor Asistente (30, 32)",False
+1699,"designacion 15 (175, 176)","Profesor Asistente (143, 145)",True
+1700,"designacion 15 (175, 176)","Prof . Ayudante A (166, 170)",True
+1701,"designacion 15 (175, 176)","Prof . Asistente (179, 182)",True
+1702,"designacion 16 (278, 279)","Profesores Asistentes (302, 304)",True
+1703,"designacion 17 (407, 408)","Prof . Ayudante A (410, 414)",True
+1704,"designacion 18 (445, 446)","Prof . Ayudante A (459, 463)",True
+1705,"designacion 18 (445, 446)","Prof . Asistente (497, 500)",False
+1706,"designacion 19 (494, 495)","Prof . Ayudante A (459, 463)",True
+1707,"designacion 19 (494, 495)","Prof . Asistente (497, 500)",True
+1708,"designacion 11 (221, 222)","Profesor Adjunto (224, 226)",True
+1709,"designacion 12 (271, 272)","Profesor Asistente (292, 294)",True
+1710,"designacion 0 (15, 16)","Profesor Asistente (44, 46)",True
+1711,"designacion 0 (15, 16)","Profesor Asistente (70, 72)",True
+1712,"designacion 0 (15, 16)","Profesor Ayudante A (94, 97)",True
+1713,"designacion 0 (15, 16)","Profesor Ayudante A (119, 122)",True
+1714,"designacion 0 (15, 16)","Prof , Ayudante A (148, 152)",True
+1715,"designacion 0 (15, 16)","Profesor Asociado (181, 183)",True
+1716,"designacion 0 (15, 16)","Profesor Asistente (218, 220)",True
+1717,"designacion 0 (15, 16)","Profesor Ayudante A (228, 231)",True
+1718,"designacion 1 (306, 307)","Profesores Asistentes (327, 329)",False
+1719,"designacion 2 (321, 322)","Profesores Asistentes (327, 329)",True
+1720,"designacion 3 (394, 395)","Profesor Ayudante A (432, 435)",False
+1721,"designacion 4 (427, 428)","Profesor Ayudante A (432, 435)",True
+1722,"designacion 5 (468, 469)","Profesor Ayudante A (486, 489)",False
+1723,"designacion 6 (481, 482)","Profesor Ayudante A (486, 489)",True
+1724,"designacion 7 (519, 520)","Profesor Ayudante A (540, 543)",False
+1725,"designacion 8 (534, 535)","Profesor Ayudante A (540, 543)",True
+1726,"designacion 9 (656, 657)","Profesor Ayudante A (677, 680)",True
